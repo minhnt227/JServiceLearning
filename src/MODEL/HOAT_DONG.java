@@ -4,6 +4,7 @@
  */
 package MODEL;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.*;
@@ -49,9 +50,15 @@ public class HOAT_DONG {
     public Date getNgayBD() {
         return NgayBD;
     }
+    public String getStringNgayBD() {
+        return new SimpleDateFormat("dd/MM/yyyy").format(NgayBD);
+    }
 
     public Date getNgayKT() {
         return NgayKT;
+    }
+    public String getStringNgayKT() {
+        return new SimpleDateFormat("dd/MM/yyyy").format(NgayKT);
     }
 
     public Boolean getHide() {
@@ -99,6 +106,10 @@ public class HOAT_DONG {
         }
         
         return newList;
+    }
+    
+    public Object[] getRowData(){
+        return new Object[]{getTenHD(),getLoai(),getStringNgayBD(),getStringNgayKT()} ;
     }
     
 }

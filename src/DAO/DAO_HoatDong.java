@@ -16,13 +16,18 @@ import java.text.SimpleDateFormat;
 public class DAO_HoatDong extends DBConnector {
 
     public ArrayList GetHoatDong(int number, String ten, String loai, String ngayBD, String ngayKT, boolean Hide) {
-        ArrayList<HOAT_DONG> HDLíst = new ArrayList<>();
-        String sql = "SELECT * FROM HOATDONG WHERE Hide = '" + Hide + "'";
+        ArrayList<HOAT_DONG> HDList = new ArrayList<>();
+        String sql;
+        if(number <=0)
+            sql = "SELECT * FROM HOAT_DONG WHERE Hide = '" + Hide + "'";
+        else
+            sql = "SELECT TOP " + number + " * FROM HOAT_DONG WHERE Hide = '" + Hide + "'";
         try {
             Statement stm = con.createStatement();
             ResultSet result = stm.executeQuery(sql);
             while (result.next()) {
-                HOAT_DONG hd = new HOAT_DONG(result.getInt(0), result.getNString(1), result.getNString(2), result.getDate(3), result.getDate(4), result.getBoolean(5), result.getDate(6));
+                //System.out.println(result.getInt(1));
+                HOAT_DONG hd = new HOAT_DONG(result.getInt(1), result.getNString(2), result.getNString(3), result.getDate(4), result.getDate(5), result.getBoolean(6), result.getDate(7));
                 if (!ten.isBlank()) {
                     if (!hd.getTenHD().contains(ten)) {
                         continue;
@@ -44,12 +49,12 @@ public class DAO_HoatDong extends DBConnector {
                     if (hd.getNgayKT().after(new SimpleDateFormat("dd/MM/yyyy").parse(ngayKT)))
                         continue;
                 }
-                HDLíst.add(hd);
+                HDList.add(hd);
             }
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return HDLíst;
+        return HDList;
     }
 }

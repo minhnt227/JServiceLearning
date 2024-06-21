@@ -18,7 +18,7 @@ public class DBConnector {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             
-            String url = "jdbc:sqlserver://localhost;encrypt=true;databaseName=Service_Learning;integratedSecurity=true;";
+            String url = "jdbc:sqlserver://localhost;encrypt=true;databaseName=Service_Learning;integratedSecurity=true;trustServerCertificate=true";
             
             con = DriverManager.getConnection(url);
         } catch (Exception e) {

@@ -4,6 +4,13 @@
  */
 package UI;
 
+import DAO.*;
+import MODEL.HOAT_DONG;
+import java.util.*;
+import javax.swing.JTable;
+import javax.swing.table.*;
+import javax.swing.text.TableView;
+
 /**
  *
  * @author bom19
@@ -30,7 +37,7 @@ public class TestHome extends javax.swing.JFrame {
         Fromdate = new com.raven.datechooser.DateChooser();
         Todate = new com.raven.datechooser.DateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        HDTbl = new javax.swing.JTable();
         FilterPnl = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -52,7 +59,7 @@ public class TestHome extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        HDTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -63,7 +70,17 @@ public class TestHome extends javax.swing.JFrame {
                 "Tên Hoạt Động", "Loại", "Ngày Bắt Đầu", "Ngày Kết Thúc"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        HDTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HDTblMouseClicked(evt);
+            }
+        });
+        HDTbl.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                LoadHDs(evt);
+            }
+        });
+        jScrollPane1.setViewportView(HDTbl);
 
         FilterPnl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, new java.awt.Color(204, 255, 255), java.awt.Color.lightGray, null));
 
@@ -81,6 +98,19 @@ public class TestHome extends javax.swing.JFrame {
         jLabel5.setText("Đến Ngày:");
 
         jButton1.setText("Filter");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        FromDatetxt.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        FromDatetxt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        FromDatetxt.setText("");
+        ToDatetxt.setText("");
+
+        ToDatetxt.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        ToDatetxt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout FilterPnlLayout = new javax.swing.GroupLayout(FilterPnl);
         FilterPnl.setLayout(FilterPnlLayout);
@@ -114,7 +144,7 @@ public class TestHome extends javax.swing.JFrame {
                         .addGroup(FilterPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(HD_Loaicmb, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(ToDatetxt, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         FilterPnlLayout.setVerticalGroup(
             FilterPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,21 +176,39 @@ public class TestHome extends javax.swing.JFrame {
                 .addGap(74, 74, 74)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(FilterPnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 762, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addComponent(FilterPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 378, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void LoadHDs(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_LoadHDs
+        
+    }//GEN-LAST:event_LoadHDs
+
+    private void HDTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HDTblMouseClicked
+        
+    }//GEN-LAST:event_HDTblMouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        DefaultTableModel model = (DefaultTableModel)HDTbl.getModel();
+        RemoveTableData(model);
+        DAO_HoatDong daoHD = new DAO_HoatDong();
+        ArrayList<HOAT_DONG> HDs = daoHD.GetHoatDong(0, HD_nametxt.getText(), HD_Loaicmb.getSelectedItem().toString(), FromDatetxt.getText(), ToDatetxt.getText(), false);
+        for(HOAT_DONG hd : HDs){
+            model.addRow(hd.getRowData());
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,6 +247,7 @@ public class TestHome extends javax.swing.JFrame {
     private javax.swing.JPanel FilterPnl;
     private javax.swing.JTextField FromDatetxt;
     private com.raven.datechooser.DateChooser Fromdate;
+    private javax.swing.JTable HDTbl;
     private javax.swing.JComboBox<String> HD_Loaicmb;
     private javax.swing.JTextField HD_nametxt;
     private javax.swing.JTextField ToDatetxt;
@@ -210,6 +259,12 @@ public class TestHome extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void RemoveTableData(DefaultTableModel model) {
+        int count = model.getRowCount();
+        for(int i = 0; i< count;i++){
+            model.removeRow(0);
+        }
+    }
 }
