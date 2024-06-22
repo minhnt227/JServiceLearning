@@ -3,7 +3,6 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.chrono.ThaiBuddhistChronology;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -77,17 +76,23 @@ public class Khoa{
         setDate(date);
     }
 
-    public static Khoa find(ArrayList<Khoa> list, String id){
-        Iterator<Khoa> it = list.iterator();
-        while(it.hasNext()){
-            Khoa temp = it.next();
-            if(temp.getId().contains(id))
-                return temp;
-        }
-        return null;
+}
+ 
+class ListKhoa  extends Khoa{
+    ArrayList<Khoa> list;
+    public ListKhoa(){
+        list = new ArrayList<>();
     }
 
-    public static String findName(ArrayList<Khoa> list, String name){
+    public void addList(Khoa khoa){
+        if (!khoa.getName().isEmpty() && !khoa.getId().isEmpty() && !khoa.getEmail().isEmpty()){
+            if (Check.isPhoneNumber(getPhone())){
+                list.add(khoa);
+            }else JOptionPane.showMessageDialog(null,"Check Phone Number", "Try again",JOptionPane.ERROR_MESSAGE);
+        } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
+    }
+
+    public String findName(String name){
         Iterator<Khoa> it = list.iterator();
         while(it.hasNext()){
             Khoa temp = it.next();
@@ -97,7 +102,17 @@ public class Khoa{
         return null;
     }
 
-    public static void importFile(BufferedReader file, ArrayList<Khoa> list) throws IOException, ParseException{
+    public Khoa find(String id){
+        Iterator<Khoa> it = list.iterator();
+        while(it.hasNext()){
+            Khoa temp = it.next();
+            if(temp.getId().contains(id))
+                return temp;
+        }
+        return null;
+    }
+
+    public void importFile(BufferedReader file) throws IOException, ParseException{
         String line;
         while ((line = file.readLine()) != null) {
             String[] value = line.split("\t");
@@ -105,21 +120,11 @@ public class Khoa{
         }
     }
 
-    public static void  exportFile(PrintWriter file, ArrayList<Khoa> list){
+    public void  exportFile(PrintWriter file){
         for (Khoa khoa : list) {
             file.write(khoa.getId() + "\t" + khoa.getName() + "\t" + khoa.getPhone() + "\t" + khoa.getEmail() + "\t" + khoa.getDate());
         }
     }
-    
-    public void addList(ArrayList<Khoa> list, Khoa khoa){
-        if (!khoa.getName().isEmpty() && !khoa.getId().isEmpty() && !khoa.getEmail().isEmpty()){
-            if (Check.isPhoneNumber(phone)){
-                list.add(khoa);
-            }else JOptionPane.showMessageDialog(null,"Check Phone Number", "Try again",JOptionPane.ERROR_MESSAGE);
-        } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
-    }
 
     
-
 }
- 
