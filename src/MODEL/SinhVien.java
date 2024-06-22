@@ -84,14 +84,6 @@ public class SinhVien extends HOAT_DONG{
 }
 
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import java.util.Iterator;
-
-import javax.swing.JOptionPane;
-
 class ListSinhVien extends SinhVien{
     ArrayList<SinhVien> list;
 
