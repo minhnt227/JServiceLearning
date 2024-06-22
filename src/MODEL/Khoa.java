@@ -87,12 +87,13 @@ class ListKhoa  extends Khoa{
     public void addList(Khoa khoa){
         if (!khoa.getName().isEmpty() && !khoa.getId().isEmpty() && !khoa.getEmail().isEmpty()){
             if (Check.isPhoneNumber(getPhone())){
-                list.add(khoa);
+                if(Check.isValidEmail(getEmail())) list.add(khoa);
+                else JOptionPane.showMessageDialog(null,"Check Email Number", "Try again",JOptionPane.ERROR_MESSAGE);
             }else JOptionPane.showMessageDialog(null,"Check Phone Number", "Try again",JOptionPane.ERROR_MESSAGE);
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
     }
 
-    public String findName(String name){
+    public String findName(ArrayList<Khoa> list, String name){
         Iterator<Khoa> it = list.iterator();
         while(it.hasNext()){
             Khoa temp = it.next();
@@ -102,7 +103,7 @@ class ListKhoa  extends Khoa{
         return null;
     }
 
-    public Khoa find(String id){
+    public Khoa find( String id){
         Iterator<Khoa> it = list.iterator();
         while(it.hasNext()){
             Khoa temp = it.next();
