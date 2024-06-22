@@ -62,8 +62,8 @@ public class SinhVien extends HOAT_DONG{
 
     public SinhVien(){}
     
-    public SinhVien(int MaHD, String TenHD, String Loai, Date NgayBD, Date NgayKT, Boolean Hide, Date CreatedDate, String id, String name, String nameKhoa) {
-        super(MaHD, TenHD, Loai, NgayBD, NgayKT, Hide, CreatedDate);
+    public SinhVien(String id, String name, String nameKhoa, String TenHD) {
+        super.setTenHD(TenHD);
         setId(id);
         setName(name);
         setNameKhoa(nameKhoa);
@@ -138,4 +138,3 @@ class ListSinhVien extends SinhVien{
     }
 
 }
-
