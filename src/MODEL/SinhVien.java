@@ -47,25 +47,41 @@ public class SinhVien extends HOAT_DONG {
         
     }
 
-    public void setIdKhoa(ArrayList<Khoa> list) {
+    public String setIdKhoa(ArrayList<Khoa> list) {
         Iterator<Khoa> it = list.iterator();
         while(it.hasNext()){
             Khoa temp = it.next();
             if(temp.getName().contains(getNameKhoa())){
-                setId(temp.getId());
-                return;
+                // setId(temp.getId());
+                return temp.getId();
             }
         }
     }
+
+    public SinhVien(){super();}
     
     public SinhVien(String id, String name, String nameKhoa) {
-        super();
         setId(id);
         setName(name);
         setNameKhoa(nameKhoa);
     }
 
-    public static SinhVien find(ArrayList<SinhVien> list, String id){
+    public SinhVien(SinhVien sv){
+        setId(sv.id);
+        setName(sv.name);
+        setNameKhoa(sv.nameKhoa);
+    }
+
+}
+
+class ListSinhVien extends SinhVien{
+    ArrayList<SinhVien> list;
+
+    public ListSinhVien(){
+        list = new ArrayList<>();
+    }
+
+    public SinhVien find(String id){
         Iterator<SinhVien> it = list.iterator();
         while(it.hasNext()){
             SinhVien temp = it.next();
@@ -75,7 +91,11 @@ public class SinhVien extends HOAT_DONG {
         return null;
     }
 
-    public static void importFile(BufferedReader file, ArrayList<SinhVien> list) throws IOException{
+    public int soLuong(){
+        return list.size();
+    }
+
+    public void importFile(BufferedReader file) throws IOException{
         String line;
         while ((line = file.readLine()) != null) {
             String[] value = line.split("\t");
@@ -83,15 +103,16 @@ public class SinhVien extends HOAT_DONG {
         }
     }
 
-    public static void  exportFile(PrintWriter file, ArrayList<SinhVien> list){
+    public void  exportFile(PrintWriter file){
         for (SinhVien sv : list) {
             file.write(sv.getId() + "\t" + sv.getName() + "\t" + sv.getNameKhoa() + "\t" + sv.getIdKhoa());
         }
     }
     
-    public static void addList(ArrayList<SinhVien> list, SinhVien sv){
+    public void addList(SinhVien sv){
         if (!sv.getName().isEmpty() && !sv.getId().isEmpty() && !sv.getNameKhoa().isEmpty()){
             list.add(sv);
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
     }
+
 }
