@@ -103,7 +103,7 @@ public class TaiTro{
     
     public static void addList(ArrayList<TaiTro> list, TaiTro taiTro){
         if (!taiTro.getName().isEmpty() && !taiTro.getNameHost().isEmpty() && !taiTro.getEmail().isEmpty()){
-            if (isNumber()){
+            if (Check.isNumber(getPhone()){
                 list.add(taiTro);
             }else JOptionPane.showMessageDialog(null,"Check Phone Number", "Try again",JOptionPane.ERROR_MESSAGE);
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
