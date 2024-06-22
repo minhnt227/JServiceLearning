@@ -8,62 +8,64 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 public class GiangVien {
-    private static  String id;
-    private static String firtName;
-    private static String lastName;
-    private static String nameKhoa;
-    private static String idKhoa;
+    private  String id;
+    private String firtName;
+    private String lastName;
+    private String nameKhoa;
+    private String idKhoa;
 
-    public static String getId() {
+    public String getId() {
         return id;
     }
 
-    public static void setId(String id) {
-        GiangVien.id = id;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public static String getFirtName() {
+    public String getFirtName() {
         return firtName;
     }
 
-    public static void setFirtName(String firtName) {
-        GiangVien.firtName = firtName;
+    public void setFirtName(String firtName) {
+        this.firtName = firtName;
     }
 
-    public static String getLastName() {
+    public String getLastName() {
         return lastName;
     }
 
-    public static void setLastName(String lastName) {
-        GiangVien.lastName = lastName;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public static String getNameKhoa() {
+    public String getNameKhoa() {
         return nameKhoa;
     }
 
-    public static void setNameKhoa(String nameKhoa) {
-        GiangVien.nameKhoa = nameKhoa;
+    public void setNameKhoa(String nameKhoa) {
+        this.nameKhoa = nameKhoa;
     }
 
-    public static String getIdKhoa() {
+    public String getIdKhoa() {
         return idKhoa;
     }
 
-    public static void setIdKhoa(String idKhoa) {
-        GiangVien.idKhoa = idKhoa;
+    public void setIdKhoa(String idKhoa) {
+        this.idKhoa = idKhoa;
     }
 
-    public static void setIdKhoa(ArrayList<Khoa> list) {
+    public void setIdKhoa(ArrayList<Khoa> list) {
         Iterator<Khoa> it = list.iterator();
         while(it.hasNext()){
             Khoa temp = it.next();
-            if(temp.getName().contains(SinhVien.getNameKhoa())){
+            if(temp.getName().contains(getNameKhoa())){
                 setId(temp.getId());
                 return;
             }
         }
     }
+
+    public GiangVien(){}
 
     public GiangVien(String id, String firstName, String lastName, String nameKhoa) {
         setId(id);
@@ -72,7 +74,18 @@ public class GiangVien {
         setNameKhoa(nameKhoa);
     }
 
-    public static void importFile(BufferedReader file, ArrayList<GiangVien> list) throws IOException{
+       
+}
+
+class ListGiangVien extends GiangVien{
+    ArrayList<GiangVien> list;
+
+    public ListGiangVien(){
+        super();
+        list = new ArrayList<>();
+    }
+
+    public void importFile(BufferedReader file) throws IOException{
         String line;
         while ((line = file.readLine()) != null) {
             String[] value = line.split("\t");
@@ -80,16 +93,30 @@ public class GiangVien {
         }
     }
 
-    public static void  exportFile(PrintWriter file, ArrayList<GiangVien> list){
+    public void  exportFile(PrintWriter file){
         for (GiangVien gv : list) {
             file.write(gv.getId() + "\t" + gv.getFirtName() + "\t" + gv.getLastName() + "\t" + gv.getNameKhoa());
         }
     }
+
+    public GiangVien find(String id){
+        Iterator<GiangVien> it = list.iterator();
+        while(it.hasNext()){
+            GiangVien temp = it.next();
+            if(temp.getId().contains(id))
+                return temp;
+        }
+        return null;
+    }
     
-    public static void addList(ArrayList<GiangVien> list, GiangVien gv){
+    public void addList(GiangVien gv){
         if (!gv.getFirtName().isEmpty() && !gv.getLastName().isEmpty() && !gv.getNameKhoa().isEmpty() && !gv.getId().isEmpty()){
             list.add(gv);
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
+    } 
+
+    public ArrayList outList(){
+        return list;
     }
-    
+
 }
