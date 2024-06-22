@@ -110,7 +110,7 @@ public class KHOA {
     
     public static void addList(ArrayList<KHOA> list, KHOA khoa){
         if (!khoa.getName().isEmpty() && !khoa.getId().isEmpty() && !khoa.getEmail().isEmpty() && !khoa.getDate().isEmpty()){
-            if (Check.isNumber(getPhone())){
+            if (Check.isPhoneNumber(getPhone())){
                 list.add(khoa);
             }else JOptionPane.showMessageDialog(null,"Check Phone Number", "Try again",JOptionPane.ERROR_MESSAGE);
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
