@@ -56,6 +56,10 @@ public class DoiTac {
         setEmail(email);
     }
 
+    public Object[] getRowData(){
+        return new Object[]{getName(), getNameHost(), getPhone(), getEmail()};
+    }
+
     
 }
 
@@ -76,10 +80,15 @@ class ListDoiTac extends DoiTac{
         return null;
     }
 
+    public int soLuong(){
+        return list.size();
+    }
+
     public void addList(DoiTac doiTac){
         if (!doiTac.getName().isEmpty() && !doiTac.getNameHost().isEmpty() && !doiTac.getEmail().isEmpty()){
             if (Check.isPhoneNumber(getPhone())){
-                list.add(doiTac);
+                if (Check.isValidEmail(getEmail())) list.add(doiTac);
+                else JOptionPane.showMessageDialog(null,"Check Email Number", "Try again",JOptionPane.ERROR_MESSAGE);
             }else JOptionPane.showMessageDialog(null,"Check Phone Number", "Try again",JOptionPane.ERROR_MESSAGE);
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
     }
@@ -97,5 +106,6 @@ class ListDoiTac extends DoiTac{
             file.write(doiTac.getName() + "\t" + doiTac.getNameHost() + "\t" + doiTac.getPhone() + "\t" + doiTac.getEmail());
         }
     }
+
 
 }
