@@ -3,11 +3,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
-public class GiangVien {
+public class GiangVien extends HOAT_DONG {
     private  String id;
     private String firtName;
     private String lastName;
@@ -67,6 +68,14 @@ public class GiangVien {
 
     public GiangVien(){}
 
+    public GiangVien(String id, String firstName, String lastName, String nameKhoa, String TenHD) {
+        super.setTenHD(TenHD);
+        setId(id);
+        setFirtName(firtName);
+        setLastName(lastName);
+        setNameKhoa(nameKhoa);
+    }
+
     public GiangVien(String id, String firstName, String lastName, String nameKhoa) {
         setId(id);
         setFirtName(firtName);
@@ -89,13 +98,13 @@ class ListGiangVien extends GiangVien{
         String line;
         while ((line = file.readLine()) != null) {
             String[] value = line.split("\t");
-            list.add(new GiangVien(value[0], value[1], value[2], value[3]));
+            list.add(new GiangVien(value[0], value[1], value[2], value[3], value[4]));
         }
     }
 
     public void  exportFile(PrintWriter file){
         for (GiangVien gv : list) {
-            file.write(gv.getId() + "\t" + gv.getFirtName() + "\t" + gv.getLastName() + "\t" + gv.getNameKhoa());
+            file.write(gv.getId() + "\t" + gv.getFirtName() + "\t" + gv.getLastName() + "\t" + gv.getNameKhoa() + "\t" + gv.getTenHD());
         }
     }
 
@@ -114,9 +123,5 @@ class ListGiangVien extends GiangVien{
             list.add(gv);
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
     } 
-
-    public ArrayList outList(){
-        return list;
-    }
 
 }
