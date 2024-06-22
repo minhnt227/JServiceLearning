@@ -1,4 +1,4 @@
-  import java.io.BufferedReader;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.lang.*;
@@ -7,36 +7,19 @@ import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
-public class TaiTro{
-
-    private static int id = 0;
+public class DoiTac {
     private static String name;
     private static String nameHost;
     private static String phone;
     private static String email;
 
-    public static int getId() {
-        return id;
-    }
-
-    public static void setId(int id) {
-        TaiTro.id = ++id;
-    }
-
+    
     public static String getName() {
         return name;
     }
 
     public static void setName(String name) {
-        TaiTro.name = name;
-    }
-
-    public static String getNameHost() {
-        return nameHost;
-    }
-
-    public static void setNameHost(String nameHost) {
-        TaiTro.nameHost = nameHost;
+        DoiTac.name = name;
     }
 
     public static String getPhone() {
@@ -44,7 +27,7 @@ public class TaiTro{
     }
 
     public static void setPhone(String phone) {
-        TaiTro.phone = phone;
+        DoiTac.phone = phone;
     }
 
     public static String getEmail() {
@@ -52,64 +35,58 @@ public class TaiTro{
     }
 
     public static void setEmail(String email) {
-        TaiTro.email = email;
+        DoiTac.email = email;
     }
 
-    
+    public static String getNameHost() {
+        return nameHost;
+    }
 
-    public TaiTro(String name, String nameHost, String phone, String email){
-        setId(id);
+    public static void setNameHost(String nameHost) {
+        DoiTac.nameHost = nameHost;
+    }
+
+
+    public DoiTac(String name, String nameHost, String phone, String email){
         setName(name);
         setNameHost(nameHost);
         setPhone(phone);
         setEmail(email);
     }
 
-    public static Boolean isNumber(){
-        if (getPhone().length()>=10 && getPhone().length() <=12 ){
-            for (int i = 0; i <= getPhone().length(); i++){
-                if (!Character.isDigit(getPhone().charAt(i))){
-                    return false;
-                }
-            }
-            return true;
-        } 
-        return false;
-    }
-
-    public static TaiTro find(ArrayList<TaiTro> list, String name){
-        Iterator<TaiTro> it = list.iterator();
+    public static DoiTac find(ArrayList<DoiTac> list, String name){
+        Iterator<DoiTac> it = list.iterator();
         while(it.hasNext()){
-            TaiTro temp = it.next();
+            DoiTac temp = it.next();
             if(temp.getName().contains(name))
                 return temp;
         }
         return null;
     }
 
-    public static void importFile(BufferedReader file, ArrayList<TaiTro> list) throws IOException{
+    public static void importFile(BufferedReader file, ArrayList<DoiTac> list) throws IOException{
         String line;
         while ((line = file.readLine()) != null) {
             String[] value = line.split("\t");
-            list.add(new TaiTro(value[0], value[1], value[2], value[3]));
+            list.add(new DoiTac(value[0], value[1], value[2], value[3]));
         }
     }
 
-    public static void  exportFile(PrintWriter file, ArrayList<TaiTro> list){
-        for (TaiTro taiTro : list) {
-            file.write(taiTro.getName() + "\t" + taiTro.getNameHost() + "\t" + taiTro.getPhone() + "\t" + taiTro.getEmail());
+    public static void  exportFile(PrintWriter file, ArrayList<DoiTac> list){
+        for (DoiTac doiTac : list) {
+            file.write(doiTac.getName() + "\t" + doiTac.getNameHost() + "\t" + doiTac.getPhone() + "\t" + doiTac.getEmail());
         }
     }
     
-    public static void addList(ArrayList<TaiTro> list, TaiTro taiTro){
-        if (!taiTro.getName().isEmpty() && !taiTro.getNameHost().isEmpty() && !taiTro.getEmail().isEmpty()){
+    public static void addList(ArrayList<DoiTac> list, DoiTac doiTac){
+        if (!doiTac.getName().isEmpty() && !doiTac.getNameHost().isEmpty() && !doiTac.getEmail().isEmpty()){
             if (Check.isPhoneNumber(getPhone())){
-                list.add(taiTro);
+                list.add(doiTac);
             }else JOptionPane.showMessageDialog(null,"Check Phone Number", "Try again",JOptionPane.ERROR_MESSAGE);
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
     }
 
     
-
 }
- 
+
+
