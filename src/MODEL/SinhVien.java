@@ -1,66 +1,65 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Array;
-import java.time.chrono.ThaiBuddhistChronology;
 import java.util.ArrayList;
 import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
-public class SinhVien {
+public class SinhVien extends HOAT_DONG {
     
 
-    private static  String id;
-    private static String name;
-    private static String nameKhoa;
-    private static String idKhoa;
+    private String id;
+    private String name;
+    private String nameKhoa;
+    private String idKhoa;
 
-    public static String getId() {
+    public String getId() {
         return id;
     }
 
-    public static void setId(String id) {
-        SinhVien.id = id;
+    public void setId(String id) {
+        id = id;
     }
 
-    public static String getName() {
+    public String getName() {
         return name;
     }
 
-    public static void setName(String name) {
-        SinhVien.name = name;
+    public void setName(String name) {
+        name = name;
     }
 
-    public static String getNameKhoa() {
+    public String getNameKhoa() {
         return nameKhoa;
     }
 
-    public static void setNameKhoa(String nameKhoa) {
-        SinhVien.nameKhoa = nameKhoa;
+    public void setNameKhoa(String nameKhoa) {
+        nameKhoa = nameKhoa;
     }
 
-    public static String getIdKhoa() {
+    public String getIdKhoa() {
         return idKhoa;
     }
 
-    public static void setIdKhoa(String id) {
-        SinhVien.idKhoa = id;
+    public void setIdKhoa(String id) {
+        idKhoa = id;
         
     }
 
-    public static void setIdKhoa(ArrayList<Khoa> list) {
+    public void setIdKhoa(ArrayList<Khoa> list) {
         Iterator<Khoa> it = list.iterator();
         while(it.hasNext()){
             Khoa temp = it.next();
-            if(temp.getName().contains(SinhVien.getNameKhoa())){
-                setIdKhoa(temp.getId());
+            if(temp.getName().contains(getNameKhoa())){
+                setId(temp.getId());
                 return;
             }
         }
     }
     
     public SinhVien(String id, String name, String nameKhoa) {
+        super();
         setId(id);
         setName(name);
         setNameKhoa(nameKhoa);
