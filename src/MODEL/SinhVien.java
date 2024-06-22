@@ -56,9 +56,10 @@ public class SinhVien extends HOAT_DONG {
                 return temp.getId();
             }
         }
+        return null;
     }
 
-    public SinhVien(){super();}
+    public SinhVien(){}
     
     public SinhVien(String id, String name, String nameKhoa) {
         setId(id);
