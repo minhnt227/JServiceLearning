@@ -3,6 +3,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.chrono.ThaiBuddhistChronology;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -10,52 +11,52 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 public class Khoa{
-    private static  String id;
-    private static String name;
-    private static String phone;
-    private static String email;
-    private static Date date;
+    private  String id;
+    private  String name;
+    private  String phone;
+    private  String email;
+    private  Date date;
 
-    public static String getId() {
+    
+    public String getId() {
         return id;
     }
 
-    public static void setId(String id) {
-        Khoa.id = id;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public static String getName() {
+    public String getName() {
         return name;
     }
 
-    public static void setName(String name) {
-        Khoa.name = name;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public static String getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public static void setPhone(String phone) {
-        Khoa.phone = phone;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public static String getEmail() {
+    public String getEmail() {
         return email;
     }
 
-    public static void setEmail(String email) {
-        Khoa.email = email;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public static Date getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public static void setDate(Date date) {
-        Khoa.date = date;
+    public void setDate(Date date) {
+        this.date = date;
     }
-
     
 
     public Khoa(){
@@ -110,13 +111,15 @@ public class Khoa{
         }
     }
     
-    public static void addList(ArrayList<Khoa> list, Khoa khoa){
+    public void addList(ArrayList<Khoa> list, Khoa khoa){
         if (!khoa.getName().isEmpty() && !khoa.getId().isEmpty() && !khoa.getEmail().isEmpty()){
-            if (Check.isPhoneNumber(getPhone())){
+            if (Check.isPhoneNumber(phone)){
                 list.add(khoa);
             }else JOptionPane.showMessageDialog(null,"Check Phone Number", "Try again",JOptionPane.ERROR_MESSAGE);
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
     }
+
+    
 
 }
  
