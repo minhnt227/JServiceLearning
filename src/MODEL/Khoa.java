@@ -88,6 +88,10 @@ class ListKhoa  extends Khoa{
         list = new ArrayList<>();
     }
 
+    public int soLuong(){
+        return list.size();
+    }
+
     public void addList(Khoa khoa){
         if (!khoa.getName().isEmpty() && !khoa.getId().isEmpty() && !khoa.getEmail().isEmpty()){
             if (Check.isPhoneNumber(getPhone())){
