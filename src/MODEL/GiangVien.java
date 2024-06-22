@@ -124,4 +124,7 @@ class ListGiangVien extends GiangVien{
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
     } 
 
+    public ArrayList outList(){
+        return list;
+    }
 }
