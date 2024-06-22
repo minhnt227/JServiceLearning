@@ -107,5 +107,8 @@ class ListDoiTac extends DoiTac{
         }
     }
 
-
+    public ArrayList outList(){
+        return list;
+    }
+    
 }
