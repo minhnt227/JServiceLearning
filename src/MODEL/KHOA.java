@@ -8,34 +8,34 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 public class KHOA {
-    private static  String maKhoa;
-    private static String tenKhoa;
-    private static String phoneNumber;
+    private static  String id;
+    private static String name;
+    private static String phone;
     private static String email;
-    private static String ngay;
+    private static String date;
 
-    public static String getMaKhoa() {
-        return maKhoa;
+    public static String getId() {
+        return id;
     }
 
-    public static void setMaKhoa(String maKhoa) {
-        KHOA.maKhoa = maKhoa;
+    public static void setId(String id) {
+        KHOA.id = id;
     }
 
-    public static String getTenKhoa() {
-        return tenKhoa;
+    public static String getName() {
+        return name;
     }
 
-    public static void setTenKhoa(String tenKhoa) {
-        KHOA.tenKhoa = tenKhoa;
+    public static void setName(String name) {
+        KHOA.name = name;
     }
 
-    public static String getPhoneNumber() {
-        return phoneNumber;
+    public static String getPhone() {
+        return phone;
     }
 
-    public static void setPhoneNumber(String phoneNumber) {
-        KHOA.phoneNumber = phoneNumber;
+    public static void setPhone(String phone) {
+        KHOA.phone = phone;
     }
 
     public static String getEmail() {
@@ -46,43 +46,50 @@ public class KHOA {
         KHOA.email = email;
     }
 
-    public static String getNgay() {
-        return ngay;
+    public static String getDate() {
+        return date;
     }
 
-    public static void setNgay(String ngay) {
-        KHOA.ngay = ngay;
+    public static void setDate(String date) {
+        KHOA.date = date;
     }
 
+    public KHOA(){
+        setId(null);
+        setName(null);
+        setPhone(null);
+        setEmail(null);
+        setDate(null);
+    }
     
     
 
-    public KHOA(String id, String name, String phone, String email, String ngay){
-        setMaKhoa(id);
-        setTenKhoa(name);
-        setPhoneNumber(phone);
+    public KHOA(String id, String name, String phone, String email, String date){
+        setId(id);
+        setName(name);
+        setPhone(phone);
         setEmail(email);
-        setNgay(ngay);
+        setDate(date);
     }
 
-    public static Boolean isNumber(){
-        if (getPhoneNumber().length()>=10 && getPhoneNumber().length() <=12 ){
-            for (int i = 0; i <= getPhoneNumber().length(); i++){
-                if (!Character.isDigit(getPhoneNumber().charAt(i))){
-                    return false;
-                }
-            }
-            return true;
-        } 
-        return false;
-    }
+    
 
     public static KHOA find(ArrayList<KHOA> list, String id){
         Iterator<KHOA> it = list.iterator();
         while(it.hasNext()){
             KHOA temp = it.next();
-            if(temp.getMaKhoa().contains(id))
+            if(temp.getId().contains(id))
                 return temp;
+        }
+        return null;
+    }
+
+    public static String findName(ArrayList<KHOA> list, String name){
+        Iterator<KHOA> it = list.iterator();
+        while(it.hasNext()){
+            KHOA temp = it.next();
+            if(temp.getName().contains(name))
+                return temp.getId();
         }
         return null;
     }
@@ -97,16 +104,17 @@ public class KHOA {
 
     public static void  exportFile(PrintWriter file, ArrayList<KHOA> list){
         for (KHOA khoa : list) {
-            file.write(khoa.getMaKhoa() + "\t" + khoa.getTenKhoa() + "\t" + khoa.getPhoneNumber() + "\t" + khoa.getEmail() + "\t" + khoa.ngay);
+            file.write(khoa.getId() + "\t" + khoa.getName() + "\t" + khoa.getPhone() + "\t" + khoa.getEmail() + "\t" + khoa.date);
         }
     }
     
     public static void addList(ArrayList<KHOA> list, KHOA khoa){
-        if (!khoa.getTenKhoa().isEmpty() && !khoa.getMaKhoa().isEmpty() && !khoa.getEmail().isEmpty() && !khoa.getNgay().isEmpty()){
-            if (isNumber()){
+        if (!khoa.getName().isEmpty() && !khoa.getId().isEmpty() && !khoa.getEmail().isEmpty() && !khoa.getDate().isEmpty()){
+            if (Check.isNumber(getPhone())){
                 list.add(khoa);
             }else JOptionPane.showMessageDialog(null,"Check Phone Number", "Try again",JOptionPane.ERROR_MESSAGE);
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
     }
 
 }
+ 
