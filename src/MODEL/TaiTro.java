@@ -58,7 +58,7 @@ public class TaiTro{
     
 
     public TaiTro(String name, String nameHost, String phone, String email){
-        setId(id++);
+        setId(id);
         setName(name);
         setNameHost(nameHost);
         setPhone(phone);
