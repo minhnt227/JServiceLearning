@@ -6,7 +6,7 @@ import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
-public class SinhVien extends HOAT_DONG {
+public class SinhVien extends HOAT_DONG{
     
 
     private String id;
@@ -62,6 +62,7 @@ public class SinhVien extends HOAT_DONG {
     public SinhVien(){}
     
     public SinhVien(String id, String name, String nameKhoa) {
+        super();
         setId(id);
         setName(name);
         setNameKhoa(nameKhoa);
@@ -116,7 +117,4 @@ class ListSinhVien extends SinhVien{
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
     }
 
-    public ArrayList outList(){
-        return list;
-    }
 }
