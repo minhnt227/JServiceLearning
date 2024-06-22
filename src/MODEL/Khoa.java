@@ -9,7 +9,7 @@ import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
-public class Khoa {
+public class Khoa{
     private static  String id;
     private static String name;
     private static String phone;
@@ -21,7 +21,7 @@ public class Khoa {
     }
 
     public static void setId(String id) {
-        KHOA.id = id;
+        Khoa.id = id;
     }
 
     public static String getName() {
@@ -29,7 +29,7 @@ public class Khoa {
     }
 
     public static void setName(String name) {
-        KHOA.name = name;
+        Khoa.name = name;
     }
 
     public static String getPhone() {
@@ -37,7 +37,7 @@ public class Khoa {
     }
 
     public static void setPhone(String phone) {
-        KHOA.phone = phone;
+        Khoa.phone = phone;
     }
 
     public static String getEmail() {
@@ -45,7 +45,7 @@ public class Khoa {
     }
 
     public static void setEmail(String email) {
-        KHOA.email = email;
+        Khoa.email = email;
     }
 
     public static Date getDate() {
@@ -53,12 +53,12 @@ public class Khoa {
     }
 
     public static void setDate(Date date) {
-        KHOA.date = date;
+        Khoa.date = date;
     }
 
     
 
-    public KHOA(){
+    public Khoa(){
         setId(null);
         setName(null);
         setPhone(null);
@@ -100,7 +100,7 @@ public class Khoa {
         String line;
         while ((line = file.readLine()) != null) {
             String[] value = line.split("\t");
-            list.add(new KHOA(value[0], value[1], value[2], value[3], new SimpleDateFormat("dd/MM/yyyy").parse(value[4])));
+            list.add(new Khoa(value[0], value[1], value[2], value[3], new SimpleDateFormat("dd/MM/yyyy").parse(value[4])));
         }
     }
 
@@ -110,7 +110,7 @@ public class Khoa {
         }
     }
     
-    public static void addList(ArrayList<Khoa> list, KHOA khoa){
+    public static void addList(ArrayList<Khoa> list, Khoa khoa){
         if (!khoa.getName().isEmpty() && !khoa.getId().isEmpty() && !khoa.getEmail().isEmpty()){
             if (Check.isPhoneNumber(getPhone())){
                 list.add(khoa);
