@@ -76,6 +76,10 @@ public class Khoa{
         setDate(date);
     }
 
+    public Object[] getRowData(){
+        return new Object[]{getId(), getName(), getPhone(), getEmail(), getDate()};
+    }
+
 }
  
 class ListKhoa  extends Khoa{
