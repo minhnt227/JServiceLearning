@@ -4,7 +4,7 @@
  */
 package DAO;
 
-import java.sql.Connection;
+import java.sql.*;
 import java.sql.DriverManager;
 
 /**
@@ -25,6 +25,20 @@ public class DBConnector {
             System.out.println("ERROR IN DBConnector");
             e.printStackTrace();
         }
+    }
+    
+//    public PreparedStatement UpdateKhoa() {
+//        
+//    }
+    
+    public Object[] getColunmHeader(ResultSet rS ) throws SQLException{
+        ResultSetMetaData result = rS.getMetaData();
+        int count = result.getColumnCount();
+        Object[] ColHeader = new String[count];
+        for (int i=1;i<count;i++){
+            ColHeader[i-1] = result.getColumnName(i);
+        }
+        return ColHeader;
     }
     
 }
