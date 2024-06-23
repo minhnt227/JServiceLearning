@@ -51,6 +51,7 @@ public class DAO_HoatDong extends DBConnector {
                 }
                 HDList.add(hd);
             }
+            stm.close();
 
         } catch (Exception e) {
             e.printStackTrace();
