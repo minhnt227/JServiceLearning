@@ -23,7 +23,7 @@ public class ListGiangVien extends GiangVien{
         list = new ArrayList<>();
     }
 
-    public void importFile(BufferedReader file) throws IOException{
+    public static void importFile(BufferedReader file) throws IOException{
         String line;
         while ((line = file.readLine()) != null) {
             String[] value = line.split("\t");
@@ -31,13 +31,13 @@ public class ListGiangVien extends GiangVien{
         }
     }
 
-    public void  exportFile(PrintWriter file){
+    public static void  exportFile(PrintWriter file){
         for (GiangVien gv : list) {
             file.write(gv.getId() + "\t" + gv.getFirtName() + "\t" + gv.getLastName() + "\t" + gv.getNameKhoa() + "\t" + gv.getTenHD());
         }
     }
 
-    public GiangVien find(String id){
+    public static GiangVien find(String id){
         Iterator<GiangVien> it = list.iterator();
         while(it.hasNext()){
             GiangVien temp = it.next();
@@ -47,13 +47,13 @@ public class ListGiangVien extends GiangVien{
         return null;
     }
     
-    public void addList(GiangVien gv){
+    public static void addList(GiangVien gv){
         if (!gv.getFirtName().isEmpty() && !gv.getLastName().isEmpty() && !gv.getNameKhoa().isEmpty() && !gv.getId().isEmpty()){
             list.add(gv);
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
     } 
 
-    public ArrayList outList(){
+    public static ArrayList outList(){
         return list;
     }
 }
