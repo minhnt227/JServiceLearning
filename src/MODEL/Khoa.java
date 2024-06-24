@@ -26,6 +26,10 @@ public class Khoa{
     public void setId(String id) {
         this.id = id;
     }
+    
+    public String getDateString(){
+        return new SimpleDateFormat("dd/MM/yyyy").format(date);
+    }
 
     public String getName() {
         return name;
