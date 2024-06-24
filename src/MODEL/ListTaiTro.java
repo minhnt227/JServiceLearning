@@ -24,7 +24,7 @@ public class ListTaiTro extends TaiTro{
         list = new ArrayList<>();
     }
 
-    public TaiTro find(String name){
+    public static TaiTro find(String name){
         Iterator<TaiTro> it = list.iterator();
         while(it.hasNext()){
             TaiTro temp = it.next();
@@ -50,7 +50,7 @@ public class ListTaiTro extends TaiTro{
     
     public static void addList(TaiTro taiTro){
         if (!taiTro.getName().isEmpty() && !taiTro.getNameHost().isEmpty() && !taiTro.getEmail().isEmpty()){
-            if (Check.isPhoneNumber(getPhone())){
+            if (Check.isPhoneNumber(taiTro.getPhone())){
                 list.add(taiTro);
             }else JOptionPane.showMessageDialog(null,"Check Phone Number", "Try again",JOptionPane.ERROR_MESSAGE);
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
