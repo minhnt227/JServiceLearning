@@ -57,10 +57,10 @@ public class TaiTro{
         this.email = email;
     }
 
-    public TaiTro(){}
+    public TaiTro(){setId(id++)}
 
     public TaiTro(String name, String nameHost, String phone, String email){
-        setId(id);
+        setId(id++);
         setName(name);
         setNameHost(nameHost);
         setPhone(phone);
