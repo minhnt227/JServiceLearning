@@ -88,7 +88,7 @@ public class GiangVien extends HOAT_DONG {
        
 }
 
-class ListGiangVien extends GiangVien{
+public class ListGiangVien extends GiangVien{
     ArrayList<GiangVien> list;
 
     public ListGiangVien(){
