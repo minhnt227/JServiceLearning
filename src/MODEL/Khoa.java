@@ -84,7 +84,7 @@ public class Khoa{
 
 }
  
-class ListKhoa  extends Khoa{
+public class ListKhoa  extends Khoa{
     ArrayList<Khoa> list;
     public ListKhoa(){
         list = new ArrayList<>();
