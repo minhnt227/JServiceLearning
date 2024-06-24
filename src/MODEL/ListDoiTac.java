@@ -34,8 +34,8 @@ public class ListDoiTac extends DoiTac{
 
     public static void addList(DoiTac doiTac){
         if (!doiTac.getName().isEmpty() && !doiTac.getNameHost().isEmpty() && !doiTac.getEmail().isEmpty()){
-            if (Check.isPhoneNumber(getPhone())){
-                if (Check.isValidEmail(getEmail())) list.add(doiTac);
+            if (Check.isPhoneNumber(doiTac.getPhone())){
+                if (Check.isValidEmail(doiTac.getEmail())) list.add(doiTac);
                 else JOptionPane.showMessageDialog(null,"Check Email Number", "Try again",JOptionPane.ERROR_MESSAGE);
             }else JOptionPane.showMessageDialog(null,"Check Phone Number", "Try again",JOptionPane.ERROR_MESSAGE);
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
