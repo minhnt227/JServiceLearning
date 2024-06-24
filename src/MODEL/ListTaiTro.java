@@ -34,7 +34,7 @@ public class ListTaiTro extends TaiTro{
         return null;
     }
 
-    public void importFile(BufferedReader file) throws IOException{
+    public static void importFile(BufferedReader file) throws IOException{
         String line;
         while ((line = file.readLine()) != null) {
             String[] value = line.split("\t");
@@ -42,13 +42,13 @@ public class ListTaiTro extends TaiTro{
         }
     }
 
-    public void  exportFile(PrintWriter file){
+    public static void  exportFile(PrintWriter file){
         for (TaiTro taiTro : list) {
             file.write(taiTro.getName() + "\t" + taiTro.getNameHost() + "\t" + taiTro.getPhone() + "\t" + taiTro.getEmail());
         }
     }
     
-    public void addList(TaiTro taiTro){
+    public static void addList(TaiTro taiTro){
         if (!taiTro.getName().isEmpty() && !taiTro.getNameHost().isEmpty() && !taiTro.getEmail().isEmpty()){
             if (Check.isPhoneNumber(getPhone())){
                 list.add(taiTro);
@@ -56,7 +56,7 @@ public class ListTaiTro extends TaiTro{
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
     }
 
-    public ArrayList outList(){
+    public static ArrayList outList(){
         return list;
     }
 
