@@ -64,7 +64,7 @@ public class DoiTac {
     
 }
 
-class ListDoiTac extends DoiTac{
+public class ListDoiTac extends DoiTac{
     ArrayList<DoiTac> list;
 
     public ListDoiTac(){
