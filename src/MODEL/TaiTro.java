@@ -69,7 +69,7 @@ public class TaiTro{
 
 }
 
-class ListTaiTro extends TaiTro{
+public class ListTaiTro extends TaiTro{
 
     ArrayList<TaiTro> list;
 
