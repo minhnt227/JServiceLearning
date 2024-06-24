@@ -23,10 +23,10 @@ public class ListKhoa  extends Khoa{
         list = new ArrayList<>();
     }
 
-    public static void addList(Khoa khoa){
+    public void addList(Khoa khoa){
         if (!khoa.getName().isEmpty() && !khoa.getId().isEmpty() && !khoa.getEmail().isEmpty()){
-            if (Check.isPhoneNumber(getPhone())){
-                if(Check.isValidEmail(getEmail())) list.add(khoa);
+            if (Check.isPhoneNumber(khoa.getPhone())){
+                if(Check.isValidEmail(khoa.getEmail())) list.add(khoa);
                 else JOptionPane.showMessageDialog(null,"Check Email Number", "Try again",JOptionPane.ERROR_MESSAGE);
             }else JOptionPane.showMessageDialog(null,"Check Phone Number", "Try again",JOptionPane.ERROR_MESSAGE);
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
