@@ -23,7 +23,7 @@ public class ListKhoa  extends Khoa{
         list = new ArrayList<>();
     }
 
-    public void addList(Khoa khoa){
+    public static void addList(Khoa khoa){
         if (!khoa.getName().isEmpty() && !khoa.getId().isEmpty() && !khoa.getEmail().isEmpty()){
             if (Check.isPhoneNumber(getPhone())){
                 if(Check.isValidEmail(getEmail())) list.add(khoa);
@@ -32,7 +32,7 @@ public class ListKhoa  extends Khoa{
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
     }
 
-    public String findName(ArrayList<Khoa> list, String name){
+    public static String findName(ArrayList<Khoa> list, String name){
         Iterator<Khoa> it = list.iterator();
         while(it.hasNext()){
             Khoa temp = it.next();
@@ -42,7 +42,7 @@ public class ListKhoa  extends Khoa{
         return null;
     }
 
-    public Khoa find( String id){
+    public static Khoa find( String id){
         Iterator<Khoa> it = list.iterator();
         while(it.hasNext()){
             Khoa temp = it.next();
@@ -52,7 +52,7 @@ public class ListKhoa  extends Khoa{
         return null;
     }
 
-    public void importFile(BufferedReader file) throws IOException, ParseException{
+    public static void importFile(BufferedReader file) throws IOException, ParseException{
         String line;
         while ((line = file.readLine()) != null) {
             String[] value = line.split("\t");
@@ -60,13 +60,13 @@ public class ListKhoa  extends Khoa{
         }
     }
 
-    public void  exportFile(PrintWriter file){
+    public static void  exportFile(PrintWriter file){
         for (Khoa khoa : list) {
             file.write(khoa.getId() + "\t" + khoa.getName() + "\t" + khoa.getPhone() + "\t" + khoa.getEmail() + "\t" + khoa.getDate());
         }
     }
 
-    public ArrayList outList(){
+    public static ArrayList outList(){
         return list;
     }
     
