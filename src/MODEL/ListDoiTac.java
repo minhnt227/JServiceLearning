@@ -18,7 +18,7 @@ public class ListDoiTac extends DoiTac{
         list = new ArrayList<>();
     }
 
-    public DoiTac find(String name){
+    public static DoiTac find(String name){
         Iterator<DoiTac> it = list.iterator();
         while(it.hasNext()){
             DoiTac temp = it.next();
@@ -28,11 +28,11 @@ public class ListDoiTac extends DoiTac{
         return null;
     }
 
-    public int soLuong(){
+    public static int soLuong(){
         return list.size();
     }
 
-    public void addList(DoiTac doiTac){
+    public static void addList(DoiTac doiTac){
         if (!doiTac.getName().isEmpty() && !doiTac.getNameHost().isEmpty() && !doiTac.getEmail().isEmpty()){
             if (Check.isPhoneNumber(getPhone())){
                 if (Check.isValidEmail(getEmail())) list.add(doiTac);
@@ -41,7 +41,7 @@ public class ListDoiTac extends DoiTac{
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
     }
 
-    public void importFile(BufferedReader file) throws IOException{
+    public static void importFile(BufferedReader file) throws IOException{
         String line;
         while ((line = file.readLine()) != null) {
             String[] value = line.split("\t");
@@ -49,13 +49,13 @@ public class ListDoiTac extends DoiTac{
         }
     }
 
-    public void  exportFile(PrintWriter file){
+    public static void  exportFile(PrintWriter file){
         for (DoiTac doiTac : list) {
             file.write(doiTac.getName() + "\t" + doiTac.getNameHost() + "\t" + doiTac.getPhone() + "\t" + doiTac.getEmail());
         }
     }
 
-    public ArrayList outList(){
+    public static ArrayList outList(){
         return list;
     }
     
