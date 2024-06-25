@@ -42,7 +42,7 @@ public class DAO_SinhVien extends DBConnector {
 
     private boolean insertSinhVien(SinhVien newData) {
         try {
-            PreparedStatement stmt = con.prepareStatement("INSERT INTO SINH_VIEN VALUES (?,?,?,false)");
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO SINH_VIEN VALUES (?,?,?,'false')");
 
             stmt.setString(1, newData.getId());
             stmt.setNString(2, newData.getName());
@@ -176,7 +176,7 @@ public class DAO_SinhVien extends DBConnector {
             sqlQuery += " AND HoTen LIKE '%" + NAME + "%'";
         }
         if (!FalcultyID.isBlank()) {
-            sqlQuery += " AND Khoa LIKE " + FalcultyID;
+            sqlQuery += " AND Khoa = " + FalcultyID;
         }
         Statement stm = con.createStatement();
         ResultSet result = stm.executeQuery(sqlQuery);

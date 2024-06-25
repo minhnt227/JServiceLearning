@@ -26,9 +26,9 @@ public class ListSinhVien extends SinhVien{
         list = new ArrayList<>();
         model = new DefaultTableModel(colHeader,0);
     }
-    
-    public ListSinhVien(int lim, String ID, String FullName, String FalcutyID, boolean Hide) throws SQLException{
-        ListSinhVien temp = (new DAO.DAO_SinhVien()).getListFromDB(lim, ID, FullName, FalcutyID, true);
+
+    public ListSinhVien(int lim, String svID, String FullName, String FalcutyID, boolean Hide) throws SQLException {
+        ListSinhVien temp = ( new DAO.DAO_SinhVien() ).getListFromDB(lim, svID, FullName, FalcutyID, true);
         list = temp.list;
         colHeader = temp.getColHeader();
     }

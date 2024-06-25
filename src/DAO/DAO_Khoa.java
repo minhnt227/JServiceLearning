@@ -71,6 +71,27 @@ public class DAO_Khoa extends DBConnector {
         }
         return names;
     }
+    
+    public List getIDKhoaList() {
+        List<String> Ids = null;
+        try {
+            Statement stm = con.createStatement();
+            String sqlSelect = "SELECT * FROM KHOA WHERE Hide = 'false'";
+            ResultSet rst = stm.executeQuery(sqlSelect);
+            if (rst == null) {
+                stm.close();
+                return null;
+            }
+            while (rst.next()) {
+                Ids.add(rst.getNString(1));
+            }
+            stm.close();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return Ids;
+    }
 
     public Khoa getSingleKhoaFromName(String name) {
         Khoa kh;
@@ -173,7 +194,7 @@ public class DAO_Khoa extends DBConnector {
     private boolean insertKhoa(Khoa newData) {
         try {
             java.sql.Date sqlDate = new java.sql.Date(newData.getDate().getTime());
-            PreparedStatement stmt = con.prepareStatement("INSERT INTO KHOA VALUES (?,?,?,?,?,false)");
+            PreparedStatement stmt = con.prepareStatement("INSERT INTO KHOA VALUES (?,?,?,?,?,'false')");
 
             stmt.setString(1, newData.getId());
             stmt.setNString(2, newData.getName());

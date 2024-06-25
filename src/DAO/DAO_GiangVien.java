@@ -4,10 +4,183 @@
  */
 package DAO;
 
+import MODEL.GiangVien;
+import MODEL.Khoa;
+import MODEL.ListGiangVien;
+import MODEL.ListSinhVien;
+import MODEL.SinhVien;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author bom19
  */
-public class DAO_GiangVien {
+public class DAO_GiangVien extends DBConnector {
+
+    public DAO_GiangVien() {
+    }
+
+    public boolean existGV(String ID) {
+        try {
+            Statement stm = con.createStatement();
+            String sqlSelect = "SELECT * FROM GIANG_VIEN WHERE MaGV LIKE '" + ID + "'";
+            ResultSet rst = stm.executeQuery(sqlSelect);
+            if (!rst.first()) {
+                stm.close();
+                return false;
+            }
+            stm.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
+    private boolean insertGiangVien(GiangVien newData) throws SQLException {
+        try {
+            Prepstm = con.prepareStatement("INSERT INTO GIANG_VIEN VALUES (?,?,?,?,'false')");
+
+            Prepstm.setString(1, newData.getId());
+            Prepstm.setNString(2, newData.getLastName());
+            Prepstm.setNString(3, newData.getFirtName());
+            Prepstm.setString(4, newData.getIdKhoa());
+
+            return super.updateDB();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            Prepstm.close();
+            return false;
+        }
+    }
     
+    public boolean deleteGiangVien(String ID) {
+        try {
+            Prepstm = con.prepareStatement("UPDATE GIANG_VIEN SET Hide = 'true' WHERE MaGV LIKE ?");
+            Prepstm.setString(1, ID);
+            
+            return super.updateDB();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.getSQLState());
+            return false;
+        }
+    }
+    
+    /**
+     * Update an GIANG_VIEN model to the Database. If a GIANG_VIEN is already in
+     * DB, update its data, if not, insert a new record of GIANG_VIEN
+     *
+     * @param gv New GiangVien data to add or update to DB
+     * @return true if insert or update success, false if operation failed
+     */
+    public boolean updateSV(GiangVien gv) {
+        if (gv == null) {
+            return false;
+        }
+        if (!existGV(gv.getId())) {
+            try {
+                return insertGiangVien(gv);
+            } catch (SQLException ex) {
+                Logger.getLogger(DAO_GiangVien.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        try {
+            Prepstm = con.prepareStatement("UPDATE GIANG_VIEN "
+                    + "SET HoTenLot = ?, Ten = ?, Khoa = ?, Hide = 'false' "
+                    + "WHERE MaGV = ?");
+
+            Prepstm.setNString(1, gv.getLastName());
+            Prepstm.setNString(2, gv.getFirtName());
+            Prepstm.setString(3, gv.getIdKhoa());
+            Prepstm.setString(4, gv.getId());
+
+            return super.updateDB();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getSQLState());
+            return false;
+        }
+    }
+    
+    public GiangVien getSingleByID(String ID) {
+        GiangVien gv = null;
+        if (!existGV(ID)) {
+            return gv;
+        }
+        try {
+            Statement stm = con.createStatement();
+            String sqlSelect = "SELECT * FROM GIANG_VIEN WHERE MaGV LIKE '" + ID + "' AND Hide = 'false'";
+            ResultSet rst = stm.executeQuery(sqlSelect);
+            if (!rst.first()) {
+                stm.close();
+                return null;
+            }
+            Khoa kh = (new DAO_Khoa()).getSingleKhoaFromID(rst.getString(4));                //Falcuty of Teacher
+            gv = new GiangVien(rst.getString(1), rst.getNString(2), rst.getNString(3), kh.getName());
+            gv.setIdKhoa(kh.getId());
+            stm.close();
+            return gv;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return gv;
+    }
+    
+    public GiangVien getSingleByName(String FirstName) {
+        GiangVien gv = null;
+        try {
+            Statement stm = con.createStatement();
+            String sqlSelect = "SELECT * FROM GIANG_VIEN WHERE Ten LIKE '%" + FirstName + "%'";
+            ResultSet rst = stm.executeQuery(sqlSelect);
+            if (!rst.first()) {
+                stm.close();
+                return null;
+            }
+            Khoa kh = (new DAO_Khoa()).getSingleKhoaFromID(rst.getString(3));                //Falcuty of Student
+            gv = new GiangVien(rst.getString(1), rst.getNString(2), rst.getNString(3), kh.getName());
+            gv.setIdKhoa(kh.getId());
+            stm.close();
+            return gv;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return gv;
+        }
+    }
+    
+    public ListGiangVien getListFromDB(int limit, String gvID, String LastN, String FirstN, String FalcultyID, boolean Hide) throws SQLException {
+        ListGiangVien SVs = new ListGiangVien();
+        if(limit <=0)
+            sqlQuery = "SELECT * FROM GIANG_VIEN WHERE Hide = '" + Hide + "'";
+        else
+            sqlQuery = "SELECT TOP " + limit + " * FROM SINH_VIEN WHERE Hide = '" + Hide + "'";
+        
+        
+        if (!gvID.isBlank()) {
+            sqlQuery += " AND MaGV LIKE '%" + gvID + "%'";
+        }
+        if (!LastN.isBlank()) {
+            sqlQuery += " AND HoTenLot LIKE '%" + LastN + "%'";
+        }
+        if (!FirstN.isBlank()) {
+            sqlQuery += " AND Ten LIKE '%" + FirstN + "%'";
+        }
+        if (!FalcultyID.isBlank()) {
+            sqlQuery += " AND Khoa = " + FalcultyID;
+        }
+        
+        
+        Statement stm = con.createStatement();
+        ResultSet result = stm.executeQuery(sqlQuery);
+        while(result.next()){
+            SVs.list.add(getSingleByID(result.getString(1)));
+        }
+        SVs.colHeader = getColunmHeader(result);
+        return SVs;
+    }
 }
