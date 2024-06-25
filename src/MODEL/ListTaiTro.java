@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,12 +19,42 @@ import javax.swing.JOptionPane;
 public class ListTaiTro extends TaiTro{
 
     public static ArrayList<TaiTro> list;
+    public Object[] colHeader;
+    public DefaultTableModel model;
 
     public ListTaiTro(){
         super();
         list = new ArrayList<>();
+        model = new DefaultTableModel(colHeader,0);
     }
 
+    public DefaultTableModel getTableModel(){
+        Iterator<TaiTro> it = list.iterator();
+        while(it.hasNext()){
+            TaiTro temp = it.next();
+            model.addRow(new Object[]{temp.getName(), temp.getNameHost(), temp.getPhone(), temp.getEmail()});
+        }
+        return model;
+    }
+    
+    public static ArrayList exportList(DefaultTableModel Model){
+        ArrayList<TaiTro> listTT = new ArrayList<>();
+        
+        int rowCount = Model.getRowCount();
+
+        for (int row = 0; row < rowCount; row++) {
+            TaiTro tt = new TaiTro();
+            tt.setName((String) Model.getValueAt(row, 0));
+            tt.setNameHost((String) Model.getValueAt(row, 1));
+            tt.setEmail((String) Model.getValueAt(row, 2));
+            tt.setPhone((String) Model.getValueAt(row, 3));
+            listTT.add(tt);
+        }
+        
+        return listTT;
+    }
+    
+    
     public static TaiTro find(String name){
         Iterator<TaiTro> it = list.iterator();
         while(it.hasNext()){
