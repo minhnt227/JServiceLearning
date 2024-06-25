@@ -10,6 +10,7 @@ import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -17,12 +18,42 @@ import javax.swing.JOptionPane;
  */
 public class ListGiangVien extends GiangVien{
     public static ArrayList<GiangVien> list;
+    public Object[] colHeader;
+    public DefaultTableModel model;
 
     public ListGiangVien(){
         super();
         list = new ArrayList<>();
+        model = new DefaultTableModel(colHeader,0);
     }
+    
+    public DefaultTableModel getTableModel(){
+        Iterator<GiangVien> it = list.iterator();
+        while(it.hasNext()){
+            GiangVien temp = it.next();
+            model.addRow(new Object[]{temp.getId(), temp.getFirtName(), temp.getLastName(), temp.getNameKhoa(), temp.getTenHD()});
+        }
+        return model;
+    }
+    
+        public static ArrayList exportList(DefaultTableModel Model){
+        ArrayList<GiangVien> listGV = new ArrayList<>();
+        
+        int rowCount = Model.getRowCount();
 
+        for (int row = 0; row < rowCount; row++) {
+            GiangVien gv = new GiangVien();
+            gv.setId((String) Model.getValueAt(row, 0));
+            gv.setFirtName((String) Model.getValueAt(row, 1));
+            gv.setLastName((String) Model.getValueAt(row, 2));
+            gv.setNameKhoa((String) Model.getValueAt(row, 3));
+            gv.setNameKhoa((String) Model.getValueAt(row, 4));
+            listGV.add(gv);
+        }
+        
+        return listGV;
+    }
+    
     public static void importFile(BufferedReader file) throws IOException{
         String line;
         while ((line = file.readLine()) != null) {
