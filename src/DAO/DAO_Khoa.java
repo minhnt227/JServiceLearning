@@ -97,7 +97,7 @@ public class DAO_Khoa extends DBConnector {
         Khoa kh;
         try {
             Statement stm = con.createStatement();
-            String sqlSelect = "SELECT * FROM KHOA WHERE TenKhoa LIKE '%" + name + "%'";
+            String sqlSelect = "SELECT * FROM KHOA WHERE TenKhoa LIKE N'%" + name + "%'";
             ResultSet rst = stm.executeQuery(sqlSelect);
             if (!rst.first()) {
                 stm.close();

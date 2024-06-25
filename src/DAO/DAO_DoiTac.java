@@ -24,7 +24,7 @@ public class DAO_DoiTac extends DBConnector {
     public boolean existDT(String Name) {
         try {
             Statement stm = con.createStatement();
-            String sqlSelect = "SELECT * FROM DOI_TAC WHERE TenDoiTac LIKE '" + Name + "'";
+            String sqlSelect = "SELECT * FROM DOI_TAC WHERE TenDoiTac LIKE N'" + Name + "'";
             ResultSet rst = stm.executeQuery(sqlSelect);
             if (!rst.first()) {
                 stm.close();
@@ -99,7 +99,7 @@ public class DAO_DoiTac extends DBConnector {
             return false;
         try {
             Prepstm = con.prepareStatement("UPDATE DOI_TAC SET Hide = 'true' WHERE TenDoiTac LIKE ?");
-            Prepstm.setString(1, name.trim());
+            Prepstm.setNString(1, name.trim());
             
             return super.updateDB();
         } catch (SQLException e) {
@@ -118,7 +118,7 @@ public class DAO_DoiTac extends DBConnector {
         try {
             Statement stm = con.createStatement();
             String sqlSelect;
-            sqlSelect = "SELECT * FROM DOI_TAC WHERE TenDoiTac LIKE '%" + Name + "%'";
+            sqlSelect = "SELECT * FROM DOI_TAC WHERE TenDoiTac LIKE N'%" + Name + "%'";
             ResultSet rst = stm.executeQuery(sqlSelect);
             if (!rst.first()) {
                 stm.close();
@@ -143,7 +143,7 @@ public class DAO_DoiTac extends DBConnector {
         
         
         if (!name.isBlank()) {
-            sqlQuery += " AND TenDoiTac LIKE '%" + name + "%'";
+            sqlQuery += " AND TenDoiTac LIKE N'%" + name + "%'";
         }
         
         

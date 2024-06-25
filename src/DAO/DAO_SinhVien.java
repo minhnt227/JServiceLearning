@@ -145,7 +145,7 @@ public class DAO_SinhVien extends DBConnector {
         SinhVien sv = null;
         try {
             Statement stm = con.createStatement();
-            String sqlSelect = "SELECT * FROM SINH_VIEN WHERE HoTen LIKE '%" + Name + "%'";
+            String sqlSelect = "SELECT * FROM SINH_VIEN WHERE HoTen LIKE N'%" + Name + "%'";
             ResultSet rst = stm.executeQuery(sqlSelect);
             if (!rst.first()) {
                 stm.close();
@@ -172,7 +172,7 @@ public class DAO_SinhVien extends DBConnector {
             sqlQuery += " AND MSSV LIKE '%" + ID + "%'";
         }
         if (!NAME.isBlank()) {
-            sqlQuery += " AND HoTen LIKE '%" + NAME + "%'";
+            sqlQuery += " AND HoTen LIKE N'%" + NAME + "%'";
         }
         if (!FalcultyID.isBlank()) {
             sqlQuery += " AND Khoa = " + FalcultyID;

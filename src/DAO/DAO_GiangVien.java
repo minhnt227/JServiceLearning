@@ -138,7 +138,7 @@ public class DAO_GiangVien extends DBConnector {
         GiangVien gv = null;
         try {
             Statement stm = con.createStatement();
-            String sqlSelect = "SELECT * FROM GIANG_VIEN WHERE Ten LIKE '%" + FirstName + "%'";
+            String sqlSelect = "SELECT * FROM GIANG_VIEN WHERE Ten LIKE N'%" + FirstName + "%'";
             ResultSet rst = stm.executeQuery(sqlSelect);
             if (!rst.first()) {
                 stm.close();
@@ -180,10 +180,10 @@ public class DAO_GiangVien extends DBConnector {
             sqlQuery += " AND MaGV LIKE '%" + gvID + "%'";
         }
         if (!LastN.isBlank()) {
-            sqlQuery += " AND HoTenLot LIKE '%" + LastN + "%'";
+            sqlQuery += " AND HoTenLot LIKE N'%" + LastN + "%'";
         }
         if (!FirstN.isBlank()) {
-            sqlQuery += " AND Ten LIKE '%" + FirstN + "%'";
+            sqlQuery += " AND Ten LIKE N'%" + FirstN + "%'";
         }
         if (!FalcultyID.isBlank()) {
             sqlQuery += " AND Khoa = " + FalcultyID;

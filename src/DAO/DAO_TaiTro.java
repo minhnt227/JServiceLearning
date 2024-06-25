@@ -22,7 +22,7 @@ public class DAO_TaiTro extends DBConnector{
     public boolean existTT(String Name) {
         try {
             Statement stm = con.createStatement();
-            String sqlSelect = "SELECT * FROM TAI_TRO WHERE TenTaiTro LIKE '" + Name + "'";
+            String sqlSelect = "SELECT * FROM TAI_TRO WHERE TenTaiTro LIKE N'" + Name + "'";
             ResultSet rst = stm.executeQuery(sqlSelect);
             if (!rst.first()) {
                 stm.close();
@@ -97,7 +97,7 @@ public class DAO_TaiTro extends DBConnector{
             return false;
         try {
             Prepstm = con.prepareStatement("UPDATE TAI_TRO SET Hide = 'true' WHERE TenTaiTro LIKE ?");
-            Prepstm.setString(1, name.trim());
+            Prepstm.setNString(1, name.trim());
             
             return super.updateDB();
         } catch (SQLException e) {
@@ -117,7 +117,7 @@ public class DAO_TaiTro extends DBConnector{
         try {
             Statement stm = con.createStatement();
             String sqlSelect;
-            sqlSelect = "SELECT * FROM TAI_TRO WHERE TenTaiTro LIKE '%" + Name + "%'";
+            sqlSelect = "SELECT * FROM TAI_TRO WHERE TenTaiTro LIKE N'%" + Name + "%'";
             ResultSet rst = stm.executeQuery(sqlSelect);
             if (!rst.first()) {
                 stm.close();
@@ -142,7 +142,7 @@ public class DAO_TaiTro extends DBConnector{
         
         
         if (!name.isBlank()) {
-            sqlQuery += " AND TenTaiTro LIKE '%" + name + "%'";
+            sqlQuery += " AND TenTaiTro LIKE N'%" + name + "%'";
         }
         
         
