@@ -1,9 +1,14 @@
 
 package MODEL;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 
+import javax.swing.JOptionPane;
 
 public class GiangVien extends HOAT_DONG {
     private  String id;
@@ -11,6 +16,7 @@ public class GiangVien extends HOAT_DONG {
     private String lastName;
     private String nameKhoa;
     private String idKhoa;
+    private String vaiTro;
 
     public String getId() {
         return id;
@@ -51,6 +57,14 @@ public class GiangVien extends HOAT_DONG {
     public void setIdKhoa(String idKhoa) {
         this.idKhoa = idKhoa;
     }
+    
+    public String getVaiTro() {
+        return vaiTro;
+    }
+
+    public void setVaiTro(String vaiTro) {
+        this.vaiTro = vaiTro;
+    }
 
     public void setIdKhoa(ArrayList<Khoa> list) {
         Iterator<Khoa> it = list.iterator();
@@ -71,6 +85,15 @@ public class GiangVien extends HOAT_DONG {
         setFirtName(firtName);
         setLastName(lastName);
         setNameKhoa(nameKhoa);
+    }
+    
+    public GiangVien(String id, String firstName, String lastName, String nameKhoa, String TenHD, String vaiTro) {
+        super.setTenHD(TenHD);
+        setId(id);
+        setFirtName(firtName);
+        setLastName(lastName);
+        setNameKhoa(nameKhoa);
+        setVaiTro(vaiTro);
     }
 
     public GiangVien(String id, String firstName, String lastName, String nameKhoa) {
