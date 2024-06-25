@@ -21,6 +21,7 @@ public class HOAT_DONG {
     Date NgayKT;
     Boolean Hide;
     Date CreatedDate;
+    public static Object[] colHeader;
 
     public HOAT_DONG(int MaHD, String TenHD, String Loai, Date NgayBD, Date NgayKT, Boolean Hide, Date CreatedDate) {
         this.MaHD = MaHD;
@@ -96,7 +97,7 @@ public class HOAT_DONG {
     public void setCreatedDate(Date CreatedDate) {
         this.CreatedDate = CreatedDate;
     }
-    public static ArrayList filterHDsByName(ArrayList<HOAT_DONG> List, String name){
+    public static ArrayList<HOAT_DONG> filterHDsByName(ArrayList<HOAT_DONG> List, String name){
         Iterator<HOAT_DONG> it = List.iterator();
         ArrayList<HOAT_DONG> newList = new ArrayList<>();
         while(it.hasNext()){

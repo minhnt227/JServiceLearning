@@ -13,7 +13,8 @@ import java.sql.DriverManager;
  */
 public class DBConnector {
     protected Connection con = null;
-
+    String sqlQuery = "";
+    PreparedStatement Prepstm;
     public DBConnector() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -41,4 +42,19 @@ public class DBConnector {
         return ColHeader;
     }
     
+    public boolean updateDB()
+    {
+        try {
+            if (Prepstm.executeUpdate() != 0) {
+                Prepstm.close();
+                return true;
+            } else {
+                Prepstm.close();
+                return false;
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getSQLState());
+            return false;
+        }
+    }
 }

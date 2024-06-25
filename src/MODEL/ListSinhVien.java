@@ -17,7 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class ListSinhVien extends SinhVien{
     public static ArrayList<SinhVien> list;
-
+    
+    
     public  ListSinhVien(){
         list = new ArrayList<>();
     }

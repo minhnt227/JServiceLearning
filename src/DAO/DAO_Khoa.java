@@ -28,7 +28,7 @@ public class DAO_Khoa extends DBConnector {
     public DAO_Khoa(boolean Hide) {
         try {
             Statement stm = con.createStatement();
-            String sqlSelect = "SELECT * FROM KHOA WHERE Hide = " + Hide;
+            String sqlSelect = "SELECT * FROM KHOA WHERE Hide = '" + Hide + "'";
             ResultSet rst = stm.executeQuery(sqlSelect);
             if (rst == null) {
                 stm.close();
@@ -55,7 +55,7 @@ public class DAO_Khoa extends DBConnector {
         List<String> names = null;
         try {
             Statement stm = con.createStatement();
-            String sqlSelect = "SELECT * FROM KHOA WHERE Hide = false";
+            String sqlSelect = "SELECT * FROM KHOA WHERE Hide = 'false'";
             ResultSet rst = stm.executeQuery(sqlSelect);
             if (rst == null) {
                 stm.close();
@@ -148,7 +148,7 @@ public class DAO_Khoa extends DBConnector {
         try {
             java.sql.Date sqlDate = new java.sql.Date(newData.getDate().getTime());
             PreparedStatement stmt = con.prepareStatement("UPDATE KHOA "
-                    + "Set TenKhoa = ?, SDT = ?, Email = ?, NgayThanhLap = ?, Hide = false "
+                    + "Set TenKhoa = ?, SDT = ?, Email = ?, NgayThanhLap = ?, Hide = 'false' "
                     + "WHERE MaKhoa = ?");
 
             stmt.setNString(1, newData.getName());
@@ -176,7 +176,7 @@ public class DAO_Khoa extends DBConnector {
             PreparedStatement stmt = con.prepareStatement("INSERT INTO KHOA VALUES (?,?,?,?,?,false)");
 
             stmt.setString(1, newData.getId());
-            stmt.setNString(1, newData.getName());
+            stmt.setNString(2, newData.getName());
             stmt.setString(3, newData.getPhone());
             stmt.setString(4, newData.getEmail());
             stmt.setDate(5, sqlDate);
@@ -210,4 +210,5 @@ public class DAO_Khoa extends DBConnector {
             return false;
         }
     }
+    
 }
