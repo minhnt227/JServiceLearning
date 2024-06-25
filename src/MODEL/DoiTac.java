@@ -10,13 +10,14 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 public class DoiTac extends HOAT_DONG{
-    private int dtID = 0;
+    private int dtID ;
     private String name;
     private String nameHost;
     private String phone;
     private String email;
     private String noiDung;
 
+    
     public int getDtID() {
         return dtID;
     }
@@ -74,6 +75,14 @@ public class DoiTac extends HOAT_DONG{
         setNameHost(nameHost);
         setPhone(phone);
         setEmail(email);
+    }
+
+    public DoiTac(int dtID, String name, String nameHost, String phone, String email) {
+        this.dtID = dtID;
+        this.name = name;
+        this.nameHost = nameHost;
+        this.phone = phone;
+        this.email = email;
     }
     
     public DoiTac(String name, String nameHost, String phone, String email, String noiDung){

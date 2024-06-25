@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
 
 public class TaiTro extends HOAT_DONG{
 
-    private int id = 0;
+    private int id;
     private String name;
     private String nameHost;
     private String phone;
@@ -85,5 +85,14 @@ public class TaiTro extends HOAT_DONG{
         setNoiDung(noiDung);
     }
 
+    public TaiTro(int id, String name, String nameHost, String phone, String email) {
+        this.id = id;
+        this.name = name;
+        this.nameHost = nameHost;
+        this.phone = phone;
+        this.email = email;
+    }
+
+    
 }
 

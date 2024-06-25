@@ -42,9 +42,9 @@ public class DAO_DoiTac extends DBConnector {
         try {
             Prepstm = con.prepareStatement("INSERT INTO DOI_TAC VALUES (?,?,?,?,'false')");
 
-            Prepstm.setString(1, newData.getName());
+            Prepstm.setNString(1, newData.getName());
             Prepstm.setNString(2, newData.getNameHost());
-            Prepstm.setNString(3, newData.getPhone());
+            Prepstm.setString(3, newData.getPhone());
             Prepstm.setString(4, newData.getEmail());
 
             return super.updateDB();
@@ -57,31 +57,35 @@ public class DAO_DoiTac extends DBConnector {
     
     /**
      * Update an DOI_TAC model to the Database. If a DOI_TAC is already in
-     * DB, update its data, if not, insert a new record of GIANG_VIEN
+     * DB, update its data, if not, insert a new record of DOI_TAC
+     * IF UPDATE, DOITAC NEED TO HAVE AN ID
      *
      * @param gv New DoiTac data to add or update to DB
      * @return true if insert or update success, false if operation failed
      */
     public boolean updateDT(DoiTac dt) {
+        //null check
         if (dt == null||dt.getName().isBlank()) {
             return false;
         }
+        //if not in DB, add it in
         if (!existDT(dt.getName())) {
             try {
                 return insertDoiTac(dt);
             } catch (SQLException ex) {
-                Logger.getLogger(DAO_GiangVien.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                Logger.getLogger(DAO_DoiTac.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
             }
         }
         try {
             Prepstm = con.prepareStatement("UPDATE DOI_TAC "
-                    + "SET DaiDien = ?, SDT = ?, Email = ?, Hide = 'false' "
-                    + "WHERE TenDoiTac = ?");
+                    + "SET TenDoiTac = ?, DaiDien = ?, SDT = ?, Email = ?, Hide = 'false' "
+                    + "WHERE ID_DoiTac = ?");
 
-            Prepstm.setNString(1, dt.getNameHost());
-            Prepstm.setNString(2, dt.getPhone());
-            Prepstm.setString(3, dt.getEmail());
-            Prepstm.setString(4, dt.getName().trim());
+            Prepstm.setNString(1, dt.getName());
+            Prepstm.setNString(2, dt.getNameHost());
+            Prepstm.setString(3, dt.getPhone());
+            Prepstm.setString(4, dt.getPhone());
+            Prepstm.setInt(5, dt.getDtID());
 
             return super.updateDB();
         } catch (SQLException ex) {
@@ -120,8 +124,7 @@ public class DAO_DoiTac extends DBConnector {
                 stm.close();
                 return null;
             }
-            dt = new DoiTac(rst.getNString(2), rst.getNString(3), rst.getString(4), rst.getString(5));
-            dt.setDtID(rst.getInt(1));
+            dt = new DoiTac(rst.getInt(1),rst.getNString(2), rst.getNString(3), rst.getString(4), rst.getString(5));
             stm.close();
             return dt;
         } catch (Exception e) {
@@ -147,7 +150,7 @@ public class DAO_DoiTac extends DBConnector {
         Statement stm = con.createStatement();
         ResultSet result = stm.executeQuery(sqlQuery);
         while(result.next()){
-            Objs.list.add(getSingleByName(result.getString(2)));
+            Objs.list.add(getSingleByName(result.getNString(2)));
         }
         Objs.colHeader = getColunmHeader(result);
         return Objs;
