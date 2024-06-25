@@ -9,7 +9,7 @@ import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
-public class TaiTro {
+public class TaiTro extends HOAT_DONG{
 
     private int id = 0;
     private String name;
@@ -57,12 +57,10 @@ public class TaiTro {
         this.email = email;
     }
 
-    public TaiTro() {
-        setId(id++);
-    }
+    public TaiTro(){}
 
-    public TaiTro(String name, String nameHost, String phone, String email) {
-        setId(id++);
+    public TaiTro(String name, String nameHost, String phone, String email){
+        setId(id);
         setName(name);
         setNameHost(nameHost);
         setPhone(phone);
@@ -70,3 +68,4 @@ public class TaiTro {
     }
 
 }
+
