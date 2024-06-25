@@ -15,6 +15,7 @@ public class SinhVien extends HOAT_DONG{
     private String name;
     private String nameKhoa;
     private String idKhoa;
+    private String vaiTro;
 
     public String getId() {
         return id;
@@ -48,6 +49,14 @@ public class SinhVien extends HOAT_DONG{
         idKhoa = id;
         
     }
+    
+    public String getVaiTro() {
+        return vaiTro;
+    }
+
+    public void setVaiTro(String vaiTro) {
+        this.vaiTro = vaiTro;
+    }
 
     public String setIdKhoa(ArrayList<Khoa> list) {
         Iterator<Khoa> it = list.iterator();
@@ -69,6 +78,14 @@ public class SinhVien extends HOAT_DONG{
         setName(name);
         setNameKhoa(nameKhoa);
     }
+    
+    public SinhVien(String id, String name, String nameKhoa, String TenHD, String vaiTro) {
+        super.setTenHD(TenHD);
+        setId(id);
+        setName(name);
+        setNameKhoa(nameKhoa);
+        setVaiTro(vaiTro);
+    }
 
     public SinhVien(String id, String name, String nameKhoa) {
         setId(id);
@@ -82,4 +99,10 @@ public class SinhVien extends HOAT_DONG{
         setNameKhoa(sv.nameKhoa);
     }
 
+    void add(Object valueAt) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
+
+
