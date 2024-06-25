@@ -9,7 +9,7 @@ import java.util.Iterator;
 
 import javax.swing.JOptionPane;
 
-public class DoiTac {
+public class DoiTac extends HOAT_DONG{
     private String name;
     private String nameHost;
     private String phone;
