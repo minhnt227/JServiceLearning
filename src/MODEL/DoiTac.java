@@ -14,6 +14,7 @@ public class DoiTac extends HOAT_DONG{
     private String nameHost;
     private String phone;
     private String email;
+    private String noiDung;
 
     
     public String getName() {
@@ -47,6 +48,14 @@ public class DoiTac extends HOAT_DONG{
     public void setEmail(String email) {
         this.email = email;
     }
+    
+    public String getNoiDung() {
+        return noiDung;
+    }
+
+    public void setNoiDung(String noiDung) {
+        this.noiDung = noiDung;
+    }
 
     public DoiTac(){}
 
@@ -56,6 +65,14 @@ public class DoiTac extends HOAT_DONG{
         setNameHost(nameHost);
         setPhone(phone);
         setEmail(email);
+    }
+    
+    public DoiTac(String name, String nameHost, String phone, String email, String noiDung){
+        setName(name);
+        setNameHost(nameHost);
+        setPhone(phone);
+        setEmail(email);
+        setNoiDung(noiDung);
     }
 
     public Object[] getRowData(){
