@@ -1,15 +1,8 @@
 package MODEL;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.text.ParseException;
+import DAO.DAO_Khoa;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.Iterator;
-
-import javax.swing.JOptionPane;
 
 public class Khoa{
     private  String id;
@@ -84,6 +77,31 @@ public class Khoa{
 
     public Object[] getRowData(){
         return new Object[]{getId(), getName(), getPhone(), getEmail(), getDate()};
+    }
+
+    public boolean insertKhoa(){
+        DAO_Khoa dAO_Khoa = new DAO_Khoa();
+        return dAO_Khoa.updateKhoa(this);
+    }
+
+    public Khoa getSingleKhoaFromName() {
+        DAO_Khoa dAO_Khoa = new DAO_Khoa();
+        return dAO_Khoa.getSingleKhoaFromName(this.getName());
+    }
+
+    public Khoa getSingleKhoaFromID() {
+        DAO_Khoa dAO_Khoa = new DAO_Khoa();
+        return dAO_Khoa.getSingleKhoaFromID(this.getId());
+    }
+
+    public boolean deleteKhoa(){
+        DAO_Khoa dAO_Khoa = new DAO_Khoa();
+        return dAO_Khoa.deleteKhoa(this.getId());
+    }
+
+    public boolean existKhoa(){
+        DAO_Khoa dAO_Khoa = new DAO_Khoa();
+        return dAO_Khoa.existKhoa(this.getId());
     }
 
 }

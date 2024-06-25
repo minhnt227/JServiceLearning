@@ -1,12 +1,7 @@
 package MODEL;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import DAO.DAO_SinhVien;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
-
-import javax.swing.JOptionPane;
 
 public class SinhVien extends HOAT_DONG{
     
@@ -101,6 +96,31 @@ public class SinhVien extends HOAT_DONG{
 
     void add(Object valueAt) {
         throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public boolean insertSV(){
+        DAO_SinhVien dAO_SinhVien = new DAO_SinhVien();
+        return dAO_SinhVien.updateSV(this);
+    }
+
+    public SinhVien getSingleByName() {
+        DAO_SinhVien dAO_SinhVien = new DAO_SinhVien();
+        return dAO_SinhVien.getSingleByName(this.getName());
+    }
+
+    public SinhVien getSingleByID() {
+        DAO_SinhVien dAO_SinhVien = new DAO_SinhVien();
+        return dAO_SinhVien.getSingleByID(this.getId());
+    }
+
+    public boolean deleteSinhVien(){
+        DAO_SinhVien dAO_SinhVien = new DAO_SinhVien();
+        return dAO_SinhVien.deleteSinhVien(this.getId());
+    }
+
+    public boolean existSV(){
+        DAO_SinhVien dAO_SinhVien = new DAO_SinhVien();
+        return dAO_SinhVien.existSV(this.getId());
     }
 
 }

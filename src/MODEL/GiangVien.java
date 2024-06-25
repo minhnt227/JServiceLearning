@@ -1,14 +1,9 @@
 
 package MODEL;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import DAO.DAO_GiangVien;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
-
-import javax.swing.JOptionPane;
 
 public class GiangVien extends HOAT_DONG {
     private  String id;
@@ -103,7 +98,30 @@ public class GiangVien extends HOAT_DONG {
         setNameKhoa(nameKhoa);
     }
 
-       
+    public boolean insertSV(){
+        DAO_GiangVien dAO_GiangVien = new DAO_GiangVien();
+        return dAO_GiangVien.updateGV(this);
+    }
+
+    public GiangVien getSingleByName() {
+        DAO_GiangVien dAO_GiangVien = new DAO_GiangVien();
+        return dAO_GiangVien.getSingleByName(this.getFirtName());
+    }
+
+    public GiangVien getSingleByID() {
+        DAO_GiangVien dAO_GiangVien = new DAO_GiangVien();
+        return dAO_GiangVien.getSingleByID(this.getId());
+    }
+
+    public boolean deleteSinhVien(){
+        DAO_GiangVien dAO_GiangVien = new DAO_GiangVien();
+        return dAO_GiangVien.deleteGiangVien(this.getId());
+    }
+
+    public boolean existGV(){
+        DAO_GiangVien dAO_GiangVien = new DAO_GiangVien();
+        return dAO_GiangVien.existGV(this.getId());
+    }
 }
 
 

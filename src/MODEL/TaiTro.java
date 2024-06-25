@@ -1,13 +1,7 @@
 package MODEL;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import DAO.DAO_TaiTro;
 import java.lang.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-
-import javax.swing.JOptionPane;
 
 public class TaiTro extends HOAT_DONG{
 
@@ -93,6 +87,25 @@ public class TaiTro extends HOAT_DONG{
         this.email = email;
     }
 
-    
+    public boolean insertKhoa(){
+        DAO_TaiTro dAO_TaiTro = new DAO_TaiTro();
+        return dAO_TaiTro.updateDT(this);
+    }
+
+    public TaiTro getSingleByName() {
+        DAO_TaiTro dAO_TaiTro = new DAO_TaiTro();
+        return dAO_TaiTro.getSingleByName(this.getName());
+    }
+
+
+    public boolean delete(){
+        DAO_TaiTro dAO_TaiTro = new DAO_TaiTro();
+        return dAO_TaiTro.deleteDoiTac(this.getName());
+    }
+
+    public boolean existKhoa(){
+        DAO_TaiTro dAO_TaiTro = new DAO_TaiTro();
+        return dAO_TaiTro.existTT(this.getName());
+    }
 }
 

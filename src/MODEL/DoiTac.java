@@ -1,13 +1,7 @@
 package MODEL;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintWriter;
+import DAO.DAO_DoiTac;
 import java.lang.*;
-import java.util.ArrayList;
-import java.util.Iterator;
-
-import javax.swing.JOptionPane;
 
 public class DoiTac extends HOAT_DONG{
     private int dtID ;
@@ -97,6 +91,26 @@ public class DoiTac extends HOAT_DONG{
         return new Object[]{getName(), getNameHost(), getPhone(), getEmail()};
     }
 
+    public boolean insertDoiTac(){
+        DAO_DoiTac dAO_DoiTac = new DAO_DoiTac();
+        return dAO_DoiTac.updateDT(this);
+    }
+
+    public DoiTac getSingleByName() {
+        DAO_DoiTac dAO_DoiTac = new DAO_DoiTac();
+        return dAO_DoiTac.getSingleByName(this.getName());
+    }
+
+
+    public boolean deleteSinhVien(){
+        DAO_DoiTac dAO_DoiTac = new DAO_DoiTac();
+        return dAO_DoiTac.deleteDoiTac(this.getName());
+    }
+
+    public boolean existDT(){
+        DAO_DoiTac dAO_DoiTac = new DAO_DoiTac();
+        return dAO_DoiTac.existDT(this.getName());
+    }
     
 }
 
