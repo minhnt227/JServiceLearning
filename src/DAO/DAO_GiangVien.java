@@ -155,12 +155,25 @@ public class DAO_GiangVien extends DBConnector {
         }
     }
     
+    /**
+     *
+     * If want to select all teacher, leaves Hide = true and others at null/0
+     * 
+     * @param limit number of records to select, if it's 0 or below, get all records in DB
+     * @param gvID  check if records contain gvID
+     * @param LastN  check for last name
+     * @param FirstN check for first name
+     * @param FalcultyID  select all teacher in this falcuty
+     * @param Hide Deleted or not
+     * @return
+     * @throws SQLException
+     */
     public ListGiangVien getListFromDB(int limit, String gvID, String LastN, String FirstN, String FalcultyID, boolean Hide) throws SQLException {
-        ListGiangVien SVs = new ListGiangVien();
+        ListGiangVien Objs = new ListGiangVien();
         if(limit <=0)
             sqlQuery = "SELECT * FROM GIANG_VIEN WHERE Hide = '" + Hide + "'";
         else
-            sqlQuery = "SELECT TOP " + limit + " * FROM SINH_VIEN WHERE Hide = '" + Hide + "'";
+            sqlQuery = "SELECT TOP " + limit + " * FROM GIANG_VIEN WHERE Hide = '" + Hide + "'";
         
         
         if (!gvID.isBlank()) {
@@ -180,9 +193,9 @@ public class DAO_GiangVien extends DBConnector {
         Statement stm = con.createStatement();
         ResultSet result = stm.executeQuery(sqlQuery);
         while(result.next()){
-            SVs.list.add(getSingleByID(result.getString(1)));
+            Objs.list.add(getSingleByID(result.getString(1)));
         }
-        SVs.colHeader = getColunmHeader(result);
-        return SVs;
+        Objs.colHeader = getColunmHeader(result);
+        return Objs;
     }
 }

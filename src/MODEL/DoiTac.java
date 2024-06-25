@@ -10,11 +10,20 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 
 public class DoiTac extends HOAT_DONG{
+    private int dtID = 0;
     private String name;
     private String nameHost;
     private String phone;
     private String email;
     private String noiDung;
+
+    public int getDtID() {
+        return dtID;
+    }
+
+    public void setDtID(int dtID) {
+        this.dtID = dtID;
+    }
 
     
     public String getName() {
