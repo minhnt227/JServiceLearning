@@ -21,7 +21,7 @@ public class HOAT_DONG {
     Date NgayKT;
     Boolean Hide;
     Date CreatedDate;
-    public static Object[] colHeader;
+    public Object[] colHeader;
 
     public HOAT_DONG(int MaHD, String TenHD, String Loai, Date NgayBD, Date NgayKT, Boolean Hide, Date CreatedDate) {
         this.MaHD = MaHD;
@@ -84,6 +84,10 @@ public class HOAT_DONG {
 
     public void setNgayBD(Date NgayBD) {
         this.NgayBD = NgayBD;
+    }
+
+    public Object[] getColHeader() {
+        return colHeader;
     }
 
     public void setNgayKT(Date NgayKT) {

@@ -7,6 +7,7 @@ package MODEL;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
@@ -15,37 +16,46 @@ import javax.swing.JOptionPane;
  *
  * @author Kisa
  */
-public class ListSinhVien extends SinhVien{
+public class ListSinhVien extends SinhVien {
+
     public static ArrayList<SinhVien> list;
-    
-    
-    public  ListSinhVien(){
+
+    public ListSinhVien() {
         list = new ArrayList<>();
     }
 
-    public static SinhVien find(String nameKhoa){
+    public ListSinhVien(int lim, String ID, String FullName, String FalcutyID, boolean Hide) throws SQLException {
+        ListSinhVien temp = ( new DAO.DAO_SinhVien() ).getListFromDB(lim, ID, FullName, FalcutyID, true);
+        list = temp.list;
+        colHeader = temp.getColHeader();
+    }
+
+    public static SinhVien find(String nameKhoa) {
         Iterator<SinhVien> it = list.iterator();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             SinhVien temp = it.next();
-            if(temp.getNameKhoa().contains(nameKhoa))
+            if (temp.getNameKhoa().contains(nameKhoa)) {
                 return temp;
+            }
         }
         return null;
     }
 
-    public static int countKhoa(String nameKhoa){
+    public static int countKhoa(String nameKhoa) {
         int cnt = 0;
         for (SinhVien sinhVien : list) {
-            if (find(nameKhoa) != null) cnt++;
+            if (find(nameKhoa) != null) {
+                cnt++;
+            }
         }
         return cnt;
     }
-
-    public static int soLuong(){
+    
+    public static int soLuong() {
         return list.size();
     }
 
-    public static void importFile(BufferedReader file) throws IOException{
+    public static void importFile(BufferedReader file) throws IOException {
         String line;
         while ((line = file.readLine()) != null) {
             String[] value = line.split("\t");
@@ -53,19 +63,21 @@ public class ListSinhVien extends SinhVien{
         }
     }
 
-    public static void  exportFile(PrintWriter file){
+    public static void exportFile(PrintWriter file) {
         for (SinhVien sv : list) {
             file.write(sv.getId() + "\t" + sv.getName() + "\t" + sv.getNameKhoa() + "\t" + sv.getIdKhoa());
         }
     }
-    
-    public static void addList(SinhVien sv){
-        if (!sv.getName().isEmpty() && !sv.getId().isEmpty() && !sv.getNameKhoa().isEmpty()){
+
+    public static void addList(SinhVien sv) {
+        if (!sv.getName().isEmpty() && !sv.getId().isEmpty() && !sv.getNameKhoa().isEmpty()) {
             list.add(sv);
-        } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Information is not valid\nPlease enter all fields", "Try again", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
-    public static ArrayList outList(){
+    public static ArrayList outList() {
         return list;
     }
 
