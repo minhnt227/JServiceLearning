@@ -1,4 +1,4 @@
-/*
+ /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
@@ -10,8 +10,10 @@ import java.io.PrintWriter;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -19,8 +21,39 @@ import javax.swing.JOptionPane;
  */
 public class ListKhoa  extends Khoa{
     public static ArrayList<Khoa> list;
+    public Object[] colHeader;
+    public DefaultTableModel model;
+    
     public ListKhoa(){
         list = new ArrayList<>();
+        model = new DefaultTableModel(colHeader,0);
+    }
+    
+    public DefaultTableModel getTableModel(){
+        Iterator<Khoa> it = list.iterator();
+        while(it.hasNext()){
+            Khoa temp = it.next();
+            model.addRow(new Object[]{temp.getId(), temp.getName(), temp.getPhone(), temp.getEmail()});
+        }
+        return model;
+    }
+    
+    public static ArrayList exportList(DefaultTableModel Model){
+        ArrayList<Khoa> listK = new ArrayList<>();
+        
+        int rowCount = Model.getRowCount();
+
+        for (int row = 0; row < rowCount; row++) {
+            Khoa k = new Khoa();
+            k.setId((String) Model.getValueAt(row, 0));
+            k.setName((String) Model.getValueAt(row, 1));
+            k.setPhone((String) Model.getValueAt(row, 2));
+            k.setEmail((String) Model.getValueAt(row, 3));
+            k.setDate((Date) Model.getValueAt(row, 4));
+            listK.add(k);
+        }
+        
+        return listK;
     }
 
     public void addList(Khoa khoa){
