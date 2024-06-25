@@ -7,9 +7,6 @@ package DAO;
 import MODEL.GiangVien;
 import MODEL.Khoa;
 import MODEL.ListGiangVien;
-import MODEL.ListSinhVien;
-import MODEL.SinhVien;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -80,7 +77,7 @@ public class DAO_GiangVien extends DBConnector {
      * @param gv New GiangVien data to add or update to DB
      * @return true if insert or update success, false if operation failed
      */
-    public boolean updateSV(GiangVien gv) {
+    public boolean updateGV(GiangVien gv) {
         if (gv == null) {
             return false;
         }
@@ -132,6 +129,11 @@ public class DAO_GiangVien extends DBConnector {
         return gv;
     }
     
+    /**
+     *
+     * @param FirstName
+     * @return gv from Database
+     */
     public GiangVien getSingleByName(String FirstName) {
         GiangVien gv = null;
         try {

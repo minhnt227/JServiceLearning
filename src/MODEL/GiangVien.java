@@ -1,15 +1,9 @@
 
 package MODEL;
 
-import jservicelearning.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 
-import javax.swing.JOptionPane;
 
 public class GiangVien extends HOAT_DONG {
     private  String id;
