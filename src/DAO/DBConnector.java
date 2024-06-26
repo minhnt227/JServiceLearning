@@ -12,9 +12,9 @@ import java.sql.DriverManager;
  * @author bom19
  */
 public class DBConnector {
-    protected Connection con = null;
+    static protected Connection con = null;
     String sqlQuery = "";
-    PreparedStatement Prepstm;
+    static PreparedStatement Prepstm;
     public DBConnector() {
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
@@ -56,5 +56,9 @@ public class DBConnector {
             System.out.println(e.getSQLState());
             return false;
         }
+    }
+    
+    public static void closeConnection() throws SQLException{
+        con.close();
     }
 }

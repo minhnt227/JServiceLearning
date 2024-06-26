@@ -14,7 +14,7 @@ import java.util.*;
  * @author bom19
  */
 public class HOAT_DONG {
-    int MaHD;
+    int MaHD;          //auto increment
     String TenHD;
     String Loai;
     Date NgayBD;

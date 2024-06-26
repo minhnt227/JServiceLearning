@@ -58,4 +58,22 @@ public class DAO_HoatDong extends DBConnector {
         }
         return HDList;
     }
+    
+    public static boolean exist(int id){
+        try {
+            Statement stm = con.createStatement();
+            String sqlSelect = "SELECT * FROM HOAT_DONG WHERE MaHD = "+ id;
+            ResultSet rst = stm.executeQuery(sqlSelect);
+            if (!rst.first()) {
+                stm.close();
+                return false;
+            }
+            stm.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    
 }

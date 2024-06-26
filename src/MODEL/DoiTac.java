@@ -65,6 +65,7 @@ public class DoiTac extends HOAT_DONG{
 
 
     public DoiTac(String name, String nameHost, String phone, String email){
+        setDtID(-1);
         setName(name);
         setNameHost(nameHost);
         setPhone(phone);

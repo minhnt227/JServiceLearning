@@ -20,7 +20,7 @@ public class DAO_DoiTac extends DBConnector {
 
     public DAO_DoiTac() {
     }
-    
+
     public boolean existDT(String Name) {
         try {
             Statement stm = con.createStatement();
@@ -37,7 +37,24 @@ public class DAO_DoiTac extends DBConnector {
         }
         return false;
     }
-    
+
+    public boolean existID(int ID) {
+        try {
+            Statement stm = con.createStatement();
+            String sqlSelect = "SELECT * FROM DOI_TAC WHERE ID_DoiTac = " + ID;
+            ResultSet rst = stm.executeQuery(sqlSelect);
+            if (!rst.first()) {
+                stm.close();
+                return false;
+            }
+            stm.close();
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     private boolean insertDoiTac(DoiTac newData) throws SQLException {
         try {
             Prepstm = con.prepareStatement("INSERT INTO DOI_TAC VALUES (?,?,?,?,'false')");
@@ -54,22 +71,22 @@ public class DAO_DoiTac extends DBConnector {
             return false;
         }
     }
-    
+
     /**
-     * Update an DOI_TAC model to the Database. If a DOI_TAC is already in
-     * DB, update its data, if not, insert a new record of DOI_TAC
-     * IF UPDATE, DOITAC NEED TO HAVE AN ID
+     * Update an DOI_TAC model to the Database. If a DOI_TAC is already in DB,
+     * update its data, if not, insert a new record of DOI_TAC IF UPDATE, DOITAC
+     * NEED TO HAVE AN ID
      *
      * @param gv New DoiTac data to add or update to DB
      * @return true if insert or update success, false if operation failed
      */
     public boolean updateDT(DoiTac dt) {
         //null check
-        if (dt == null||dt.getName().isBlank()) {
+        if (dt == null || dt.getName().isBlank()) {
             return false;
         }
         //if not in DB, add it in
-        if (!existDT(dt.getName())) {
+        if (!existID(dt.getDtID())) {
             try {
                 return insertDoiTac(dt);
             } catch (SQLException ex) {
@@ -93,14 +110,15 @@ public class DAO_DoiTac extends DBConnector {
             return false;
         }
     }
-    
+
     public boolean deleteDoiTac(String name) {
-        if(name.isBlank())
+        if (name.isBlank()) {
             return false;
+        }
         try {
             Prepstm = con.prepareStatement("UPDATE DOI_TAC SET Hide = 'true' WHERE TenDoiTac LIKE ?");
             Prepstm.setNString(1, name.trim());
-            
+
             return super.updateDB();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -108,7 +126,8 @@ public class DAO_DoiTac extends DBConnector {
             return false;
         }
     }
-        /**
+
+    /**
      *
      * @param Name
      * @return dt from Database
@@ -124,35 +143,166 @@ public class DAO_DoiTac extends DBConnector {
                 stm.close();
                 return null;
             }
-            dt = new DoiTac(rst.getInt(1),rst.getNString(2), rst.getNString(3), rst.getString(4), rst.getString(5));
+            dt = new DoiTac(rst.getInt(1), rst.getNString(2), rst.getNString(3), rst.getString(4), rst.getString(5));
             stm.close();
             return dt;
         } catch (Exception e) {
             e.printStackTrace();
             return dt;
         }
-    
+
     }
-    
-    public ListDoiTac getListFromDB(int limit, String name,  boolean Hide) throws SQLException {
+
+    public DoiTac getSingleById(int Id) {
+        DoiTac dt = null;
+        try {
+            Statement stm = con.createStatement();
+            String sqlSelect;
+            sqlSelect = "SELECT * FROM DOI_TAC WHERE ID_DoiTac = " + Id;
+            ResultSet rst = stm.executeQuery(sqlSelect);
+            if (!rst.first()) {
+                stm.close();
+                return null;
+            }
+            dt = new DoiTac(rst.getInt(1), rst.getNString(2), rst.getNString(3), rst.getString(4), rst.getString(5));
+            dt.setHide(rst.getBoolean(6));
+            stm.close();
+            return dt;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return dt;
+        }
+
+    }
+
+    public ListDoiTac getListFromDB(int limit, String name, boolean Hide) throws SQLException {
         ListDoiTac Objs = new ListDoiTac();
-        if(limit <=0)
+        if (limit <= 0) {
             sqlQuery = "SELECT * FROM DOI_TAC WHERE Hide = '" + Hide + "'";
-        else
+        } else {
             sqlQuery = "SELECT TOP " + limit + " * FROM DOI_TAC WHERE Hide = '" + Hide + "'";
-        
-        
+        }
+
         if (!name.isBlank()) {
             sqlQuery += " AND TenDoiTac LIKE N'%" + name + "%'";
         }
-        
-        
+
         Statement stm = con.createStatement();
         ResultSet result = stm.executeQuery(sqlQuery);
-        while(result.next()){
+        while (result.next()) {
             Objs.list.add(getSingleByName(result.getNString(2)));
         }
         Objs.colHeader = getColunmHeader(result);
         return Objs;
     }
+
+    /**
+     *
+     * @param idHD
+     * @return A ListDoiTac with their HOAT_DONG properties DoiTac in this list
+     * have the same index as their ID
+     */
+    public ListDoiTac getListHD_DoiTac(int idHD) {
+        if (DAO_HoatDong.exist(idHD)) {
+            try {
+                ListDoiTac Objs = new ListDoiTac();
+                Objs.setMaHD(idHD);
+                //Build a list of DoiTac's ID belong to the HoatDong with idHD
+                sqlQuery = "SELECT * FROM HD_DOITAC WHERE MaHD = '" + idHD + "'";
+                Statement stm = con.createStatement();
+                ResultSet result = stm.executeQuery(sqlQuery);
+                while (result.next()) {
+                    int idDoiTac = result.getInt(1);
+                    DoiTac dt = new DoiTac();
+                    //set the first 3 attribute from HD_DOITAC
+                    dt.setMaHD(idHD);
+                    dt.setDtID(idDoiTac);
+                    dt.setNoiDung(result.getNString(3));
+                    //find a temporary DoiTac from DOI_TAC Table to fill in the rest attribute
+                    DoiTac temp = getSingleById(idDoiTac);
+                    if (temp.getHide() || temp == null) {
+                        continue;           //don't add to list if DoiTac is deleted or null
+                    }
+                    dt.setName(temp.getName());
+                    dt.setNameHost(temp.getNameHost());
+                    dt.setPhone(temp.getPhone());
+                    dt.setEmail(temp.getEmail());
+                    dt.setHide(Boolean.FALSE);
+
+                    Objs.list.add(idDoiTac, dt); //add DoiTac to list with the same index as ID in DB
+                }
+                if (Objs.list.size() <= 0) {
+                    return null;
+                }
+                return Objs;
+            } catch (SQLException ex) {
+                Logger.getLogger(DAO_DoiTac.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
+    }
+
+    /**
+     *Delete all HD_DOITAC with idHD
+     * 
+     * @param idHD
+     * @return @true if success or @false when there's no row to delete or fails
+     */
+    public boolean deleteListHD_DoiTac(int idHD) {
+        if (idHD <= 0) {
+            return false;
+        }
+        try {
+            Prepstm = con.prepareStatement("DELETE FROM HD_DOITAC WHERE MaHD = ?");
+            Prepstm.setInt(1, idHD);
+
+            return super.updateDB();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.getSQLState());
+            return false;
+        }
+    }
+
+    /**
+     *
+     * @param HD_DTs
+     * @return
+     */
+    public boolean updateListHD_DoiTac(ListDoiTac HD_DTs) {
+        if (HD_DTs.getMaHD() <= 0) //ListDoiTac must have HDid
+        {
+            System.out.println("There's no HOAT_DONG to add this list to!!! Create a HOAT_DONG and add it's id to this list!");
+            return false;
+        }
+        try {
+
+            //delete old data in HD_DOITAC
+            deleteListHD_DoiTac(HD_DTs.getMaHD());
+            //loop through the list
+            for (DoiTac dt : HD_DTs.list){
+            //update or insert into DOI_TAC
+                updateDT(dt);
+            //get DoiTac's ID
+                int dTId = getSingleByName(dt.getName()).getDtID();
+            //Add new HD_DoiTac 
+            sqlQuery = "INSERT INTO HD_DOITAC VALUES (?,?,?)";
+            Prepstm = con.prepareStatement(sqlQuery);
+            Prepstm.setInt(1, dTId);
+            Prepstm.setInt(2, HD_DTs.getMaHD());
+            Prepstm.setNString(3, dt.getNoiDung());
+            
+            return super.updateDB();
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getSQLState());
+            return false;
+        }
+         catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return false;
+    }
+
 }
