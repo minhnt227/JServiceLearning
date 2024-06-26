@@ -23,6 +23,7 @@ public class ListDoiTac extends DoiTac{
         model = new DefaultTableModel(colHeader,0);
     }
 
+    
     public ListDoiTac(int lim, String FullName, boolean Hide) throws SQLException {
         ListDoiTac temp = ( new DAO.DAO_DoiTac() ).getListFromDB(lim, FullName, true);
         list = temp.list;

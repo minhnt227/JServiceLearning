@@ -250,9 +250,9 @@ public class DAO_TaiTro extends DBConnector {
      * @return
      */
     public boolean updateListHD_TaiTro(ListTaiTro HD_TTs) {
-        if (HD_TTs.getMaHD() <= 0) //ListTaiTro must have HDid. Add by using method setMaHD() from parent class
+        if (HD_TTs.getMaHD() <= 0 || HD_TTs == null) //ListTaiTro must have HDid. Add by using method setMaHD() from parent class
         {
-            System.out.println("There's no HOAT_DONG to add this list to!!! Create a HOAT_DONG and add it's id to this list!");
+            //System.out.println("There's no HOAT_DONG to add this list to!!! Create a HOAT_DONG and add it's id to this list!");
             return false;
         }
         try {

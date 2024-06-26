@@ -6,7 +6,10 @@ package UI;
 
 import DAO.*;
 import MODEL.HOAT_DONG;
+import java.sql.SQLException;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.*;
 import javax.swing.text.TableView;
@@ -201,12 +204,17 @@ public class TestHome extends javax.swing.JFrame {
     }//GEN-LAST:event_HDTblMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        DefaultTableModel model = (DefaultTableModel)HDTbl.getModel();
-        RemoveTableData(model);
-        DAO_HoatDong daoHD = new DAO_HoatDong();
-        ArrayList<HOAT_DONG> HDs = daoHD.GetHoatDong(0, HD_nametxt.getText(), HD_Loaicmb.getSelectedItem().toString(), FromDatetxt.getText(), ToDatetxt.getText(), false);
-        for(HOAT_DONG hd : HDs){
-            model.addRow(hd.getRowData());
+        try {
+            DefaultTableModel model = (DefaultTableModel)HDTbl.getModel();
+            RemoveTableData(model);
+            DAO_HoatDong daoHD = new DAO_HoatDong();
+            ArrayList<HOAT_DONG> HDs = daoHD.GetListHoatDong(0, HD_nametxt.getText(), HD_Loaicmb.getSelectedItem().toString(), FromDatetxt.getText(), ToDatetxt.getText(), false);
+            for(HOAT_DONG hd : HDs){
+                model.addRow(hd.getRowData());
+            }
+            HDTbl.setAutoCreateRowSorter(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(TestHome.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
