@@ -5,8 +5,8 @@
 package DAO;
 
 import MODEL.Khoa;
-import java.util.*;
 import java.sql.*;
+import java.util.*;
 
 /**
  *
@@ -14,7 +14,7 @@ import java.sql.*;
  */
 public class DAO_Khoa extends DBConnector {
 
-    ArrayList<Khoa> list;
+    public ArrayList<Khoa> list;
 
     public DAO_Khoa() {
     }
