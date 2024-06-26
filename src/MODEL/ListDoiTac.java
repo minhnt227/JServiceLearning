@@ -3,6 +3,7 @@ package MODEL;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
@@ -20,6 +21,12 @@ public class ListDoiTac extends DoiTac{
     public ListDoiTac(){
         list = new ArrayList<>();
         model = new DefaultTableModel(colHeader,0);
+    }
+
+    public ListDoiTac(int lim, String FullName, boolean Hide) throws SQLException {
+        ListDoiTac temp = ( new DAO.DAO_DoiTac() ).getListFromDB(lim, FullName, true);
+        list = temp.list;
+        colHeader = temp.getColHeader();
     }
 
     public DefaultTableModel getTableModel(){
