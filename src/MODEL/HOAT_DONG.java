@@ -4,9 +4,8 @@
  */
 package MODEL;
 
+import DAO.DAO_HoatDong;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.*;
 
 /**
@@ -115,6 +114,11 @@ public class HOAT_DONG {
     
     public Object[] getRowData(){
         return new Object[]{getTenHD(),getLoai(),getStringNgayBD(),getStringNgayKT()} ;
+    }
+
+    public boolean exist(){
+        DAO_HoatDong dAO_HoatDong = new DAO_HoatDong();
+        return dAO_HoatDong.exist(this.getMaHD());
     }
     
 }
