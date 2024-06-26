@@ -243,8 +243,8 @@ public class DAO_DoiTac extends DBConnector {
     }
 
     /**
-     *Delete all HD_DOITAC with idHD
-     * 
+     * Delete all HD_DOITAC with idHD
+     *
      * @param idHD
      * @return @true if success or @false when there's no row to delete or fails
      */
@@ -265,6 +265,8 @@ public class DAO_DoiTac extends DBConnector {
     }
 
     /**
+     * Update A list of HD_DOITAC to DB by deleting all old record and update
+     * the new list. Each DoiTac has to be init with their NoiDung and HDId
      *
      * @param HD_DTs
      * @return
@@ -280,25 +282,24 @@ public class DAO_DoiTac extends DBConnector {
             //delete old data in HD_DOITAC
             deleteListHD_DoiTac(HD_DTs.getMaHD());
             //loop through the list
-            for (DoiTac dt : HD_DTs.list){
-            //update or insert into DOI_TAC
+            for (DoiTac dt : HD_DTs.list) {
+                //update or insert into DOI_TAC
                 updateDT(dt);
-            //get DoiTac's ID
+                //get DoiTac's ID
                 int dTId = getSingleByName(dt.getName()).getDtID();
-            //Add new HD_DoiTac 
-            sqlQuery = "INSERT INTO HD_DOITAC VALUES (?,?,?)";
-            Prepstm = con.prepareStatement(sqlQuery);
-            Prepstm.setInt(1, dTId);
-            Prepstm.setInt(2, HD_DTs.getMaHD());
-            Prepstm.setNString(3, dt.getNoiDung());
-            
-            return super.updateDB();
+                //Add new HD_DoiTac 
+                sqlQuery = "INSERT INTO HD_DOITAC VALUES (?,?,?)";
+                Prepstm = con.prepareStatement(sqlQuery);
+                Prepstm.setInt(1, dTId);
+                Prepstm.setInt(2, HD_DTs.getMaHD());
+                Prepstm.setNString(3, dt.getNoiDung());
+
+                return super.updateDB();
             }
         } catch (SQLException e) {
             System.out.println(e.getSQLState());
             return false;
-        }
-         catch (Exception e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
         }

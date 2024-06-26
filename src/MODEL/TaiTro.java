@@ -89,7 +89,7 @@ public class TaiTro extends HOAT_DONG{
 
     public boolean insertKhoa(){
         DAO_TaiTro dAO_TaiTro = new DAO_TaiTro();
-        return dAO_TaiTro.updateDT(this);
+        return dAO_TaiTro.updateTT(this);
     }
 
     public TaiTro getSingleByName() {
@@ -100,7 +100,7 @@ public class TaiTro extends HOAT_DONG{
 
     public boolean delete(){
         DAO_TaiTro dAO_TaiTro = new DAO_TaiTro();
-        return dAO_TaiTro.deleteDoiTac(this.getName());
+        return dAO_TaiTro.deleteTaiTro(this.getName());
     }
 
     public boolean existKhoa(){

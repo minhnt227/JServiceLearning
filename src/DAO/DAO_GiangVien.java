@@ -118,7 +118,7 @@ public class DAO_GiangVien extends DBConnector {
                 stm.close();
                 return null;
             }
-            Khoa kh = (new DAO_Khoa()).getSingleKhoaFromID(rst.getString(4));                //Falcuty of Teacher
+            Khoa kh = (new DAO_Khoa()).getSingleKhoaFromID(rst.getString(4));                //Faculty of Teacher
             gv = new GiangVien(rst.getString(1), rst.getNString(2), rst.getNString(3), kh.getName());
             gv.setIdKhoa(kh.getId());
             stm.close();
@@ -144,7 +144,7 @@ public class DAO_GiangVien extends DBConnector {
                 stm.close();
                 return null;
             }
-            Khoa kh = (new DAO_Khoa()).getSingleKhoaFromID(rst.getString(3));                //Falcuty of Student
+            Khoa kh = (new DAO_Khoa()).getSingleKhoaFromID(rst.getString(3));                //Faculty of Student
             gv = new GiangVien(rst.getString(1), rst.getNString(2), rst.getNString(3), kh.getName());
             gv.setIdKhoa(kh.getId());
             stm.close();
@@ -163,7 +163,7 @@ public class DAO_GiangVien extends DBConnector {
      * @param gvID  check if records contain gvID
      * @param LastN  check for last name
      * @param FirstN check for first name
-     * @param FalcultyID  select all teacher in this falcuty
+     * @param FalcultyID  select all teacher in this faculty
      * @param Hide Deleted or not
      * @return
      * @throws SQLException
@@ -197,5 +197,113 @@ public class DAO_GiangVien extends DBConnector {
         }
         Objs.colHeader = getColunmHeader(result);
         return Objs;
+    }
+    
+    /**
+     *
+     * @param idHD
+     * @return A ListGiangVien with their HOAT_DONG properties. GiangVien in this list
+     * have the same index as their ID
+     */
+    public ListGiangVien getListHD_GiangVien(int idHD) {
+        if (DAO_HoatDong.exist(idHD)) {
+            try {
+                ListGiangVien Objs = new ListGiangVien();
+                Objs.setMaHD(idHD);
+                //Build a list of GiangVien's ID belong to the HoatDong with idHD
+                sqlQuery = "SELECT * FROM HD_GIANGVIEN WHERE MaHD = '" + idHD + "'";
+                Statement stm = con.createStatement();
+                ResultSet result = stm.executeQuery(sqlQuery);
+                while (result.next()) {
+                    String idGV = result.getString(2);
+                    GiangVien gv = new GiangVien();
+                    //set the first 3 attribute from HD_GIANGVIEN
+                    gv.setMaHD(idHD);
+                    gv.setId(idGV);
+                    gv.setVaiTro(result.getNString(3));
+                    //find a temporary GiangVien from GIANG_VIEN Table to fill in the rest attribute
+                    GiangVien temp = getSingleByID(idGV);
+                    if (temp.getHide() || temp == null) {
+                        continue;           //don't add to list if GiangVien is deleted or null
+                    }
+                    gv.setLastName(temp.getLastName());
+                    gv.setFirtName(temp.getFirtName());   
+                    gv.setNameKhoa(temp.getNameKhoa());
+                    gv.setIdKhoa(temp.getIdKhoa());
+                    gv.setHide(Boolean.FALSE);
+
+                    Objs.list.add(gv); //add GiangVien to list with the same index as ID in DB
+                }
+                if (Objs.list.size() <= 0) {
+                    return null;
+                }
+                return Objs;
+            } catch (SQLException ex) {
+                Logger.getLogger(DAO_GiangVien.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return null;
+    }
+    
+    /**
+     * Delete all HD_GIANGVIEN with idHD
+     *
+     * @param idHD
+     * @return @true if success or @false when there's no row to delete or fails
+     */
+    public boolean deleteListHD_GiangVien(int idHD) {
+        if (!DAO_HoatDong.exist(idHD)) {
+            return false;
+        }
+        try {
+            Prepstm = con.prepareStatement("DELETE FROM HD_GIANGVIEN WHERE MaHD = ?");
+            Prepstm.setInt(1, idHD);
+
+            return super.updateDB();
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println(e.getSQLState());
+            return false;
+        }
+    }
+    
+    /**
+     *
+     * @param HD_GVs
+     * @return
+     */
+    public boolean updateListHD_GiangVien(ListGiangVien HD_GVs) {
+        if (HD_GVs.getMaHD() <= 0) //ListGiangVien must have HDid. Add by using method setMaHD() from parent class
+        {
+            System.out.println("There's no HOAT_DONG to add this list to!!! Create a HOAT_DONG and add it's id to this list!");
+            return false;
+        }
+        try {
+
+            //delete old data in HD_GIANGVIEN
+            deleteListHD_GiangVien(HD_GVs.getMaHD());
+            //loop through the list
+            for (GiangVien gv : HD_GVs.list) {
+                //update or insert into GIANG_VIEN
+                updateGV(gv);
+                //get GiangVien's ID
+                String iDGV = gv.getId();
+                //Add new HD_GiangVien 
+                sqlQuery = "INSERT INTO HD_GIANGVIEN VALUES (?,?,?)";
+                Prepstm = con.prepareStatement(sqlQuery);
+                Prepstm.setInt(1, HD_GVs.getMaHD());
+                Prepstm.setString(2, iDGV);
+                Prepstm.setNString(3, gv.getVaiTro());
+
+                return super.updateDB();
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getSQLState());
+            return false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+        return false;
     }
 }
