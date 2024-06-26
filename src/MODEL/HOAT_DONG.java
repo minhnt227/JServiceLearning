@@ -4,7 +4,8 @@
  */
 package MODEL;
 
-import DAO.DAO_HoatDong;
+import DAO.*;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -21,7 +22,36 @@ public class HOAT_DONG {
     Boolean Hide;
     Date CreatedDate;
     public Object[] colHeader;
+    //TaiChinh info
+    BigDecimal UEF;
+    BigDecimal TaiTro;
+    String Khac;
 
+    public BigDecimal getUEF() {
+        return UEF;
+    }
+
+    public void setUEF(BigDecimal UEF) {
+        this.UEF = UEF;
+    }
+
+    public BigDecimal getTaiTro() {
+        return TaiTro;
+    }
+
+    public void setTaiTro(BigDecimal TaiTro) {
+        this.TaiTro = TaiTro;
+    }
+
+    public String getKhac() {
+        return Khac;
+    }
+
+    public void setKhac(String Khac) {
+        this.Khac = Khac;
+    }
+
+    
     public HOAT_DONG(int MaHD, String TenHD, String Loai, Date NgayBD, Date NgayKT, Boolean Hide, Date CreatedDate) {
         this.MaHD = MaHD;
         this.TenHD = TenHD;
@@ -121,4 +151,26 @@ public class HOAT_DONG {
         return dAO_HoatDong.exist(this.getMaHD());
     }
     
+    /**
+     *MAKE SURE THAT ALL THE LIST AND THEIR ELEMENTS HAVE THEIR MAHD SET. ALSO MAKE SURE THIS OBJECT HAVE TAICHINH INFO
+     * 
+     * @param svList
+     * @param gvList
+     * @param dtList
+     * @param ttList
+     */
+    public void saveHDtoDB(ListSinhVien svList, ListGiangVien gvList, ListDoiTac dtList, ListTaiTro ttList){
+        DAO_HoatDong    dAO_HoatDong    = new DAO_HoatDong();
+        DAO_SinhVien    dAO_SinhVien    = new DAO_SinhVien();
+        DAO_GiangVien   dAO_GiangVien   = new DAO_GiangVien();
+        DAO_DoiTac      dAO_DoiTac      = new DAO_DoiTac();
+        DAO_TaiTro      dAO_TaiTro      = new DAO_TaiTro();
+        
+        dAO_HoatDong.updateBasicHoatDong(this);
+        dAO_SinhVien.updateListHD_SinhVien(svList);
+        dAO_GiangVien.updateListHD_GiangVien(gvList);
+        dAO_DoiTac.updateListHD_DoiTac(dtList);
+        dAO_TaiTro.updateListHD_TaiTro(ttList);
+        dAO_HoatDong.updateTaiChinh(this);
+    }
 }

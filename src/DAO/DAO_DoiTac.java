@@ -272,9 +272,9 @@ public class DAO_DoiTac extends DBConnector {
      * @return
      */
     public boolean updateListHD_DoiTac(ListDoiTac HD_DTs) {
-        if (HD_DTs.getMaHD() <= 0) //ListDoiTac must have HDid
+        if (HD_DTs.getMaHD() <= 0 || HD_DTs == null) //ListDoiTac must have HDid
         {
-            System.out.println("There's no HOAT_DONG to add this list to!!! Create a HOAT_DONG and add it's id to this list!");
+            //System.out.println("There's no HOAT_DONG to add this list to!!! Create a HOAT_DONG and add it's id to this list!");
             return false;
         }
         try {

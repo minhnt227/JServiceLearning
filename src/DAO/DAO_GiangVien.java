@@ -273,9 +273,9 @@ public class DAO_GiangVien extends DBConnector {
      * @return
      */
     public boolean updateListHD_GiangVien(ListGiangVien HD_GVs) {
-        if (HD_GVs.getMaHD() <= 0) //ListGiangVien must have HDid. Add by using method setMaHD() from parent class
+        if (HD_GVs.getMaHD() <= 0 || HD_GVs == null) //ListGiangVien must have HDid. Add by using method setMaHD() from parent class
         {
-            System.out.println("There's no HOAT_DONG to add this list to!!! Create a HOAT_DONG and add it's id to this list!");
+            //System.out.println("There's no HOAT_DONG to add this list to!!! Create a HOAT_DONG and add it's id to this list!");
             return false;
         }
         try {
