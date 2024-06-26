@@ -7,6 +7,7 @@ package MODEL;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
@@ -25,6 +26,12 @@ public class ListGiangVien extends GiangVien{
         super();
         list = new ArrayList<>();
         model = new DefaultTableModel(colHeader,0);
+    }
+
+    public ListGiangVien(int lim, String gvID, String LastN, String FirstN, String FalcultyID, boolean Hide) throws SQLException {
+        ListGiangVien temp = ( new DAO.DAO_GiangVien() ).getListFromDB(lim, gvID, LastN, FirstN, FalcultyID, true);
+        list = temp.list;
+        colHeader = temp.getColHeader();
     }
     
     public DefaultTableModel getTableModel(){
