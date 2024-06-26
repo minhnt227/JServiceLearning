@@ -4,6 +4,7 @@
  */
 package MODEL;
 
+import DAO.DAO_Khoa;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -23,9 +24,11 @@ public class ListKhoa  extends Khoa{
     public static ArrayList<Khoa> list;
     public Object[] colHeader;
     public DefaultTableModel model;
+    private ArrayList<Khoa> newlist;
     
     public ListKhoa(){
-        list = new ArrayList<>();
+        DAO_Khoa dAO_Khoa = new DAO_Khoa(false);
+        list = dAO_Khoa.list;
         model = new DefaultTableModel(colHeader,0);
     }
     
@@ -65,7 +68,7 @@ public class ListKhoa  extends Khoa{
         } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
     }
 
-    public static String findName(ArrayList<Khoa> list, String name){
+    public static String findName(String name){
         Iterator<Khoa> it = list.iterator();
         while(it.hasNext()){
             Khoa temp = it.next();
