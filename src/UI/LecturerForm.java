@@ -53,7 +53,7 @@ public class LecturerForm extends javax.swing.JFrame {
         GV_Khoa_cmb = new javax.swing.JComboBox<>();
         GV_ImportExcel_btn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        HDTbl = new javax.swing.JTable();
+        Lecturer_tbl = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,6 +63,8 @@ public class LecturerForm extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel2.setText("LecturerID");
 
+        GV_ID_txt.setBackground(new java.awt.Color(255, 255, 255));
+        GV_ID_txt.setForeground(new java.awt.Color(0, 0, 0));
         GV_ID_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GV_ID_txtActionPerformed(evt);
@@ -74,15 +76,20 @@ public class LecturerForm extends javax.swing.JFrame {
 
         GV_Search_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_Search_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        GV_Search_btn.setForeground(new java.awt.Color(0, 0, 0));
         GV_Search_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-search-25.png"))); // NOI18N
         GV_Search_btn.setText("Search");
 
         GV_ExportExcel_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_ExportExcel_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        GV_ExportExcel_btn.setForeground(new java.awt.Color(0, 0, 0));
+        GV_ExportExcel_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-export-20.png"))); // NOI18N
         GV_ExportExcel_btn.setText("Export Excel");
 
         GV_Add_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_Add_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        GV_Add_btn.setForeground(new java.awt.Color(0, 0, 0));
+        GV_Add_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-add-20.png"))); // NOI18N
         GV_Add_btn.setText("Add");
         GV_Add_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,7 +99,9 @@ public class LecturerForm extends javax.swing.JFrame {
 
         GV_Refrech_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_Refrech_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        GV_Refrech_btn.setText("Refrech");
+        GV_Refrech_btn.setForeground(new java.awt.Color(0, 0, 0));
+        GV_Refrech_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-refresh-20.png"))); // NOI18N
+        GV_Refrech_btn.setText("Refresh");
         GV_Refrech_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GV_Refrech_btnActionPerformed(evt);
@@ -101,6 +110,8 @@ public class LecturerForm extends javax.swing.JFrame {
 
         GV_Edit_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_Edit_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        GV_Edit_btn.setForeground(new java.awt.Color(0, 0, 0));
+        GV_Edit_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-edit-20.png"))); // NOI18N
         GV_Edit_btn.setText("Edit");
         GV_Edit_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +121,8 @@ public class LecturerForm extends javax.swing.JFrame {
 
         GV_Delete_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_Delete_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        GV_Delete_btn.setForeground(new java.awt.Color(0, 0, 0));
+        GV_Delete_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-delete-20.png"))); // NOI18N
         GV_Delete_btn.setText("Delete");
         GV_Delete_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,6 +130,8 @@ public class LecturerForm extends javax.swing.JFrame {
             }
         });
 
+        GV_MiddleName_txt.setBackground(new java.awt.Color(255, 255, 255));
+        GV_MiddleName_txt.setForeground(new java.awt.Color(0, 0, 0));
         GV_MiddleName_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GV_MiddleName_txtActionPerformed(evt);
@@ -126,6 +141,8 @@ public class LecturerForm extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel3.setText("Department");
 
+        GV_LastName_txt.setBackground(new java.awt.Color(255, 255, 255));
+        GV_LastName_txt.setForeground(new java.awt.Color(0, 0, 0));
         GV_LastName_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GV_LastName_txtActionPerformed(evt);
@@ -135,6 +152,8 @@ public class LecturerForm extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Last name");
 
+        GV_Khoa_cmb.setBackground(new java.awt.Color(255, 255, 255));
+        GV_Khoa_cmb.setForeground(new java.awt.Color(0, 0, 0));
         GV_Khoa_cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "","Môn học", "Sự kiện", "Dự án"}));
         GV_Khoa_cmb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -144,7 +163,14 @@ public class LecturerForm extends javax.swing.JFrame {
 
         GV_ImportExcel_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_ImportExcel_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        GV_ImportExcel_btn.setForeground(new java.awt.Color(0, 0, 0));
+        GV_ImportExcel_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-import-20.png"))); // NOI18N
         GV_ImportExcel_btn.setText("Import Excel");
+        GV_ImportExcel_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GV_ImportExcel_btnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout FilterPnlLayout = new javax.swing.GroupLayout(FilterPnl);
         FilterPnl.setLayout(FilterPnlLayout);
@@ -152,42 +178,39 @@ public class LecturerForm extends javax.swing.JFrame {
             FilterPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FilterPnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(FilterPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(FilterPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addGroup(FilterPnlLayout.createSequentialGroup()
-                        .addComponent(GV_ImportExcel_btn)
+                        .addGroup(FilterPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(GV_ExportExcel_btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(GV_Add_btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(GV_Edit_btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(GV_Delete_btn)
-                        .addGap(49, 49, 49))
-                    .addGroup(FilterPnlLayout.createSequentialGroup()
-                        .addGroup(FilterPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(FilterPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(GV_MiddleName_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 225, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(FilterPnlLayout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(33, 33, 33)
-                                .addComponent(GV_ID_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(FilterPnlLayout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(GV_MiddleName_txt)))
-                        .addGap(18, 18, 18)
-                        .addComponent(GV_Search_btn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
+                                .addComponent(GV_ID_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(GV_Search_btn)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(FilterPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(FilterPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(GV_LastName_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(GV_Khoa_cmb, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(48, 48, 48))
+                            .addComponent(GV_Khoa_cmb, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(GV_LastName_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(FilterPnlLayout.createSequentialGroup()
+                        .addComponent(GV_ImportExcel_btn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(GV_ExportExcel_btn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(GV_Refrech_btn)
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(GV_Add_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(GV_Edit_btn, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(GV_Delete_btn)))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
         FilterPnlLayout.setVerticalGroup(
             FilterPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,14 +234,14 @@ public class LecturerForm extends javax.swing.JFrame {
                     .addComponent(GV_Edit_btn)
                     .addComponent(GV_Delete_btn)
                     .addComponent(GV_ExportExcel_btn)
-                    .addComponent(GV_ImportExcel_btn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(GV_Refrech_btn)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(GV_ImportExcel_btn)
+                    .addComponent(GV_Refrech_btn))
+                .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        HDTbl.setForeground(new java.awt.Color(255, 255, 255));
-        HDTbl.setModel(new javax.swing.table.DefaultTableModel(
+        Lecturer_tbl.setBackground(new java.awt.Color(255, 255, 255));
+        Lecturer_tbl.setForeground(new java.awt.Color(255, 255, 255));
+        Lecturer_tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -229,18 +252,18 @@ public class LecturerForm extends javax.swing.JFrame {
                 "LecturerID ", "Middle name", "Last name", "DepartmentID", "DepartmentName"
             }
         ));
-        HDTbl.setToolTipText("");
-        HDTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        Lecturer_tbl.setToolTipText("");
+        Lecturer_tbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                HDTblMouseClicked(evt);
+                Lecturer_tblMouseClicked(evt);
             }
         });
-        HDTbl.addComponentListener(new java.awt.event.ComponentAdapter() {
+        Lecturer_tbl.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                HDTblLoadHDs(evt);
+                Lecturer_tblLoadHDs(evt);
             }
         });
-        jScrollPane1.setViewportView(HDTbl);
+        jScrollPane1.setViewportView(Lecturer_tbl);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -255,8 +278,8 @@ public class LecturerForm extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(FilterPnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 366, Short.MAX_VALUE)
+                .addGap(0, 0, 0))
         );
 
         pack();
@@ -306,9 +329,9 @@ public class LecturerForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_GV_LastName_txtActionPerformed
 
-    private void HDTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HDTblMouseClicked
-       int index = HDTbl.getSelectedRow();
-       TableModel model = HDTbl.getModel();
+    private void Lecturer_tblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Lecturer_tblMouseClicked
+       int index = Lecturer_tbl.getSelectedRow();
+       TableModel model = Lecturer_tbl.getModel();
        if (index !=-1)
        {
         GV_ID_txt.setText( model.getValueAt(index, 0).toString()); 
@@ -316,7 +339,7 @@ public class LecturerForm extends javax.swing.JFrame {
         GV_LastName_txt.setText(model.getValueAt(index, 2).toString());
         GV_Khoa_cmb.setSelectedItem(model.getValueAt(index, 4).toString());
        }
-    }//GEN-LAST:event_HDTblMouseClicked
+    }//GEN-LAST:event_Lecturer_tblMouseClicked
 
     public void Clear()
     {
@@ -325,24 +348,24 @@ public class LecturerForm extends javax.swing.JFrame {
         GV_LastName_txt.setText("");
         GV_Khoa_cmb.setSelectedIndex(-1);
     }
-    private void HDTblLoadHDs(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_HDTblLoadHDs
+    private void Lecturer_tblLoadHDs(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_Lecturer_tblLoadHDs
         try {
             ListGiangVien lst = new ListGiangVien(0,"","","","", true);
             DefaultTableModel model = lst.getTableModel();
-            HDTbl.setModel(model);
+            Lecturer_tbl.setModel(model);
             
         } catch (SQLException ex) {
             Logger.getLogger(LecturerForm.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-    }//GEN-LAST:event_HDTblLoadHDs
+    }//GEN-LAST:event_Lecturer_tblLoadHDs
 
     private void GV_Refrech_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GV_Refrech_btnActionPerformed
         Clear();     
         try {
             ListGiangVien lst = new ListGiangVien(0,"","","","", true);
             DefaultTableModel model = lst.getTableModel();
-            HDTbl.setModel(model);
+            Lecturer_tbl.setModel(model);
         } catch (SQLException ex) {
             Logger.getLogger(LecturerForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -357,7 +380,7 @@ public class LecturerForm extends javax.swing.JFrame {
         
         DAO_GiangVien EditGV = new DAO_GiangVien();
         GiangVien GV = new GiangVien();
-        int index = HDTbl.getSelectedRow();
+        int index = Lecturer_tbl.getSelectedRow();
         if (index !=-1)
         {
             if (CheckTextField())
@@ -377,7 +400,7 @@ public class LecturerForm extends javax.swing.JFrame {
 
     private void GV_Delete_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GV_Delete_btnActionPerformed
         DAO_GiangVien DeleteGV = new DAO_GiangVien();
-        int index = HDTbl.getSelectedRow();
+        int index = Lecturer_tbl.getSelectedRow();
         if (index != -1)
         {
             if (GV_ID_txt.getText() != null)
@@ -391,40 +414,44 @@ public class LecturerForm extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_GV_Delete_btnActionPerformed
 
+    private void GV_ImportExcel_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GV_ImportExcel_btnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GV_ImportExcel_btnActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LecturerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LecturerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LecturerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LecturerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LecturerForm().setVisible(true);
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(LecturerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(LecturerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(LecturerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(LecturerForm.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+////        java.awt.EventQueue.invokeLater(new Runnable() {
+////            public void run() {
+////                new LecturerForm().setVisible(true);
+////            }
+////        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel FilterPnl;
@@ -439,7 +466,7 @@ public class LecturerForm extends javax.swing.JFrame {
     private javax.swing.JTextField GV_MiddleName_txt;
     private javax.swing.JButton GV_Refrech_btn;
     private javax.swing.JButton GV_Search_btn;
-    private javax.swing.JTable HDTbl;
+    private javax.swing.JTable Lecturer_tbl;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

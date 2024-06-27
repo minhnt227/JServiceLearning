@@ -5,6 +5,7 @@
 package UI;
 
 import java.awt.Color;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 /**
@@ -16,8 +17,20 @@ public class HomePage extends javax.swing.JFrame {
     /**
      * Creates new form HomePage
      */
+    public static ActivityForm activity;
+    public static DepartmentForm department;
+    public static FundingForm funding;
+    public static LecturerForm lecture;
+    public static PartnerForm partner;
+    public static StudentForm student;
     public HomePage() {
         initComponents();
+        activity = new ActivityForm();
+        department = new DepartmentForm();
+        funding = new FundingForm();
+        lecture = new LecturerForm();
+        partner = new PartnerForm();
+        student = new StudentForm();
     }
 
     /**
@@ -53,6 +66,8 @@ public class HomePage extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         FormMain_pnl = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -68,6 +83,9 @@ public class HomePage extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAutoRequestFocus(false);
         setBackground(new java.awt.Color(255, 255, 255));
+        setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        setLocationByPlatform(true);
+        setUndecorated(true);
         setSize(new java.awt.Dimension(0, 0));
 
         jPanel2.setBackground(new java.awt.Color(54, 33, 89));
@@ -76,6 +94,11 @@ public class HomePage extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Home");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btn_Event_MousePressd(evt);
+            }
+        });
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
         jSeparator1.setForeground(new java.awt.Color(255, 255, 255));
@@ -103,6 +126,7 @@ public class HomePage extends javax.swing.JFrame {
         });
 
         event.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        event.setForeground(new java.awt.Color(255, 255, 255));
         event.setText("Event");
         event.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -154,6 +178,7 @@ public class HomePage extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Lecturer");
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -205,6 +230,7 @@ public class HomePage extends javax.swing.JFrame {
         });
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Student");
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -256,6 +282,7 @@ public class HomePage extends javax.swing.JFrame {
         });
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Partner");
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -307,6 +334,7 @@ public class HomePage extends javax.swing.JFrame {
         });
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Funder");
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -357,6 +385,7 @@ public class HomePage extends javax.swing.JFrame {
         });
 
         jLabel13.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Department");
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -423,7 +452,7 @@ public class HomePage extends javax.swing.JFrame {
                 .addComponent(btn_Funding_Form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btn_Department_Form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(127, Short.MAX_VALUE))
         );
 
         FormMain_pnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -432,24 +461,46 @@ public class HomePage extends javax.swing.JFrame {
         FormMain_pnl.setLayout(FormMain_pnlLayout);
         FormMain_pnlLayout.setHorizontalGroup(
             FormMain_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
         FormMain_pnlLayout.setVerticalGroup(
             FormMain_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 490, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-cancel-35.png"))); // NOI18N
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btn_Exit_MousePressed(evt);
+            }
+        });
+
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-copy-35.png"))); // NOI18N
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                btn_FullScreen_MousePressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 718, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 718, Short.MAX_VALUE)
+                .addComponent(jLabel14)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel3))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 57, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -460,48 +511,52 @@ public class HomePage extends javax.swing.JFrame {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(FormMain_pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(FormMain_pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(FormMain_pnl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(FormMain_pnl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
     private void btn_Event_MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Event_MouseReleased
         // TODO add your handling code here:
         resetColor(btn_Event_Forn);
-        ActivityForm a = new ActivityForm();
-        a.setVisible(true);
     }//GEN-LAST:event_btn_Event_MouseReleased
-    private void showForm(javax.swing.JFrame form) {
+    private void showForm(JFrame frame){
         FormMain_pnl.removeAll();
+        java.awt.Container content = frame.getContentPane();
         FormMain_pnl.setLayout(new java.awt.BorderLayout());
-        FormMain_pnl.add(form);
+        FormMain_pnl.add(content, java.awt.BorderLayout.CENTER);
         FormMain_pnl.revalidate();
         FormMain_pnl.repaint();
     }
     private void btn_Event_MousePressd(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Event_MousePressd
         // TODO add your handling code here:
         setColor(btn_Event_Forn);
+        showForm(activity);
+        
     }//GEN-LAST:event_btn_Event_MousePressd
 
     private void btn_Lecturer_MousePress(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Lecturer_MousePress
         // TODO add your handling code here:
         setColor(btn_Lecturer);
+        showForm(lecture);
     }//GEN-LAST:event_btn_Lecturer_MousePress
 
     private void btn_Student_MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Student_MousePressed
         // TODO add your handling code here:
         setColor(btn_Student);
+        FormMain_pnl.removeAll();
+        showForm(student);
+
     }//GEN-LAST:event_btn_Student_MousePressed
 
     private void btn_Student_MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Student_MouseReleased
@@ -512,6 +567,8 @@ public class HomePage extends javax.swing.JFrame {
     private void btn_Partner_MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Partner_MousePressed
         // TODO add your handling code here:
         setColor(btn_Partner_Form);
+        showForm(partner);
+
     }//GEN-LAST:event_btn_Partner_MousePressed
 
     private void btn_Partner_MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Partner_MouseReleased
@@ -527,6 +584,8 @@ public class HomePage extends javax.swing.JFrame {
     private void btn_Funder_MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Funder_MousePressed
         // TODO add your handling code here:
         setColor(btn_Funding_Form);
+        showForm(funding);
+
 
     }//GEN-LAST:event_btn_Funder_MousePressed
 
@@ -538,6 +597,8 @@ public class HomePage extends javax.swing.JFrame {
     private void btn_Department_MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Department_MousePressed
         // TODO add your handling code here:
         setColor(btn_Department_Form);
+        FormMain_pnl.removeAll();
+        showForm(department);
     }//GEN-LAST:event_btn_Department_MousePressed
 
     private void btn_Department_MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Department_MouseReleased
@@ -545,6 +606,22 @@ public class HomePage extends javax.swing.JFrame {
         resetColor(btn_Department_Form);
 
     }//GEN-LAST:event_btn_Department_MouseReleased
+    private void btn_Exit_MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Exit_MousePressed
+        // TODO add your handling code here:
+        System.exit(0);
+         
+    }//GEN-LAST:event_btn_Exit_MousePressed
+    private boolean isfullscreen = false;
+    private void btn_FullScreen_MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_FullScreen_MousePressed
+        // TODO add your handling code here:
+        if (!isfullscreen) {
+                setExtendedState(JFrame.MAXIMIZED_BOTH);
+                isfullscreen = true;
+            } else {
+                setExtendedState(JFrame.NORMAL);
+                isfullscreen = false;
+            }
+    }//GEN-LAST:event_btn_FullScreen_MousePressed
     void setColor(JPanel panel){
         panel.setBackground(new Color(85,65,118));
     }
@@ -577,13 +654,15 @@ public class HomePage extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(HomePage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
         /* Create and display the form */
+      
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new HomePage().setVisible(true);
             }
+            
         });
+        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -600,7 +679,9 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
