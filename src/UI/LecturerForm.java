@@ -4,6 +4,16 @@
  */
 package UI;
 
+import DAO.DAO_GiangVien;
+import MODEL.GiangVien;
+import MODEL.ListGiangVien;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author A715-42G
@@ -51,11 +61,8 @@ public class LecturerForm extends javax.swing.JFrame {
         FilterPnl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, new java.awt.Color(204, 255, 255), java.awt.Color.lightGray, null));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("LecturerID");
 
-        GV_ID_txt.setBackground(new java.awt.Color(255, 255, 255));
-        GV_ID_txt.setForeground(new java.awt.Color(0, 0, 0));
         GV_ID_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GV_ID_txtActionPerformed(evt);
@@ -63,23 +70,19 @@ public class LecturerForm extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Middle name");
 
         GV_Search_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_Search_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        GV_Search_btn.setForeground(new java.awt.Color(0, 0, 0));
         GV_Search_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-search-25.png"))); // NOI18N
         GV_Search_btn.setText("Search");
 
         GV_ExportExcel_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_ExportExcel_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        GV_ExportExcel_btn.setForeground(new java.awt.Color(0, 0, 0));
         GV_ExportExcel_btn.setText("Export Excel");
 
         GV_Add_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_Add_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        GV_Add_btn.setForeground(new java.awt.Color(0, 0, 0));
         GV_Add_btn.setText("Add");
         GV_Add_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,7 +92,6 @@ public class LecturerForm extends javax.swing.JFrame {
 
         GV_Refrech_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_Refrech_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        GV_Refrech_btn.setForeground(new java.awt.Color(0, 0, 0));
         GV_Refrech_btn.setText("Refrech");
         GV_Refrech_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,16 +101,22 @@ public class LecturerForm extends javax.swing.JFrame {
 
         GV_Edit_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_Edit_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        GV_Edit_btn.setForeground(new java.awt.Color(0, 0, 0));
         GV_Edit_btn.setText("Edit");
+        GV_Edit_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GV_Edit_btnActionPerformed(evt);
+            }
+        });
 
         GV_Delete_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_Delete_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        GV_Delete_btn.setForeground(new java.awt.Color(0, 0, 0));
         GV_Delete_btn.setText("Delete");
+        GV_Delete_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GV_Delete_btnActionPerformed(evt);
+            }
+        });
 
-        GV_MiddleName_txt.setBackground(new java.awt.Color(255, 255, 255));
-        GV_MiddleName_txt.setForeground(new java.awt.Color(0, 0, 0));
         GV_MiddleName_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GV_MiddleName_txtActionPerformed(evt);
@@ -116,11 +124,8 @@ public class LecturerForm extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Department");
 
-        GV_LastName_txt.setBackground(new java.awt.Color(255, 255, 255));
-        GV_LastName_txt.setForeground(new java.awt.Color(0, 0, 0));
         GV_LastName_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GV_LastName_txtActionPerformed(evt);
@@ -128,16 +133,17 @@ public class LecturerForm extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Last name");
 
-        GV_Khoa_cmb.setBackground(new java.awt.Color(255, 255, 255));
-        GV_Khoa_cmb.setForeground(new java.awt.Color(0, 0, 0));
         GV_Khoa_cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "","Môn học", "Sự kiện", "Dự án"}));
+        GV_Khoa_cmb.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                GV_Khoa_cmbActionPerformed(evt);
+            }
+        });
 
         GV_ImportExcel_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_ImportExcel_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        GV_ImportExcel_btn.setForeground(new java.awt.Color(0, 0, 0));
         GV_ImportExcel_btn.setText("Import Excel");
 
         javax.swing.GroupLayout FilterPnlLayout = new javax.swing.GroupLayout(FilterPnl);
@@ -211,7 +217,6 @@ public class LecturerForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        HDTbl.setBackground(new java.awt.Color(255, 255, 255));
         HDTbl.setForeground(new java.awt.Color(255, 255, 255));
         HDTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -261,8 +266,36 @@ public class LecturerForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_GV_ID_txtActionPerformed
 
+    public boolean CheckTextField()
+    {
+        if (GV_ID_txt.getText() == null || GV_LastName_txt.getText() == null || GV_MiddleName_txt.getText() == null || GV_Khoa_cmb.getSelectedIndex() == -1)
+        {
+            JOptionPane.showMessageDialog(null,"Hay nhap day du thong tin","Error",JOptionPane.ERROR);
+            return false;
+        }
+        return true;
+    }
     private void GV_Add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GV_Add_btnActionPerformed
-        // TODO add your handling code here:
+        DAO_GiangVien AddGV = new DAO_GiangVien();
+        GiangVien GV = new GiangVien();
+        if (!CheckTextField())
+        {
+            GV.setId( GV_ID_txt.getText());
+            GV.setLastName(GV_LastName_txt.getText());
+            GV.setFirtName(GV_MiddleName_txt.getText());
+            GV.setNameKhoa(GV_Khoa_cmb.getSelectedItem().toString());
+            if (AddGV.existGV(GV.getId()))
+            {
+                try {
+                    AddGV.insertGiangVien(GV);
+                } catch (SQLException ex) {
+                    Logger.getLogger(LecturerForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }  
+            else {
+                JOptionPane.showMessageDialog(null,"Giang vien da ton tai","Error",JOptionPane.ERROR);
+            }
+        }
     }//GEN-LAST:event_GV_Add_btnActionPerformed
 
     private void GV_MiddleName_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GV_MiddleName_txtActionPerformed
@@ -274,16 +307,89 @@ public class LecturerForm extends javax.swing.JFrame {
     }//GEN-LAST:event_GV_LastName_txtActionPerformed
 
     private void HDTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HDTblMouseClicked
-
+       int index = HDTbl.getSelectedRow();
+       TableModel model = HDTbl.getModel();
+       if (index !=-1)
+       {
+        GV_ID_txt.setText( model.getValueAt(index, 0).toString()); 
+        GV_MiddleName_txt.setText(model.getValueAt(index, 1).toString());
+        GV_LastName_txt.setText(model.getValueAt(index, 2).toString());
+        GV_Khoa_cmb.setSelectedItem(model.getValueAt(index, 4).toString());
+       }
     }//GEN-LAST:event_HDTblMouseClicked
 
+    public void Clear()
+    {
+        GV_ID_txt.setText("");
+        GV_MiddleName_txt.setText("");
+        GV_LastName_txt.setText("");
+        GV_Khoa_cmb.setSelectedIndex(-1);
+    }
     private void HDTblLoadHDs(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_HDTblLoadHDs
-
+        try {
+            ListGiangVien lst = new ListGiangVien(0,"","","","", true);
+            DefaultTableModel model = lst.getTableModel();
+            HDTbl.setModel(model);
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(LecturerForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_HDTblLoadHDs
 
     private void GV_Refrech_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GV_Refrech_btnActionPerformed
-        // TODO add your handling code here:
+        Clear();     
+        try {
+            ListGiangVien lst = new ListGiangVien(0,"","","","", true);
+            DefaultTableModel model = lst.getTableModel();
+            HDTbl.setModel(model);
+        } catch (SQLException ex) {
+            Logger.getLogger(LecturerForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+            
     }//GEN-LAST:event_GV_Refrech_btnActionPerformed
+
+    private void GV_Khoa_cmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GV_Khoa_cmbActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_GV_Khoa_cmbActionPerformed
+
+    private void GV_Edit_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GV_Edit_btnActionPerformed
+        
+        DAO_GiangVien EditGV = new DAO_GiangVien();
+        GiangVien GV = new GiangVien();
+        int index = HDTbl.getSelectedRow();
+        if (index !=-1)
+        {
+            if (CheckTextField())
+            {
+                GV.setId( GV_ID_txt.getText());
+                GV.setLastName(GV_LastName_txt.getText());
+                GV.setFirtName(GV_MiddleName_txt.getText());
+                GV.setNameKhoa(GV_Khoa_cmb.getSelectedItem().toString());
+                EditGV.updateGV(GV);
+            }
+        }
+        else 
+        {
+            JOptionPane.showMessageDialog(null,"Hay chon dong de chinh sua","Error",JOptionPane.ERROR);
+        }
+    }//GEN-LAST:event_GV_Edit_btnActionPerformed
+
+    private void GV_Delete_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GV_Delete_btnActionPerformed
+        DAO_GiangVien DeleteGV = new DAO_GiangVien();
+        int index = HDTbl.getSelectedRow();
+        if (index != -1)
+        {
+            if (GV_ID_txt.getText() != null)
+            {
+                DeleteGV.deleteGiangVien(GV_ID_txt.getText());
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Hay chon dong de xoa","Error",JOptionPane.ERROR);
+        }
+    }//GEN-LAST:event_GV_Delete_btnActionPerformed
 
     /**
      * @param args the command line arguments

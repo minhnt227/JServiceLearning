@@ -40,7 +40,7 @@ public class DAO_GiangVien extends DBConnector {
         return false;
     }
 
-    private boolean insertGiangVien(GiangVien newData) throws SQLException {
+    public boolean insertGiangVien(GiangVien newData) throws SQLException {
         try {
             Prepstm = con.prepareStatement("INSERT INTO GIANG_VIEN VALUES (?,?,?,?,'false')");
 
