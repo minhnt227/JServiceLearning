@@ -80,6 +80,15 @@ public class DoiTac extends HOAT_DONG{
         this.email = email;
     }
     
+    public DoiTac(int dtID, String name, String nameHost, String phone, String email, String noiDung){
+        setDtID(dtID);
+        setName(name);
+        setNameHost(nameHost);
+        setPhone(phone);
+        setEmail(email);
+        setNoiDung(noiDung);
+    }
+    
     public DoiTac(String name, String nameHost, String phone, String email, String noiDung){
         setName(name);
         setNameHost(nameHost);

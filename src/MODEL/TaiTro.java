@@ -70,7 +70,7 @@ public class TaiTro extends HOAT_DONG{
         setEmail(email);
     }
     
-    public TaiTro(String name, String nameHost, String phone, String email, String noiDung){
+    public TaiTro(int id, String name, String nameHost, String phone, String email, String noiDung){
         setId(id);
         setName(name);
         setNameHost(nameHost);
