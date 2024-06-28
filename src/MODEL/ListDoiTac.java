@@ -1,5 +1,7 @@
 package MODEL;
 
+import DAO.DAO_DoiTac;
+import DAO.DAO_HoatDong;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -30,12 +32,23 @@ public class ListDoiTac extends DoiTac {
         colHeader = temp.getColHeader();
     }
 
-    public void getTableModel() {
+    public void getHDTableModel() {
+        colHeader = new String[]{"ID", "Partner", "Representative", "Phone No.", "Email", "Content"};
+        model = new DefaultTableModel(colHeader, 0);
         Iterator<DoiTac> it = list.iterator();
         while (it.hasNext()) {
             DoiTac temp = it.next();
-            model.addRow(new Object[]{0, temp.getName(), temp.getNameHost(), temp.getPhone(), temp.getEmail(), ""});
+            model.addRow(new Object[]{temp.getDtID(), temp.getName(), temp.getNameHost(), temp.getPhone(), temp.getEmail(), temp.getNoiDung()});
         }
+    }
+
+    public ListDoiTac(int idHD) {
+        if(HOAT_DONG.exist(idHD)){
+        MaHD = idHD;
+        ListDoiTac temp = (new DAO_DoiTac()).getListHD_DoiTac(idHD);
+        list = (temp.outList());
+        }
+
     }
 
     public static ArrayList exportList(DefaultTableModel Model) {
@@ -49,13 +62,33 @@ public class ListDoiTac extends DoiTac {
             dt.setNameHost((String) Model.getValueAt(row, 1));
             dt.setEmail((String) Model.getValueAt(row, 2));
             dt.setPhone((String) Model.getValueAt(row, 3));
+            dt.setNoiDung((String) Model.getValueAt(row, 4));
+            listDT.add(dt);
+        }
+
+        return listDT;
+    }
+    
+    public static ArrayList exportHD_DTList(DefaultTableModel Model) {
+        ArrayList<DoiTac> listDT = new ArrayList<>();
+
+        int rowCount = Model.getRowCount();
+
+        for (int row = 0; row < rowCount; row++) {
+            DoiTac dt = new DoiTac();
+            dt.setDtID((int)(Model.getValueAt(row, 0)));
+            dt.setName((String) Model.getValueAt(row, 1));
+            dt.setNameHost((String) Model.getValueAt(row, 2));
+            dt.setPhone((String) Model.getValueAt(row, 3));
+            dt.setEmail((String) Model.getValueAt(row, 4));
+            dt.setNoiDung((String) Model.getValueAt(row, 5));
             listDT.add(dt);
         }
 
         return listDT;
     }
 
-    public  DoiTac find(String name) {
+    public DoiTac find(String name) {
         Iterator<DoiTac> it = list.iterator();
         while (it.hasNext()) {
             DoiTac temp = it.next();
@@ -66,11 +99,11 @@ public class ListDoiTac extends DoiTac {
         return null;
     }
 
-    public  int soLuong() {
+    public int soLuong() {
         return list.size();
     }
 
-    public  void addList(DoiTac doiTac) {
+    public void addList(DoiTac doiTac) {
         if (!doiTac.getName().isEmpty() && !doiTac.getNameHost().isEmpty() && !doiTac.getEmail().isEmpty()) {
             if (Check.isPhoneNumber(doiTac.getPhone())) {
                 if (Check.isValidEmail(doiTac.getEmail())) {
@@ -86,7 +119,7 @@ public class ListDoiTac extends DoiTac {
         }
     }
 
-    public  void importFile(BufferedReader file) throws IOException {
+    public void importFile(BufferedReader file) throws IOException {
         String line;
         while ((line = file.readLine()) != null) {
             String[] value = line.split("\t");
@@ -94,13 +127,13 @@ public class ListDoiTac extends DoiTac {
         }
     }
 
-    public  void exportFile(PrintWriter file) {
+    public void exportFile(PrintWriter file) {
         for (DoiTac doiTac : list) {
             file.write(doiTac.getName() + "\t" + doiTac.getNameHost() + "\t" + doiTac.getPhone() + "\t" + doiTac.getEmail());
         }
     }
 
-    public  ArrayList outList() {
+    public ArrayList outList() {
         return list;
     }
 

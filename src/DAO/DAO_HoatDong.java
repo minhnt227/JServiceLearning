@@ -64,16 +64,17 @@ public class DAO_HoatDong extends DBConnector {
         return HDList;
     }
 
-    public static boolean exist(int id) {
+    public boolean exist(int id) {
         try {
-            Statement stm = con.createStatement();
-            String sqlSelect = "SELECT * FROM HOAT_DONG WHERE MaHD = " + id + " AND Hide = 'false'";
-            ResultSet rst = stm.executeQuery(sqlSelect);
-            if (!rst.first()) {
+            try (Statement stm = con.createStatement()) {
+                String sqlSelect = "SELECT * FROM HOAT_DONG WHERE MaHD = " + id + " AND Hide = 'false'";
+                ResultSet rst = stm.executeQuery(sqlSelect);
+                if (rst == null) {
+                    stm.close();
+                    return false;
+                }
                 stm.close();
-                return false;
             }
-            stm.close();
             return true;
         } catch (Exception e) {
             e.printStackTrace();
@@ -89,7 +90,7 @@ public class DAO_HoatDong extends DBConnector {
             Statement stm = con.createStatement();
             String sqlSelect = "SELECT * FROM TAI_CHINH WHERE MaHD = " + id;
             ResultSet rst = stm.executeQuery(sqlSelect);
-            if (!rst.first()) {
+            if (!rst.absolute(1)) {
                 stm.close();
                 return false;
             }
@@ -100,7 +101,7 @@ public class DAO_HoatDong extends DBConnector {
         }
         return false;
     }
-    
+
     private boolean insertTaiChinh(HOAT_DONG newData) throws SQLException {
         try {
             Prepstm = con.prepareStatement("INSERT INTO TAI_CHINH VALUES (?,?,?,?,'false')");
@@ -110,7 +111,7 @@ public class DAO_HoatDong extends DBConnector {
             Prepstm.setBigDecimal(3, newData.getTaiTro());
             Prepstm.setNString(4, newData.getKhac());
             Prepstm.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
-            
+
             return super.updateDB();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -118,7 +119,7 @@ public class DAO_HoatDong extends DBConnector {
             return false;
         }
     }
-    
+
     public boolean updateTaiChinh(HOAT_DONG hd) {
         if (hd == null) {
             return false;
@@ -147,7 +148,7 @@ public class DAO_HoatDong extends DBConnector {
             return false;
         }
     }
-    
+
     /**
      *
      * @param ID
@@ -168,7 +169,9 @@ public class DAO_HoatDong extends DBConnector {
             }
             hd = new HOAT_DONG();
             hd.setMaHD(ID);
-            hd.setUEF(rst.getBigDecimal(3)); hd.setTaiTro(rst.getBigDecimal(4)); hd.setKhac(rst.getNString(5));
+            hd.setUEF(rst.getBigDecimal(3));
+            hd.setTaiTro(rst.getBigDecimal(4));
+            hd.setKhac(rst.getNString(5));
             stm.close();
             return hd;
         } catch (Exception e) {
@@ -200,12 +203,12 @@ public class DAO_HoatDong extends DBConnector {
             return false;
         }
     }
-    
-    public boolean updateBasicHoatDong(HOAT_DONG newData){
+
+    public boolean updateBasicHoatDong(HOAT_DONG newData) {
         if (newData == null) {
             return false;
         }
-        if(!exist(newData.getMaHD())){
+        if (!exist(newData.getMaHD())) {
             return insertBasicHoatDong(newData);
         }
         try {
@@ -226,9 +229,9 @@ public class DAO_HoatDong extends DBConnector {
             JOptionPane.showMessageDialog(null, ex.getSQLState());
             return false;
         }
-                
+
     }
-    
+
     public HOAT_DONG getBasicHoatDong(int ID) {
         HOAT_DONG hd = null;
         if (!exist(ID)) {
@@ -250,12 +253,12 @@ public class DAO_HoatDong extends DBConnector {
         }
         return hd;
     }
-    
+
     public boolean deleteBasicHoatDong(int ID) {
         try {
             Prepstm = con.prepareStatement("UPDATE HOAT_DONG SET Hide = 'true' WHERE MaHD = ?");
             Prepstm.setInt(1, ID);
-            
+
             return super.updateDB();
         } catch (SQLException e) {
             e.printStackTrace();

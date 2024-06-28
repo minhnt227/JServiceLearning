@@ -5,6 +5,7 @@
 package DAO;
 
 import MODEL.GiangVien;
+import MODEL.HOAT_DONG;
 import MODEL.Khoa;
 import MODEL.ListGiangVien;
 import java.sql.ResultSet;
@@ -208,7 +209,7 @@ public class DAO_GiangVien extends DBConnector {
      * have the same index as their ID
      */
     public ListGiangVien getListHD_GiangVien(int idHD) {
-        if (DAO_HoatDong.exist(idHD)) {
+        if (HOAT_DONG.exist(idHD)) {
             try {
                 ListGiangVien Objs = new ListGiangVien();
                 Objs.setMaHD(idHD);
@@ -254,7 +255,7 @@ public class DAO_GiangVien extends DBConnector {
      * @return @true if success or @false when there's no row to delete or fails
      */
     public boolean deleteListHD_GiangVien(int idHD) {
-        if (!DAO_HoatDong.exist(idHD)) {
+        if (!HOAT_DONG.exist(idHD)) {
             return false;
         }
         try {

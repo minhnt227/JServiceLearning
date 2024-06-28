@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import MODEL.HOAT_DONG;
 import MODEL.Khoa;
 import MODEL.ListSinhVien;
 import MODEL.SinhVien;
@@ -196,7 +197,7 @@ public class DAO_SinhVien extends DBConnector {
      * @return A ListSinhVien with their HOAT_DONG properties.
      */
     public ListSinhVien getListHD_GiangVien(int idHD) {
-        if (DAO_HoatDong.exist(idHD)) {
+        if (HOAT_DONG.exist(idHD)) {
             try {
                 ListSinhVien Objs = new ListSinhVien();
                 Objs.setMaHD(idHD);
@@ -241,7 +242,7 @@ public class DAO_SinhVien extends DBConnector {
      * @return @true if success or @false when there's no row to delete or fails
      */
     public boolean deleteListHD_SinhVien(int idHD) {
-        if (!DAO_HoatDong.exist(idHD)) {
+        if (!HOAT_DONG.exist(idHD)) {
             return false;
         }
         try {

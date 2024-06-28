@@ -151,6 +151,11 @@ public class HOAT_DONG {
         return dAO_HoatDong.exist(this.getMaHD());
     }
     
+    public static boolean exist(int maHD){
+        DAO_HoatDong dAO_HoatDong = new DAO_HoatDong();
+        return dAO_HoatDong.exist(maHD);
+    }
+    
     /**
      *MAKE SURE THAT ALL THE LIST AND THEIR ELEMENTS HAVE THEIR MAHD SET. ALSO MAKE SURE THIS OBJECT HAVE TAICHINH INFO
      * 

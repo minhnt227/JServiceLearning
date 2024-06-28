@@ -136,7 +136,7 @@ public class DAO_DoiTac extends DBConnector {
         final DoiTac dt = null;
         try {
             Statement stm = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
-                                     ResultSet.CONCUR_READ_ONLY);
+                    ResultSet.CONCUR_READ_ONLY);
             String sqlSelect;
             sqlSelect = "SELECT * FROM DOI_TAC WHERE TenDoiTac LIKE N'%" + Name + "%'";
             final ResultSet result = stm.executeQuery(sqlSelect);
@@ -144,7 +144,7 @@ public class DAO_DoiTac extends DBConnector {
                 int iD = result.getInt(1);
                 String name = result.getNString(2);
                 return new DoiTac(result.getInt(1), result.getNString(2), result.getNString(3), result.getString(4), result.getString(5));
-               
+
             }
 
             stm.close();
@@ -205,42 +205,38 @@ public class DAO_DoiTac extends DBConnector {
      * have the same index as their ID
      */
     public ListDoiTac getListHD_DoiTac(int idHD) {
-        if (DAO_HoatDong.exist(idHD)) {
-            try {
-                ListDoiTac Objs = new ListDoiTac();
-                Objs.setMaHD(idHD);
-                //Build a list of DoiTac's ID belong to the HoatDong with idHD
-                sqlQuery = "SELECT * FROM HD_DOITAC WHERE MaHD = '" + idHD + "'";
-                Statement stm = con.createStatement();
-                ResultSet result = stm.executeQuery(sqlQuery);
-                while (result.next()) {
-                    int idDoiTac = result.getInt(1);
-                    DoiTac dt = new DoiTac();
-                    //set the first 3 attribute from HD_DOITAC
-                    dt.setMaHD(idHD);
-                    dt.setDtID(idDoiTac);
-                    dt.setNoiDung(result.getNString(3));
-                    //find a temporary DoiTac from DOI_TAC Table to fill in the rest attribute
-                    DoiTac temp = getSingleById(idDoiTac);
-                    if (temp.getHide() || temp == null) {
-                        continue;           //don't add to list if DoiTac is deleted or null
-                    }
-                    dt.setName(temp.getName());
-                    dt.setNameHost(temp.getNameHost());
-                    dt.setPhone(temp.getPhone());
-                    dt.setEmail(temp.getEmail());
-                    dt.setHide(Boolean.FALSE);
+        try {
+            ListDoiTac Objs = new ListDoiTac();
+            Objs.setMaHD(idHD);
+            //Build a list of DoiTac's ID belong to the HoatDong with idHD
+            sqlQuery = "SELECT * FROM HD_DOITAC HD JOIN DOI_TAC DT ON HD.ID_DoiTac = DT.ID_DoiTac WHERE MaHD = '" + idHD + "' AND DT.Hide = 'false'";
+            Statement stm = con.createStatement();
+            ResultSet result = stm.executeQuery(sqlQuery);
+            while (result.next()) {
+                int idDoiTac = result.getInt(1);
+                DoiTac dt = new DoiTac();
+                //set the first 3 attribute from HD_DOITAC
+                dt.setMaHD(idHD);
+                dt.setDtID(idDoiTac);
+                dt.setNoiDung(result.getNString(3));
+                //find a temporary DoiTac from DOI_TAC Table to fill in the rest attribute
+                
+                dt.setName(result.getNString(5));
+                dt.setNameHost(result.getNString(6));
+                dt.setPhone(result.getString(7));
+                dt.setEmail(result.getString(8));
+                dt.setHide(Boolean.FALSE);
 
-                    Objs.list.add(idDoiTac, dt); //add DoiTac to list with the same index as ID in DB
-                }
-                if (Objs.list.size() <= 0) {
-                    return null;
-                }
-                return Objs;
-            } catch (SQLException ex) {
-                Logger.getLogger(DAO_DoiTac.class.getName()).log(Level.SEVERE, null, ex);
+                Objs.list.add( dt); //add DoiTac to list with the same index as ID in DB
             }
+            if (Objs.list.size() <= 0) {
+                return null;
+            }
+            return Objs;
+        } catch (SQLException ex) {
+            Logger.getLogger(DAO_DoiTac.class.getName()).log(Level.SEVERE, null, ex);
         }
+
         return null;
     }
 

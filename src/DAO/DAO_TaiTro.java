@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import MODEL.HOAT_DONG;
 import MODEL.ListTaiTro;
 import MODEL.TaiTro;
 import java.sql.*;
@@ -183,7 +184,7 @@ public class DAO_TaiTro extends DBConnector {
      * have the same index as their ID
      */
     public ListTaiTro getListHD_TaiTro(int idHD) {
-        if (DAO_HoatDong.exist(idHD)) {
+        if (HOAT_DONG.exist(idHD)) {
             try {
                 ListTaiTro Objs = new ListTaiTro();
                 Objs.setMaHD(idHD);
