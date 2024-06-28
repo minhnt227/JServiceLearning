@@ -5,7 +5,11 @@
 package UI;
 
 import MODEL.Check;
+import static MODEL.Check.StringToDate;
+import MODEL.Khoa;
 import MODEL.ListKhoa;
+import java.text.ParseException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -306,9 +310,33 @@ public class DepartmentForm extends javax.swing.JFrame {
     private void Department_tblLoadHDs(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_Department_tblLoadHDs
 
     }//GEN-LAST:event_Department_tblLoadHDs
-
+    public boolean CheckTextField()
+    {
+        if (Khoa_Name_txt.getText() == null || Khoa_ID_txt.getText() == null || Khoa_Email_txt.getText() == null || Khoa_Phone_txt.getText() == null || Khoa_Phone_txt.getText() == null || DateOfEs.getText() == null)
+          return false;
+        
+        return true;
+    }
     private void Khoa_Add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Khoa_Add_btnActionPerformed
-        // TODO add your handling code here:
+        Khoa KH = new Khoa();
+        ListKhoa lstKhoa = new ListKhoa();
+        if(CheckTextField() == true){
+            KH.setId(Khoa_ID_txt.getText());
+            KH.setName(Khoa_Name_txt.getText());
+            try {
+                KH.setDate(StringToDate(DateOfEs.getText()));
+            } catch (ParseException ex) {
+                ex.printStackTrace();
+            }
+            KH.setEmail(Khoa_Email_txt.getText());
+            KH.setPhone(Khoa_Phone_txt.getText());
+            if(!KH.existKhoa()){
+                    lstKhoa.addList(KH);
+                    JOptionPane.showMessageDialog(null,"Add successfull!","Success",JOptionPane.INFORMATION_MESSAGE);
+                    LoadKhoatoTable();
+            }else   JOptionPane.showMessageDialog(null,"Add fails","Error",JOptionPane.ERROR_MESSAGE);
+              
+        }else JOptionPane.showMessageDialog(null,"Pls, check you input!","Error",JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_Khoa_Add_btnActionPerformed
 
     private void DateOfEsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateOfEsActionPerformed

@@ -15,7 +15,7 @@ public class Check{
 
     public static Boolean isPhoneNumber(String s){
         if (s.length()>=10 && s.length() <=12 ){
-            for (int i = 0; i <= s.length(); i++){
+            for (int i = 0; i < s.length(); i++){
                 if (!Character.isDigit(s.charAt(i))){
                     return false;
                 }
@@ -31,13 +31,11 @@ public class Check{
             model.removeRow(0);
         }
     }
-
-    public static String DateToString(Date date){
+   public static String DateToString(Date date){
         return String.valueOf(date);
     }
 
     public static Date StringToDate(String s) throws ParseException{
         return new SimpleDateFormat("dd/MM/yyyy").parse(s);
     }
-   
 }

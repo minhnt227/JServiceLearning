@@ -161,7 +161,7 @@ public class DAO_Khoa extends DBConnector {
 
     public boolean existKhoa(String ID) {
         try {
-            Statement stm = con.createStatement();
+            Statement stm = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,  ResultSet.CONCUR_READ_ONLY);
             String sqlSelect = "SELECT * FROM KHOA WHERE MaKhoa LIKE '" + ID + "'";
             ResultSet rst = stm.executeQuery(sqlSelect);
             if (!rst.first()) {
