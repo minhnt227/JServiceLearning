@@ -170,7 +170,7 @@ public class DAO_TaiTro extends DBConnector {
         Statement stm = con.createStatement();
         ResultSet result = stm.executeQuery(sqlQuery);
         while (result.next()) {
-            Objs.list.add(getSingleByName(result.getNString(2)));
+            Objs.list.add(new TaiTro(result.getInt(1), result.getNString(2), result.getNString(3), result.getString(4), result.getString(5)));
         }
         Objs.colHeader = getColunmHeader(result);
         return Objs;

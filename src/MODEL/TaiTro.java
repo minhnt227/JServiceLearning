@@ -107,5 +107,10 @@ public class TaiTro extends HOAT_DONG{
         DAO_TaiTro dAO_TaiTro = new DAO_TaiTro();
         return dAO_TaiTro.existTT(this.getName());
     }
+    
+    @Override
+    public Object[] getRowData(){
+        return new Object[]{getName(), getNameHost(), getPhone(), getEmail(),getId()};
+    }
 }
 
