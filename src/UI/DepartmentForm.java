@@ -333,20 +333,20 @@ public class DepartmentForm extends javax.swing.JFrame {
     }//GEN-LAST:event_Khoa_Phone_txtActionPerformed
 
     private void Department_tblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Department_tblMouseClicked
-
-    }//GEN-LAST:event_Department_tblMouseClicked
-
-    private void Department_tblLoadHDs(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_Department_tblLoadHDs
-         int index = Department_tbl.getSelectedRow();
+       int index = Department_tbl.getSelectedRow();
        TableModel model = Department_tbl.getModel();
        if (index !=-1)
        {
         Khoa_ID_txt.setText( model.getValueAt(index, 0).toString()); 
-        Khoa_Email_txt.setText(model.getValueAt(index, 1).toString());
+        Khoa_Name_txt.setText(model.getValueAt(index, 1).toString());
         Khoa_Phone_txt.setText(model.getValueAt(index, 2).toString());
-        Khoa_Email_txt.setText(model.getValueAt(index, 4).toString());
-        DateOfEs.setText(model.getValueAt(index, 5).toString());
+        Khoa_Email_txt.setText(model.getValueAt(index, 3).toString());
+        DateOfEs.setText(model.getValueAt(index, 4).toString());
        }
+    }//GEN-LAST:event_Department_tblMouseClicked
+
+    private void Department_tblLoadHDs(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_Department_tblLoadHDs
+        
     }//GEN-LAST:event_Department_tblLoadHDs
     public boolean CheckTextField()
     {
@@ -357,7 +357,6 @@ public class DepartmentForm extends javax.swing.JFrame {
     }
     private void Khoa_Add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Khoa_Add_btnActionPerformed
         KH = new Khoa();
-        ListKhoa lstKhoa = new ListKhoa();
         if(CheckTextField() == true){
             KH.setId(Khoa_ID_txt.getText());
             KH.setName(Khoa_Name_txt.getText());
@@ -387,6 +386,7 @@ public class DepartmentForm extends javax.swing.JFrame {
 
     private void btn_DateOfEstaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DateOfEstaActionPerformed
         // TODO add your handling code here:
+        DateOfEstablishment.showPopup();
         
     }//GEN-LAST:event_btn_DateOfEstaActionPerformed
 
