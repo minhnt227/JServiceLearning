@@ -174,7 +174,7 @@ public class DAO_GiangVien extends DBConnector {
             sqlQuery = "SELECT * FROM GIANG_VIEN WHERE Hide = '" + Hide + "'";
         else
             sqlQuery = "SELECT TOP " + limit + " * FROM GIANG_VIEN WHERE Hide = '" + Hide + "'";
-        
+        JOptionPane.showMessageDialog(null,"111111111111111111111111111111","Success",JOptionPane.INFORMATION_MESSAGE);
         
         if (!gvID.isBlank()) {
             sqlQuery += " AND MaGV LIKE '%" + gvID + "%'";

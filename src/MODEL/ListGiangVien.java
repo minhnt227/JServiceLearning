@@ -32,12 +32,14 @@ public class ListGiangVien extends GiangVien{
         ListGiangVien temp = ( new DAO.DAO_GiangVien() ).getListFromDB(lim, gvID, LastN, FirstN, FalcultyID, true);
         list = temp.list;
         colHeader = temp.getColHeader();
+        model = new DefaultTableModel(colHeader,0);
     }
     
     public DefaultTableModel getTableModel(){
         Iterator<GiangVien> it = list.iterator();
         while(it.hasNext()){
             GiangVien temp = it.next();
+            
             model.addRow(new Object[]{temp.getId(), temp.getFirtName(), temp.getLastName(), temp.getNameKhoa(), temp.getTenHD()});
         }
         return model;
