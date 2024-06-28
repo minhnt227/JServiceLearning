@@ -69,7 +69,7 @@ public class DAO_HoatDong extends DBConnector {
             try (Statement stm = con.createStatement()) {
                 String sqlSelect = "SELECT * FROM HOAT_DONG WHERE MaHD = " + id + " AND Hide = 'false'";
                 ResultSet rst = stm.executeQuery(sqlSelect);
-                if (rst == null) {
+                if (!rst.absolute(1)) {
                     stm.close();
                     return false;
                 }
@@ -208,7 +208,7 @@ public class DAO_HoatDong extends DBConnector {
         if (newData == null) {
             return false;
         }
-        if (!exist(newData.getMaHD())) {
+        if (HOAT_DONG.exist(newData.getMaHD())) {
             return insertBasicHoatDong(newData);
         }
         try {
@@ -232,6 +232,21 @@ public class DAO_HoatDong extends DBConnector {
 
     }
 
+    public HOAT_DONG getBasicHoatDong(String Name) {
+        HOAT_DONG hd = new HOAT_DONG();
+        try {
+            Statement stm = con.createStatement();
+            String sqlSelect = "SELECT * FROM HOAT_DONG WHERE TenHoatDong LIKE '" + Name + "' AND Hide = 'false'";
+            ResultSet rst = stm.executeQuery(sqlSelect);
+            rst.next();
+            hd = new HOAT_DONG(rst.getInt(1), rst.getNString(2), rst.getNString(3), rst.getDate(4), rst.getDate(5), false, rst.getDate(6));
+            stm.close();
+            return hd;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return hd;
+    }
     public HOAT_DONG getBasicHoatDong(int ID) {
         HOAT_DONG hd = null;
         if (!exist(ID)) {

@@ -3,6 +3,7 @@ package MODEL;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 
 public class Check{
@@ -38,4 +39,14 @@ public class Check{
     public static Date StringToDate(String s) throws ParseException{
         return new SimpleDateFormat("dd/MM/yyyy").parse(s);
     }
+    
+    public static void selectItemByString(String s, JComboBox cb) {
+    for (int i=0; i<cb.getItemCount(); i++) {
+      if (cb.getItemAt(i).toString().equals(s)) {
+        cb.setSelectedIndex(i);
+        break;
+      }
+    }
+    return;
+  }
 }

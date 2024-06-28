@@ -148,7 +148,15 @@ public class HOAT_DONG {
     public Object[] getRowData(){
         return new Object[]{getTenHD(),getLoai(),getStringNgayBD(),getStringNgayKT()} ;
     }
-
+    
+    public boolean saveBasicHD(){
+        return (new DAO_HoatDong()).updateBasicHoatDong(this);
+    }
+    
+    public  int findIDByName(final String name){
+        return (new DAO_HoatDong()).getBasicHoatDong(name).getMaHD();
+    }
+    
     public boolean exist(){
         DAO_HoatDong dAO_HoatDong = new DAO_HoatDong();
         return dAO_HoatDong.exist(this.getMaHD());

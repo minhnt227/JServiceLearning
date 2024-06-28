@@ -366,7 +366,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="componentShown" listener="java.awt.event.ComponentListener" parameters="java.awt.event.ComponentEvent" handler="HD_TblLoadHDs"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="HD_TblMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>

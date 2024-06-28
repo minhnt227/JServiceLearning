@@ -6,8 +6,12 @@ package UI;
 
 import MODEL.Check;
 import MODEL.HOAT_DONG;
+import java.text.ParseException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -206,9 +210,9 @@ public class ActivityForm extends javax.swing.JFrame {
         HD_Tbl.setSelectionForeground(new java.awt.Color(255, 255, 255));
         HD_Tbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         HD_Tbl.setShowGrid(true);
-        HD_Tbl.addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentShown(java.awt.event.ComponentEvent evt) {
-                HD_TblLoadHDs(evt);
+        HD_Tbl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                HD_TblMouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(HD_Tbl);
@@ -299,18 +303,40 @@ public class ActivityForm extends javax.swing.JFrame {
         
     }//GEN-LAST:event_HD_FilterbtnActionPerformed
 
-    private void HD_TblLoadHDs(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_HD_TblLoadHDs
-
-    }//GEN-LAST:event_HD_TblLoadHDs
-
     private void Khoa_Add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Khoa_Add_btnActionPerformed
-        // TODO add your handling code here:
+        try {
+            HOAT_DONG hd = new HOAT_DONG();
+            HOAT_DONG temp = new HOAT_DONG();
+            temp = (new DAO.DAO_HoatDong()).getBasicHoatDong(HD_nametxt.getText());
+            hd.setTenHD(HD_nametxt.getText());
+            hd.setLoai((String) HD_Loaicmb.getSelectedItem());
+            hd.setNgayBD(Check.StringToDate(StartDatetxt.getText()));
+            hd.setNgayKT(Check.StringToDate(EndDatetxt.getText()));
+            
+            hd.saveBasicHD();
+            
+            LoadActivities();
+        } catch (ParseException ex) {
+            Logger.getLogger(ActivityForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_Khoa_Add_btnActionPerformed
 
     private void Khoa_Add_btn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Khoa_Add_btn1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_Khoa_Add_btn1ActionPerformed
 
+    private void HD_TblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HD_TblMouseClicked
+        // TODO add your handling code here:
+        int index = HD_Tbl.getSelectedRow();
+       TableModel model = HD_Tbl.getModel();
+       if (index !=-1)
+       {
+        HD_nametxt.setText( model.getValueAt(index, 0).toString()); 
+        HD_Loaicmb.setSelectedItem( model.getValueAt(index, 1));
+        StartDatetxt.setText(model.getValueAt(index, 2).toString());
+        EndDatetxt.setText(model.getValueAt(index, 3).toString());
+       }
+    }//GEN-LAST:event_HD_TblMouseClicked
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         StartDate.showPopup();
