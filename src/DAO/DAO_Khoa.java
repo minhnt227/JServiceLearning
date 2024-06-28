@@ -7,6 +7,7 @@ package DAO;
 import MODEL.Khoa;
 import java.sql.*;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -53,21 +54,25 @@ public class DAO_Khoa extends DBConnector {
      * get Name List of current Khoa
      */
     public List getNameKhoaList() {
-        List<String> names = null;
+        List<String> names = new ArrayList<String>();
         try {
             Statement stm = con.createStatement();
             String sqlSelect = "SELECT * FROM KHOA WHERE Hide = 'false'";
             ResultSet rst = stm.executeQuery(sqlSelect);
             if (rst == null) {
+                
                 stm.close();
                 return null;
             }
             while (rst.next()) {
                 names.add(rst.getNString(2));
+               
             }
             stm.close();
 
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
+            
             e.printStackTrace();
         }
         return names;
@@ -100,23 +105,45 @@ public class DAO_Khoa extends DBConnector {
             Statement stm = con.createStatement();
             String sqlSelect = "SELECT * FROM KHOA WHERE TenKhoa LIKE N'%" + name + "%'";
             ResultSet rst = stm.executeQuery(sqlSelect);
-            if (!rst.first()) {
+            if (rst == null) {
                 stm.close();
                 return null;
             }
             kh = new Khoa(rst.getString(1), rst.getNString(2), rst.getString(3), rst.getString(4), rst.getDate(5));
             return kh;
-
         } catch (Exception e) {
             e.printStackTrace();
         }
         return null;
     }
-
+    
+    public String getIDKhoaFromName(String name) {
+        Khoa kh;
+        try {
+            Statement stm = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,  ResultSet.CONCUR_READ_ONLY);
+            String sqlSelect = "SELECT MaKhoa FROM KHOA WHERE TenKhoa LIKE N'%" + name + "%'";
+            ResultSet rst = stm.executeQuery(sqlSelect);
+            if (!rst.first()) {
+                JOptionPane.showMessageDialog(null,"111","Success",JOptionPane.ERROR_MESSAGE);
+                stm.close();
+                return null;
+            }
+            String id = new String();
+            while(rst.next()) {
+            id = rst.getString(1);
+            }
+            JOptionPane.showMessageDialog(null,id,"Success",JOptionPane.ERROR_MESSAGE);
+            return id;
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
     public Khoa getSingleKhoaFromID(String ID) {
         Khoa kh;
         try {
-            Statement stm = con.createStatement();
+            Statement stm = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,  ResultSet.CONCUR_READ_ONLY);
             String sqlSelect = "SELECT * FROM KHOA WHERE MaKhoa LIKE '" + ID + "'";
             ResultSet rst = stm.executeQuery(sqlSelect);
             if (!rst.first()) {

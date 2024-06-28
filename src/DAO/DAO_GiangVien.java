@@ -25,7 +25,7 @@ public class DAO_GiangVien extends DBConnector {
 
     public boolean existGV(String ID) {
         try {
-            Statement stm = con.createStatement();
+            Statement stm = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,  ResultSet.CONCUR_READ_ONLY);
             String sqlSelect = "SELECT * FROM GIANG_VIEN WHERE MaGV LIKE '" + ID + "'";
             ResultSet rst = stm.executeQuery(sqlSelect);
             if (!rst.first()) {
