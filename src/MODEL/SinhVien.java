@@ -16,24 +16,24 @@ public class SinhVien extends HOAT_DONG{
         return id;
     }
 
-    public void setId(String id) {
-        id = id;
+    public void setId(String iD) {
+        id = iD;
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        name = name;
+    public void setName(String Name) {
+        name = Name;
     }
 
     public String getNameKhoa() {
         return nameKhoa;
     }
 
-    public void setNameKhoa(String nameKhoa) {
-        nameKhoa = nameKhoa;
+    public void setNameKhoa(String NameKhoa) {
+        nameKhoa = NameKhoa;
     }
 
     public String getIdKhoa() {
@@ -66,27 +66,26 @@ public class SinhVien extends HOAT_DONG{
     }
 
     public SinhVien(){}
-    
-    public SinhVien(String id, String name, String nameKhoa, String TenHD) {
-        super.setTenHD(TenHD);
-        setId(id);
-        setName(name);
-        setNameKhoa(nameKhoa);
-    }
-    
-    public SinhVien(String id, String name, String nameKhoa, String TenHD, String vaiTro) {
-        super.setTenHD(TenHD);
-        setId(id);
-        setName(name);
-        setNameKhoa(nameKhoa);
-        setVaiTro(vaiTro);
+
+    public SinhVien(String id, String name, String nameKhoa, String idKhoa, String vaiTro, int mahd) {
+        this.id = id;
+        this.name = name;
+        this.nameKhoa = nameKhoa;
+        this.idKhoa = idKhoa;
+        this.vaiTro = vaiTro;
+        this.MaHD = mahd;
     }
 
-    public SinhVien(String id, String name, String nameKhoa) {
-        setId(id);
-        setName(name);
-        setNameKhoa(nameKhoa);
+    public SinhVien(String id, String name, String nameKhoa, String idKhoa) {
+        this.id = id;
+        this.name = name;
+        this.nameKhoa = nameKhoa;
+        this.idKhoa = idKhoa;
     }
+   
+    
+    
+    
 
     public SinhVien(SinhVien sv){
         setId(sv.id);

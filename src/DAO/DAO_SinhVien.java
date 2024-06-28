@@ -132,7 +132,7 @@ public class DAO_SinhVien extends DBConnector {
                 return null;
             }
             Khoa kh = (new DAO_Khoa()).getSingleKhoaFromID(rst.getString(3));                //Falcuty of Student
-            sv = new SinhVien(rst.getString(1), rst.getNString(2), kh.getName());
+            sv = new SinhVien(rst.getString(1), rst.getNString(2), kh.getName(),kh.getId());
             sv.setIdKhoa(kh.getId());
             stm.close();
             return sv;
@@ -153,7 +153,7 @@ public class DAO_SinhVien extends DBConnector {
                 return null;
             }
             Khoa kh = (new DAO_Khoa()).getSingleKhoaFromID(rst.getString(3));                //Falcuty of Student
-            sv = new SinhVien(rst.getString(1), rst.getNString(2), kh.getName());
+            sv = new SinhVien(rst.getString(1), rst.getNString(2), kh.getName(),kh.getId());
             sv.setIdKhoa(kh.getId());
             stm.close();
             return sv;
@@ -166,9 +166,9 @@ public class DAO_SinhVien extends DBConnector {
     public ListSinhVien getListFromDB(int limit, String ID, String NAME, String FalcultyID, boolean Hide) throws SQLException {
         ListSinhVien SVs = new ListSinhVien();
         if (limit <= 0) {
-            sqlQuery = "SELECT * FROM SINH_VIEN WHERE Hide = '" + Hide + "'";
+            sqlQuery = "SELECT * FROM SINH_VIEN SV JOIN KHOA K ON Khoa = MaKhoa WHERE SV.Hide = '" + Hide + "'";
         } else {
-            sqlQuery = "SELECT TOP " + limit + " * FROM SINH_VIEN WHERE Hide = '" + Hide + "'";
+            sqlQuery = "SELECT TOP " + limit + " * FROM SINH_VIEN SV JOIN KHOA K ON Khoa = MaKhoa WHERE SV.Hide = '" + Hide + "'";
         }
         if (!ID.isBlank()) {
             sqlQuery += " AND MSSV LIKE '%" + ID + "%'";
@@ -182,7 +182,9 @@ public class DAO_SinhVien extends DBConnector {
         Statement stm = con.createStatement();
         ResultSet result = stm.executeQuery(sqlQuery);
         while (result.next()) {
-            SVs.list.add(getSingleByID(result.getString(1)));
+            Khoa kh = new Khoa(result.getString("Khoa"), result.getNString("TenKhoa"), result.getString("SDT"), result.getString("Email"), result.getDate("NgayThanhLap"));
+            SinhVien temp = new SinhVien(result.getString(1), result.getNString(2), kh.getName(),kh.getId());
+            SVs.list.add(temp);
         }
         SVs.colHeader = getColunmHeader(result);
         return SVs;

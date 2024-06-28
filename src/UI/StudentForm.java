@@ -4,6 +4,14 @@
  */
 package UI;
 
+import MODEL.Check;
+import MODEL.ListSinhVien;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComponent;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author A715-42G
@@ -14,7 +22,12 @@ public class StudentForm extends javax.swing.JFrame {
      * Creates new form StudentForm
      */
     public StudentForm() {
-        initComponents();
+        try {
+            initComponents();
+            LoadSVTableFromDB();
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -202,7 +215,7 @@ public class StudentForm extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "StudentID", "Name", "DepartmentID", "DepartmentName"
+                "StudentID", "Name", "DepartmentName", "DepartmentID"
             }
         ));
         Student_tbl.setToolTipText("");
@@ -317,4 +330,20 @@ public class StudentForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void LoadSVTableFromDB() throws SQLException {
+        Clear(); 
+        ListSinhVien lstSV = new ListSinhVien(0, "", "", "", false);
+        lstSV.model = (DefaultTableModel) Student_tbl.getModel();
+        lstSV.getTableModel();
+        
+    }
+
+    private void Clear() {
+        SV_ID_txt.setText("");
+        SV_Name_txt.setText("");
+        SV_Khoa_cmb.setSelectedIndex(-1);
+        Check.RemoveTableData((DefaultTableModel) Student_tbl.getModel());
+                
+    }
 }

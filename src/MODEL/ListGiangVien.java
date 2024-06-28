@@ -31,8 +31,7 @@ public class ListGiangVien extends GiangVien{
     public ListGiangVien(int lim, String gvID, String LastN, String FirstN, String FalcultyID, boolean Hide) throws SQLException {
         ListGiangVien temp = ( new DAO.DAO_GiangVien() ).getListFromDB(lim, gvID, LastN, FirstN, FalcultyID, Hide);
         list = temp.list;
-        colHeader = temp.getColHeader();
-        model = new DefaultTableModel(colHeader,0);
+        model = new DefaultTableModel();
     }
     
     public DefaultTableModel getTableModel(){
