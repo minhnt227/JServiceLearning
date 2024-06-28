@@ -93,6 +93,9 @@ public class HomePage extends javax.swing.JFrame {
             public void mousePressed(java.awt.event.MouseEvent evt) {
                 btn_Event_MousePressd(evt);
             }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                jLabel1MouseReleased(evt);
+            }
         });
 
         jSeparator1.setBackground(new java.awt.Color(255, 255, 255));
@@ -560,6 +563,7 @@ public class HomePage extends javax.swing.JFrame {
     private void btn_Student_MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Student_MouseReleased
         // TODO add your handling code here:
         resetColor(btn_Student);
+        FormMain_pnl.updateUI();
     }//GEN-LAST:event_btn_Student_MouseReleased
 
     private void btn_Partner_MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Partner_MousePressed
@@ -574,11 +578,13 @@ public class HomePage extends javax.swing.JFrame {
     private void btn_Partner_MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Partner_MouseReleased
         // TODO add your handling code here:
         resetColor(btn_Partner_Form);
+        FormMain_pnl.updateUI();
     }//GEN-LAST:event_btn_Partner_MouseReleased
 
     private void btn_Lecturer_MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Lecturer_MouseReleased
         // TODO add your handling code here:
         resetColor(btn_Lecturer);
+        FormMain_pnl.updateUI();
     }//GEN-LAST:event_btn_Lecturer_MouseReleased
 
     private void btn_Funder_MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Funder_MousePressed
@@ -593,6 +599,7 @@ public class HomePage extends javax.swing.JFrame {
     private void btn_Funder_MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Funder_MouseReleased
         // TODO add your handling code here:
         resetColor(btn_Funding_Form);
+        FormMain_pnl.updateUI();
     }//GEN-LAST:event_btn_Funder_MouseReleased
 
     private void btn_Department_MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Department_MousePressed
@@ -606,6 +613,7 @@ public class HomePage extends javax.swing.JFrame {
     private void btn_Department_MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Department_MouseReleased
         // TODO add your handling code here:
         resetColor(btn_Department_Form);
+        FormMain_pnl.updateUI();
 
     }//GEN-LAST:event_btn_Department_MouseReleased
     private void btn_Exit_MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Exit_MousePressed
@@ -624,6 +632,10 @@ public class HomePage extends javax.swing.JFrame {
                 isfullscreen = false;
             }
     }//GEN-LAST:event_btn_FullScreen_MousePressed
+
+    private void jLabel1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseReleased
+        
+    }//GEN-LAST:event_jLabel1MouseReleased
     void setColor(JPanel panel){
         panel.setBackground(new Color(85,65,118));
     }

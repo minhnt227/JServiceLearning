@@ -142,6 +142,7 @@
           </Properties>
           <Events>
             <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="btn_Event_MousePressd"/>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel1MouseReleased"/>
           </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator1">
