@@ -11,6 +11,7 @@ import MODEL.ListKhoa;
 import java.text.ParseException;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -21,6 +22,7 @@ public class DepartmentForm extends javax.swing.JFrame {
     /**
      * Creates new form DepartmentForm
      */
+    private static Khoa KH;
     public DepartmentForm() {
         initComponents();
         LoadKhoatoTable();
@@ -35,6 +37,7 @@ public class DepartmentForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        DateOfEstablishment = new com.raven.datechooser.DateChooser();
         FilterPnl = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -52,8 +55,11 @@ public class DepartmentForm extends javax.swing.JFrame {
         Khoa_Phone_txt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         DateOfEs = new javax.swing.JTextField();
+        btn_DateOfEsta = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         Department_tbl = new javax.swing.JTable();
+
+        DateOfEstablishment.setTextRefernce(DateOfEs);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,11 +67,15 @@ public class DepartmentForm extends javax.swing.JFrame {
         FilterPnl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, new java.awt.Color(204, 255, 255), java.awt.Color.lightGray, null));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("DepartmentID");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Phone");
 
+        Khoa_ID_txt.setBackground(new java.awt.Color(255, 255, 255));
+        Khoa_ID_txt.setForeground(new java.awt.Color(0, 0, 0));
         Khoa_ID_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Khoa_ID_txtActionPerformed(evt);
@@ -73,20 +83,24 @@ public class DepartmentForm extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("DepartmentName");
 
         Search_Btn.setBackground(new java.awt.Color(153, 153, 255));
         Search_Btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Search_Btn.setForeground(new java.awt.Color(0, 0, 0));
         Search_Btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-search-25.png"))); // NOI18N
         Search_Btn.setText("Search");
 
         Khoa_ExportExcel_btn.setBackground(new java.awt.Color(153, 153, 255));
         Khoa_ExportExcel_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Khoa_ExportExcel_btn.setForeground(new java.awt.Color(0, 0, 0));
         Khoa_ExportExcel_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-export-20.png"))); // NOI18N
         Khoa_ExportExcel_btn.setText("Export Excel");
 
         Khoa_Add_btn.setBackground(new java.awt.Color(153, 153, 255));
         Khoa_Add_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Khoa_Add_btn.setForeground(new java.awt.Color(0, 0, 0));
         Khoa_Add_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-add-20.png"))); // NOI18N
         Khoa_Add_btn.setText("Add");
         Khoa_Add_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -97,11 +111,13 @@ public class DepartmentForm extends javax.swing.JFrame {
 
         Khoa_ImportExcel_btn.setBackground(new java.awt.Color(153, 153, 255));
         Khoa_ImportExcel_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Khoa_ImportExcel_btn.setForeground(new java.awt.Color(0, 0, 0));
         Khoa_ImportExcel_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-import-20.png"))); // NOI18N
         Khoa_ImportExcel_btn.setText("Import Excel");
 
         Khoa_Edit_btn.setBackground(new java.awt.Color(153, 153, 255));
         Khoa_Edit_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Khoa_Edit_btn.setForeground(new java.awt.Color(0, 0, 0));
         Khoa_Edit_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-edit-20.png"))); // NOI18N
         Khoa_Edit_btn.setText("Edit");
         Khoa_Edit_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -112,9 +128,17 @@ public class DepartmentForm extends javax.swing.JFrame {
 
         Khoa_Delete_btn.setBackground(new java.awt.Color(153, 153, 255));
         Khoa_Delete_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        Khoa_Delete_btn.setForeground(new java.awt.Color(0, 0, 0));
         Khoa_Delete_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-delete-20.png"))); // NOI18N
         Khoa_Delete_btn.setText("Delete");
+        Khoa_Delete_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Khoa_Delete_btnActionPerformed(evt);
+            }
+        });
 
+        Khoa_Name_txt.setBackground(new java.awt.Color(255, 255, 255));
+        Khoa_Name_txt.setForeground(new java.awt.Color(0, 0, 0));
         Khoa_Name_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Khoa_Name_txtActionPerformed(evt);
@@ -122,14 +146,19 @@ public class DepartmentForm extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Email");
 
+        Khoa_Email_txt.setBackground(new java.awt.Color(255, 255, 255));
+        Khoa_Email_txt.setForeground(new java.awt.Color(0, 0, 0));
         Khoa_Email_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Khoa_Email_txtActionPerformed(evt);
             }
         });
 
+        Khoa_Phone_txt.setBackground(new java.awt.Color(255, 255, 255));
+        Khoa_Phone_txt.setForeground(new java.awt.Color(0, 0, 0));
         Khoa_Phone_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Khoa_Phone_txtActionPerformed(evt);
@@ -137,11 +166,25 @@ public class DepartmentForm extends javax.swing.JFrame {
         });
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Date of Establishment");
 
+        DateOfEs.setBackground(new java.awt.Color(255, 255, 255));
+        DateOfEs.setForeground(new java.awt.Color(0, 0, 0));
+        DateOfEs.setText("");
+        DateOfEs.setEnabled(false);
         DateOfEs.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DateOfEsActionPerformed(evt);
+            }
+        });
+
+        btn_DateOfEsta.setBackground(new java.awt.Color(153, 153, 255));
+        btn_DateOfEsta.setForeground(new java.awt.Color(0, 0, 0));
+        btn_DateOfEsta.setText("...");
+        btn_DateOfEsta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_DateOfEstaActionPerformed(evt);
             }
         });
 
@@ -160,13 +203,15 @@ public class DepartmentForm extends javax.swing.JFrame {
                 .addGap(20, 20, 20)
                 .addGroup(FilterPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(Khoa_ID_txt)
-                    .addComponent(Khoa_Name_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 198, Short.MAX_VALUE)
+                    .addComponent(Khoa_Name_txt, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
                     .addComponent(Khoa_Phone_txt)
                     .addComponent(Khoa_Email_txt)
                     .addComponent(DateOfEs))
                 .addGroup(FilterPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FilterPnlLayout.createSequentialGroup()
-                        .addGap(149, 149, 149)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btn_DateOfEsta)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 94, Short.MAX_VALUE)
                         .addGroup(FilterPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FilterPnlLayout.createSequentialGroup()
                                 .addComponent(Khoa_Add_btn)
@@ -217,10 +262,13 @@ public class DepartmentForm extends javax.swing.JFrame {
                     .addComponent(Khoa_Edit_btn)
                     .addComponent(Khoa_Delete_btn)
                     .addComponent(DateOfEs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel6)
+                    .addComponent(btn_DateOfEsta))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        Department_tbl.setBackground(new java.awt.Color(255, 255, 255));
+        Department_tbl.setForeground(new java.awt.Color(0, 0, 0));
         Department_tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -289,7 +337,16 @@ public class DepartmentForm extends javax.swing.JFrame {
     }//GEN-LAST:event_Department_tblMouseClicked
 
     private void Department_tblLoadHDs(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_Department_tblLoadHDs
-
+         int index = Department_tbl.getSelectedRow();
+       TableModel model = Department_tbl.getModel();
+       if (index !=-1)
+       {
+        Khoa_ID_txt.setText( model.getValueAt(index, 0).toString()); 
+        Khoa_Email_txt.setText(model.getValueAt(index, 1).toString());
+        Khoa_Phone_txt.setText(model.getValueAt(index, 2).toString());
+        Khoa_Email_txt.setText(model.getValueAt(index, 4).toString());
+        DateOfEs.setText(model.getValueAt(index, 5).toString());
+       }
     }//GEN-LAST:event_Department_tblLoadHDs
     public boolean CheckTextField()
     {
@@ -299,7 +356,7 @@ public class DepartmentForm extends javax.swing.JFrame {
         return true;
     }
     private void Khoa_Add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Khoa_Add_btnActionPerformed
-        Khoa KH = new Khoa();
+        KH = new Khoa();
         ListKhoa lstKhoa = new ListKhoa();
         if(CheckTextField() == true){
             KH.setId(Khoa_ID_txt.getText());
@@ -327,6 +384,26 @@ public class DepartmentForm extends javax.swing.JFrame {
     private void DateOfEsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateOfEsActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DateOfEsActionPerformed
+
+    private void btn_DateOfEstaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_DateOfEstaActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_btn_DateOfEstaActionPerformed
+
+    private void Khoa_Delete_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Khoa_Delete_btnActionPerformed
+        // TODO add your handling code here:
+        KH = new Khoa();
+        int index = Department_tbl.getSelectedRow();
+        if(index !=-1){
+            if(Khoa_ID_txt.getText()!=null){
+                KH.setId(Khoa_ID_txt.getText());
+                KH.deleteKhoa();
+                LoadKhoatoTable();
+            }
+        }{
+            JOptionPane.showMessageDialog(null,"Pls, Click the row you want to delete!","Error",JOptionPane.ERROR);
+        }
+    }//GEN-LAST:event_Khoa_Delete_btnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -365,6 +442,7 @@ public class DepartmentForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField DateOfEs;
+    private com.raven.datechooser.DateChooser DateOfEstablishment;
     private javax.swing.JTable Department_tbl;
     private javax.swing.JPanel FilterPnl;
     private javax.swing.JButton Khoa_Add_btn;
@@ -377,6 +455,7 @@ public class DepartmentForm extends javax.swing.JFrame {
     private javax.swing.JTextField Khoa_Name_txt;
     private javax.swing.JTextField Khoa_Phone_txt;
     private javax.swing.JButton Search_Btn;
+    private javax.swing.JButton btn_DateOfEsta;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
