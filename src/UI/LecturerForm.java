@@ -353,7 +353,7 @@ public class LecturerForm extends javax.swing.JFrame {
         GV_ID_txt.setText( model.getValueAt(index, 0).toString()); 
         GV_FirstName_txt.setText(model.getValueAt(index, 1).toString());
         GV_LastName_txt.setText(model.getValueAt(index, 2).toString());
-        GV_Khoa_cmb.setSelectedItem(model.getValueAt(index, 4));
+        GV_Khoa_cmb.setSelectedItem( model.getValueAt(index, 3));
        }
     }//GEN-LAST:event_Lecturer_tblMouseClicked
 
