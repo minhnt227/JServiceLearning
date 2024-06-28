@@ -74,31 +74,31 @@ public class GiangVien extends HOAT_DONG {
 
     public GiangVien(){}
 
-    public GiangVien(String id, String firstName, String lastName, String nameKhoa, String TenHD) {
+    public GiangVien(String id, String fName, String lastName, String nameKhoa, String TenHD) {
         super.setTenHD(TenHD);
         setId(id);
-        setFirtName(firtName);
+        setFirtName(fName);
         setLastName(lastName);
         setNameKhoa(nameKhoa);
     }
     
-    public GiangVien(String id, String firstName, String lastName, String nameKhoa, String TenHD, String vaiTro) {
+    public GiangVien(String id, String fName, String lastName, String nameKhoa, String TenHD, String vaiTro) {
         super.setTenHD(TenHD);
         setId(id);
-        setFirtName(firtName);
+        setFirtName(fName);
         setLastName(lastName);
         setNameKhoa(nameKhoa);
         setVaiTro(vaiTro);
     }
 
-    public GiangVien(String id, String firstName, String lastName, String nameKhoa) {
+    public GiangVien(String id, String fName, String lastName, String nameKhoa) {
         setId(id);
-        setFirtName(firtName);
+        setFirtName(fName);
         setLastName(lastName);
         setNameKhoa(nameKhoa);
     }
 
-    public boolean insertSV(){
+    public boolean insertGV(){
         DAO_GiangVien dAO_GiangVien = new DAO_GiangVien();
         return dAO_GiangVien.updateGV(this);
     }

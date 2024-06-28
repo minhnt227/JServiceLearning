@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.event.ListDataListener;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -355,11 +356,8 @@ public class PartnerForm extends javax.swing.JFrame {
     private void LoadDoiTac() throws SQLException {
         DefaultTableModel model = (DefaultTableModel)Partner_tbl.getModel();
         RemoveTableData(model);
-        DAO_DoiTac daoHD = new DAO_DoiTac();
-        ArrayList<DoiTac> DTs = new ArrayList<>();
-        DTs = daoHD.getListFromDB(0, "", false).list;
-        
-        for(DoiTac hd : DTs){
+        ListDoiTac DTss = new ListDoiTac(0, "", false);
+        for(DoiTac hd : DTss.list){
                 model.addRow(hd.getRowData());
         }
         Partner_tbl.setAutoCreateRowSorter(true);

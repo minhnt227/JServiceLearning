@@ -25,7 +25,7 @@ public class ListDoiTac extends DoiTac {
     }
 
     public ListDoiTac(int lim, String FullName, boolean Hide) throws SQLException {
-        ListDoiTac temp = (new DAO.DAO_DoiTac()).getListFromDB(lim, FullName, true);
+        ListDoiTac temp = (new DAO.DAO_DoiTac()).getListFromDB(lim, FullName, Hide);
         list = temp.list;
         colHeader = temp.getColHeader();
     }

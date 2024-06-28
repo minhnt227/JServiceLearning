@@ -171,10 +171,9 @@ public class DAO_GiangVien extends DBConnector {
     public ListGiangVien getListFromDB(int limit, String gvID, String LastN, String FirstN, String FalcultyID, boolean Hide) throws SQLException {
         ListGiangVien Objs = new ListGiangVien();
         if(limit <=0)
-            sqlQuery = "SELECT * FROM GIANG_VIEN WHERE Hide = '" + Hide + "'";
+            sqlQuery = "SELECT * FROM GIANG_VIEN GV JOIN KHOA K ON Khoa = MaKhoa WHERE GV.Hide = '" + Hide + "'";
         else
-            sqlQuery = "SELECT TOP " + limit + " * FROM GIANG_VIEN WHERE Hide = '" + Hide + "'";
-        JOptionPane.showMessageDialog(null,"111111111111111111111111111111","Success",JOptionPane.INFORMATION_MESSAGE);
+            sqlQuery = "SELECT TOP " + limit + " * FROM GIANG_VIEN GV JOIN KHOA K ON Khoa = MaKhoa WHERE GV.Hide = '" + Hide + "'";
         
         if (!gvID.isBlank()) {
             sqlQuery += " AND MaGV LIKE '%" + gvID + "%'";
@@ -193,7 +192,10 @@ public class DAO_GiangVien extends DBConnector {
         Statement stm = con.createStatement();
         ResultSet result = stm.executeQuery(sqlQuery);
         while(result.next()){
-            Objs.list.add(getSingleByID(result.getString(1)));
+            Khoa kh = new Khoa(result.getString(6), result.getNString("TenKhoa"), result.getString("SDT"), result.getString("Email"), result.getDate("NgayThanhLap"));
+            GiangVien temp = new GiangVien(result.getString(1), result.getNString(3), result.getNString(2), kh.getName());
+            temp.setIdKhoa(kh.getId());
+            Objs.list.add(temp);
         }
         Objs.colHeader = getColunmHeader(result);
         return Objs;

@@ -25,6 +25,7 @@ public class LecturerForm extends javax.swing.JFrame {
      */
     public LecturerForm() {
         initComponents();
+        loadDefaultTableFromDB();
     }
 
     /**
@@ -379,17 +380,20 @@ public class LecturerForm extends javax.swing.JFrame {
     }//GEN-LAST:event_Lecturer_tblLoadHDs
 
     private void GV_Refrech_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GV_Refrech_btnActionPerformed
-        Clear();     
-        try {
-            ListGiangVien lst = new ListGiangVien(0,"","","","", true);
-            DefaultTableModel model = lst.getTableModel();
-            Lecturer_tbl.setModel(model);
-        } catch (SQLException ex) {
-            Logger.getLogger(LecturerForm.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        loadDefaultTableFromDB();
             
     }//GEN-LAST:event_GV_Refrech_btnActionPerformed
 
+    private void loadDefaultTableFromDB(){
+        Clear();     
+        try {
+            DefaultTableModel model = (DefaultTableModel) Lecturer_tbl.getModel();
+            ListGiangVien lst = new ListGiangVien(0,"","","","", false);
+            lst.setTableModel(model);
+        } catch (SQLException ex) {
+            Logger.getLogger(LecturerForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     private void GV_Khoa_cmbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GV_Khoa_cmbActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_GV_Khoa_cmbActionPerformed

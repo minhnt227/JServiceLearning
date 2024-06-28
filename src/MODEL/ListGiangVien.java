@@ -29,7 +29,7 @@ public class ListGiangVien extends GiangVien{
     }
 
     public ListGiangVien(int lim, String gvID, String LastN, String FirstN, String FalcultyID, boolean Hide) throws SQLException {
-        ListGiangVien temp = ( new DAO.DAO_GiangVien() ).getListFromDB(lim, gvID, LastN, FirstN, FalcultyID, true);
+        ListGiangVien temp = ( new DAO.DAO_GiangVien() ).getListFromDB(lim, gvID, LastN, FirstN, FalcultyID, Hide);
         list = temp.list;
         colHeader = temp.getColHeader();
         model = new DefaultTableModel(colHeader,0);
@@ -43,6 +43,15 @@ public class ListGiangVien extends GiangVien{
             model.addRow(new Object[]{temp.getId(), temp.getFirtName(), temp.getLastName(), temp.getNameKhoa(), temp.getTenHD()});
         }
         return model;
+    }
+    
+    public void setTableModel(DefaultTableModel Tmodel){
+        Iterator<GiangVien> it = list.iterator();
+        while(it.hasNext()){
+            GiangVien temp = it.next();
+            
+            Tmodel.addRow(new Object[]{temp.getId(), temp.getLastName(), temp.getFirtName(), temp.getNameKhoa(), temp.getIdKhoa()});
+        }
     }
     
         public static ArrayList exportList(DefaultTableModel Model){
