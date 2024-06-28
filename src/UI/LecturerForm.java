@@ -10,10 +10,13 @@ import MODEL.Check;
 import MODEL.GiangVien;
 import MODEL.Khoa;
 import MODEL.ListGiangVien;
+import static MODEL.ListGiangVien.list;
 import MODEL.fileExcel;
 import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -452,18 +455,45 @@ public class LecturerForm extends javax.swing.JFrame {
     }//GEN-LAST:event_GV_Delete_btnActionPerformed
 
     private void GV_ImportExcel_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GV_ImportExcel_btnActionPerformed
-        // TODO add your handling code here:
+        final String excelFilePath = "C:\\Users\\ASUS\\Documents\\Java\\TestImport.xlsx";
+        ArrayList<GiangVien> lst = new ArrayList<GiangVien>();
+        try {
+            lst = fileExcel.inpGiangVien(lst, excelFilePath);
+        } catch (IOException ex) {
+            Logger.getLogger(LecturerForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        Clear();
+        DefaultTableModel model = (DefaultTableModel) Lecturer_tbl.getModel();
+        Iterator <GiangVien> it = lst.iterator();
+        while(it.hasNext()){
+            GiangVien temp = it.next();
+            DAO_Khoa kh = new DAO_Khoa();
+            String ID = kh.getIDKhoaFromName(temp.getNameKhoa());
+            temp.setIdKhoa(ID);
+            model.addRow(new Object[]{temp.getId(), temp.getFirtName(), temp.getLastName(), temp.getIdKhoa(), temp.getNameKhoa()});
+        }
     }//GEN-LAST:event_GV_ImportExcel_btnActionPerformed
 
     private void GV_Search_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GV_Search_btnActionPerformed
-        // TODO add your handling code here:
+        String id = GV_ID_txt.getText();
+        Clear();
+        DefaultTableModel model = (DefaultTableModel) Lecturer_tbl.getModel();  
+        Iterator<GiangVien> it = list.iterator();
+        while(it.hasNext()){
+            GiangVien temp = it.next();
+            DAO_Khoa kh = new DAO_Khoa();
+            String ID = kh.getIDKhoaFromName(temp.getNameKhoa());
+            temp.setIdKhoa(ID);
+            if(temp.getId().contains(id))
+            model.addRow(new Object[]{temp.getId(), temp.getFirtName(), temp.getLastName(), temp.getIdKhoa(), temp.getNameKhoa()});
+        }
     }//GEN-LAST:event_GV_Search_btnActionPerformed
 
     private void GV_ExportExcel_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GV_ExportExcel_btnActionPerformed
         fileExcel export = new fileExcel();
         try {
             ListGiangVien lst = new ListGiangVien(0,"","","","", false);
-            final String excelFilePath = "C:\\Users\\ASUS\\Documents\\Java\\Test.xlsx";
+            final String excelFilePath = "C:\\Users\\ASUS\\Documents\\Java\\TestExport.xlsx";
             try {
                 //JFileChooser fileChooser = new JFileChooser();
 //            fileChooser.setDialogTitle("Save Excel File");

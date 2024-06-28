@@ -66,11 +66,8 @@ public class PartnerForm extends javax.swing.JFrame {
         FilterPnl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, new java.awt.Color(204, 255, 255), java.awt.Color.lightGray, null));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Partner:");
 
-        DoiTac_Name_txt.setBackground(new java.awt.Color(255, 255, 255));
-        DoiTac_Name_txt.setForeground(new java.awt.Color(0, 0, 0));
         DoiTac_Name_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DoiTac_Name_txtActionPerformed(evt);
@@ -78,24 +75,20 @@ public class PartnerForm extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Represent:");
 
         jButton2.setBackground(new java.awt.Color(153, 153, 255));
         jButton2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-search-25.png"))); // NOI18N
         jButton2.setText("Search");
 
         DoiTac_ExportExcel_btn.setBackground(new java.awt.Color(153, 153, 255));
         DoiTac_ExportExcel_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        DoiTac_ExportExcel_btn.setForeground(new java.awt.Color(0, 0, 0));
         DoiTac_ExportExcel_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-export-20.png"))); // NOI18N
         DoiTac_ExportExcel_btn.setText("Export Excel");
 
         DoiTac_Add_btn.setBackground(new java.awt.Color(153, 153, 255));
         DoiTac_Add_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        DoiTac_Add_btn.setForeground(new java.awt.Color(0, 0, 0));
         DoiTac_Add_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-add-20.png"))); // NOI18N
         DoiTac_Add_btn.setText("Add");
         DoiTac_Add_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -106,24 +99,19 @@ public class PartnerForm extends javax.swing.JFrame {
 
         DoiTac_ImportExcel_btn.setBackground(new java.awt.Color(153, 153, 255));
         DoiTac_ImportExcel_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        DoiTac_ImportExcel_btn.setForeground(new java.awt.Color(0, 0, 0));
         DoiTac_ImportExcel_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-import-20.png"))); // NOI18N
         DoiTac_ImportExcel_btn.setText("Import Excel");
 
         DoiTac_Edit_btn.setBackground(new java.awt.Color(153, 153, 255));
         DoiTac_Edit_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        DoiTac_Edit_btn.setForeground(new java.awt.Color(0, 0, 0));
         DoiTac_Edit_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-edit-20.png"))); // NOI18N
         DoiTac_Edit_btn.setText("Edit");
 
         DoiTac_Delete_btn.setBackground(new java.awt.Color(153, 153, 255));
         DoiTac_Delete_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        DoiTac_Delete_btn.setForeground(new java.awt.Color(0, 0, 0));
         DoiTac_Delete_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-delete-20.png"))); // NOI18N
         DoiTac_Delete_btn.setText("Delete");
 
-        DoiTac_DaiDien_txt.setBackground(new java.awt.Color(255, 255, 255));
-        DoiTac_DaiDien_txt.setForeground(new java.awt.Color(0, 0, 0));
         DoiTac_DaiDien_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DoiTac_DaiDien_txtActionPerformed(evt);
@@ -131,20 +119,15 @@ public class PartnerForm extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Phone:");
 
-        DoiTac_Phone_txt.setBackground(new java.awt.Color(255, 255, 255));
-        DoiTac_Phone_txt.setForeground(new java.awt.Color(0, 0, 0));
         DoiTac_Phone_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DoiTac_Phone_txtActionPerformed(evt);
             }
         });
 
-        DoiTac_Email_txt.setBackground(new java.awt.Color(255, 255, 255));
         DoiTac_Email_txt.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        DoiTac_Email_txt.setForeground(new java.awt.Color(0, 0, 0));
         DoiTac_Email_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 DoiTac_Email_txtActionPerformed(evt);
@@ -152,7 +135,6 @@ public class PartnerForm extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Email:");
 
         javax.swing.GroupLayout FilterPnlLayout = new javax.swing.GroupLayout(FilterPnl);
@@ -220,14 +202,10 @@ public class PartnerForm extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        Partner_tbl.setBackground(new java.awt.Color(255, 255, 255));
         Partner_tbl.setForeground(new java.awt.Color(51, 51, 51));
         Partner_tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "PartnerName", "Represent", "Email", "Phone"
@@ -236,7 +214,6 @@ public class PartnerForm extends javax.swing.JFrame {
         Partner_tbl.setToolTipText("");
         Partner_tbl.setGridColor(new java.awt.Color(204, 204, 204));
         Partner_tbl.setSelectionBackground(new java.awt.Color(110, 89, 222));
-        Partner_tbl.setSelectionForeground(new java.awt.Color(0, 0, 0));
         Partner_tbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         Partner_tbl.setShowGrid(true);
         Partner_tbl.addMouseListener(new java.awt.event.MouseAdapter() {

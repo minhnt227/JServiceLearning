@@ -58,8 +58,10 @@ public class ActivityForm extends javax.swing.JFrame {
         Khoa_Delete_btn = new javax.swing.JButton();
         Khoa_Add_btn1 = new javax.swing.JButton();
 
+        StartDate.setDateFormat("dd/MM/yyyy");
         StartDate.setTextRefernce(StartDatetxt);
 
+        EndDate.setDateFormat("dd/MM/yyyy");
         EndDate.setTextRefernce(EndDatetxt);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,29 +70,21 @@ public class ActivityForm extends javax.swing.JFrame {
         FilterPnl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, new java.awt.Color(204, 255, 255), java.awt.Color.lightGray, null));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Event :");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Type :");
 
-        HD_nametxt.setBackground(new java.awt.Color(255, 255, 255));
-
-        HD_Loaicmb.setBackground(new java.awt.Color(255, 255, 255));
         HD_Loaicmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "","Môn học", "Sự kiện", "Dự án"}));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Start Date :");
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("End Date :");
 
         HD_Filterbtn.setBackground(new java.awt.Color(153, 153, 255));
         HD_Filterbtn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        HD_Filterbtn.setForeground(new java.awt.Color(0, 0, 0));
         HD_Filterbtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-search-25.png"))); // NOI18N
         HD_Filterbtn.setText("Filter");
         HD_Filterbtn.addActionListener(new java.awt.event.ActionListener() {
@@ -99,20 +93,17 @@ public class ActivityForm extends javax.swing.JFrame {
             }
         });
 
-        StartDatetxt.setBackground(new java.awt.Color(255, 255, 255));
         StartDatetxt.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         StartDatetxt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         StartDatetxt.setEnabled(false);
         StartDatetxt.setText("");
         EndDatetxt.setText("");
 
-        EndDatetxt.setBackground(new java.awt.Color(255, 255, 255));
         EndDatetxt.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         EndDatetxt.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         EndDatetxt.setEnabled(false);
 
         jButton1.setBackground(new java.awt.Color(153, 153, 255));
-        jButton1.setForeground(new java.awt.Color(0, 0, 0));
         jButton1.setText("....");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -121,7 +112,6 @@ public class ActivityForm extends javax.swing.JFrame {
         });
 
         jButton2.setBackground(new java.awt.Color(153, 153, 255));
-        jButton2.setForeground(new java.awt.Color(0, 0, 0));
         jButton2.setText("....");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -191,8 +181,6 @@ public class ActivityForm extends javax.swing.JFrame {
                 .addContainerGap(10, Short.MAX_VALUE))
         );
 
-        HD_Tbl.setBackground(new java.awt.Color(255, 255, 255));
-        HD_Tbl.setForeground(new java.awt.Color(0, 0, 0));
         HD_Tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -222,7 +210,6 @@ public class ActivityForm extends javax.swing.JFrame {
 
         Khoa_Add_btn.setBackground(new java.awt.Color(153, 153, 255));
         Khoa_Add_btn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Khoa_Add_btn.setForeground(new java.awt.Color(0, 0, 0));
         Khoa_Add_btn.setText("Add");
         Khoa_Add_btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,17 +219,14 @@ public class ActivityForm extends javax.swing.JFrame {
 
         Khoa_Edit_btn.setBackground(new java.awt.Color(153, 153, 255));
         Khoa_Edit_btn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Khoa_Edit_btn.setForeground(new java.awt.Color(0, 0, 0));
         Khoa_Edit_btn.setText("Edit");
 
         Khoa_Delete_btn.setBackground(new java.awt.Color(153, 153, 255));
         Khoa_Delete_btn.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Khoa_Delete_btn.setForeground(new java.awt.Color(0, 0, 0));
         Khoa_Delete_btn.setText("Delete");
 
         Khoa_Add_btn1.setBackground(new java.awt.Color(153, 153, 255));
         Khoa_Add_btn1.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
-        Khoa_Add_btn1.setForeground(new java.awt.Color(0, 0, 0));
         Khoa_Add_btn1.setText("Add new event");
         Khoa_Add_btn1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -281,7 +265,7 @@ public class ActivityForm extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(FilterPnl, javax.swing.GroupLayout.PREFERRED_SIZE, 754, Short.MAX_VALUE)
+            .addComponent(FilterPnl, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jScrollPane1)
         );

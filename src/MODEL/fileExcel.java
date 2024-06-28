@@ -116,7 +116,6 @@ public class fileExcel {
                 row.getCell(0).getStringCellValue(), 
                 row.getCell(1).getStringCellValue(), 
                 row.getCell(2).getStringCellValue(),
-                row.getCell(3).getStringCellValue(),
                 row.getCell(4).getStringCellValue()
             );
             list.add(gv);
@@ -268,7 +267,8 @@ public class fileExcel {
         headerRow.createCell(0).setCellValue("Mã");
         headerRow.createCell(1).setCellValue("Họ");
         headerRow.createCell(2).setCellValue("Tên");
-        headerRow.createCell(3).setCellValue("Khoa");
+        headerRow.createCell(3).setCellValue("Mã Khoa");
+        headerRow.createCell(4).setCellValue("Khoa");
         
 
         int rowIndex = 1;
@@ -278,6 +278,7 @@ public class fileExcel {
             dataRow.createCell(1).setCellValue(hd.getFirtName());
             dataRow.createCell(2).setCellValue(hd.getLastName());
             dataRow.createCell(3).setCellValue(hd.getIdKhoa());
+            dataRow.createCell(4).setCellValue(hd.getNameKhoa());
         }
 
         FileOutputStream outputStream = new FileOutputStream(filePath);

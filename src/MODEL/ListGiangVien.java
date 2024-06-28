@@ -49,7 +49,7 @@ public class ListGiangVien extends GiangVien{
         while(it.hasNext()){
             GiangVien temp = it.next();
             
-            Tmodel.addRow(new Object[]{temp.getId(), temp.getLastName(), temp.getFirtName(), temp.getNameKhoa(), temp.getIdKhoa()});
+            Tmodel.addRow(new Object[]{temp.getId(), temp.getLastName(), temp.getFirtName(), temp.getIdKhoa(), temp.getNameKhoa()});
         }
     }
     

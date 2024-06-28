@@ -120,11 +120,11 @@ public class DAO_Khoa extends DBConnector {
     public String getIDKhoaFromName(String name) {
         Khoa kh;
         try {
-            Statement stm = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,  ResultSet.CONCUR_READ_ONLY);
+            Statement stm = con.createStatement();
             String sqlSelect = "SELECT MaKhoa FROM KHOA WHERE TenKhoa LIKE N'%" + name + "%'";
             ResultSet rst = stm.executeQuery(sqlSelect);
-            if (!rst.first()) {
-                JOptionPane.showMessageDialog(null,"111","Success",JOptionPane.ERROR_MESSAGE);
+            if (rst.toString() == null) {
+                
                 stm.close();
                 return null;
             }
@@ -132,7 +132,7 @@ public class DAO_Khoa extends DBConnector {
             while(rst.next()) {
             id = rst.getString(1);
             }
-            JOptionPane.showMessageDialog(null,id,"Success",JOptionPane.ERROR_MESSAGE);
+            
             return id;
             
         } catch (Exception e) {
