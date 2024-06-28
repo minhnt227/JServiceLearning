@@ -43,7 +43,7 @@ public class FundingForm extends javax.swing.JFrame {
         TaiTro_Email_txt = new javax.swing.JTextField();
         TaiTro_Phone_txt = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        HDTbl = new javax.swing.JTable();
+        Funding_tbl = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -212,9 +212,9 @@ public class FundingForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        HDTbl.setBackground(new java.awt.Color(255, 255, 255));
-        HDTbl.setForeground(new java.awt.Color(255, 255, 255));
-        HDTbl.setModel(new javax.swing.table.DefaultTableModel(
+        Funding_tbl.setBackground(new java.awt.Color(255, 255, 255));
+        Funding_tbl.setForeground(new java.awt.Color(0, 0, 0));
+        Funding_tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -225,18 +225,23 @@ public class FundingForm extends javax.swing.JFrame {
                 "Funder", "Repersent", "Phone", "Email", "FunderID"
             }
         ));
-        HDTbl.setToolTipText("");
-        HDTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        Funding_tbl.setToolTipText("");
+        Funding_tbl.setGridColor(new java.awt.Color(204, 204, 204));
+        Funding_tbl.setSelectionBackground(new java.awt.Color(110, 89, 222));
+        Funding_tbl.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        Funding_tbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        Funding_tbl.setShowGrid(true);
+        Funding_tbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                HDTblMouseClicked(evt);
+                Funding_tblMouseClicked(evt);
             }
         });
-        HDTbl.addComponentListener(new java.awt.event.ComponentAdapter() {
+        Funding_tbl.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                HDTblLoadHDs(evt);
+                Funding_tblLoadHDs(evt);
             }
         });
-        jScrollPane1.setViewportView(HDTbl);
+        jScrollPane1.setViewportView(Funding_tbl);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -269,13 +274,13 @@ public class FundingForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_TaiTro_DaiDien_txtActionPerformed
 
-    private void HDTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HDTblMouseClicked
+    private void Funding_tblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Funding_tblMouseClicked
 
-    }//GEN-LAST:event_HDTblMouseClicked
+    }//GEN-LAST:event_Funding_tblMouseClicked
 
-    private void HDTblLoadHDs(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_HDTblLoadHDs
+    private void Funding_tblLoadHDs(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_Funding_tblLoadHDs
 
-    }//GEN-LAST:event_HDTblLoadHDs
+    }//GEN-LAST:event_Funding_tblLoadHDs
 
     private void TaiTro_Email_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TaiTro_Email_txtActionPerformed
         // TODO add your handling code here:
@@ -322,7 +327,7 @@ public class FundingForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel FilterPnl;
-    private javax.swing.JTable HDTbl;
+    private javax.swing.JTable Funding_tbl;
     private javax.swing.JButton TaiTro_Add_txt;
     private javax.swing.JTextField TaiTro_DaiDien_txt;
     private javax.swing.JButton TaiTro_Delete_btn;

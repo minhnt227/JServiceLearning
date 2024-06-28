@@ -61,8 +61,10 @@ public class LecturerForm extends javax.swing.JFrame {
         FilterPnl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, new java.awt.Color(204, 255, 255), java.awt.Color.lightGray, null));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("LecturerID");
 
+        GV_ID_txt.setBackground(new java.awt.Color(255, 255, 255));
         GV_ID_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GV_ID_txtActionPerformed(evt);
@@ -70,10 +72,12 @@ public class LecturerForm extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Middle name");
 
         GV_Search_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_Search_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        GV_Search_btn.setForeground(new java.awt.Color(0, 0, 0));
         GV_Search_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-search-25.png"))); // NOI18N
         GV_Search_btn.setText("Search");
         GV_Search_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -84,11 +88,13 @@ public class LecturerForm extends javax.swing.JFrame {
 
         GV_ExportExcel_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_ExportExcel_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        GV_ExportExcel_btn.setForeground(new java.awt.Color(0, 0, 0));
         GV_ExportExcel_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-export-20.png"))); // NOI18N
         GV_ExportExcel_btn.setText("Export Excel");
 
         GV_Add_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_Add_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        GV_Add_btn.setForeground(new java.awt.Color(0, 0, 0));
         GV_Add_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-add-20.png"))); // NOI18N
         GV_Add_btn.setText("Add");
         GV_Add_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -99,6 +105,7 @@ public class LecturerForm extends javax.swing.JFrame {
 
         GV_Refrech_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_Refrech_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        GV_Refrech_btn.setForeground(new java.awt.Color(0, 0, 0));
         GV_Refrech_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-refresh-20.png"))); // NOI18N
         GV_Refrech_btn.setText("Refresh");
         GV_Refrech_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +116,7 @@ public class LecturerForm extends javax.swing.JFrame {
 
         GV_Edit_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_Edit_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        GV_Edit_btn.setForeground(new java.awt.Color(0, 0, 0));
         GV_Edit_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-edit-20.png"))); // NOI18N
         GV_Edit_btn.setText("Edit");
         GV_Edit_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -119,6 +127,7 @@ public class LecturerForm extends javax.swing.JFrame {
 
         GV_Delete_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_Delete_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        GV_Delete_btn.setForeground(new java.awt.Color(0, 0, 0));
         GV_Delete_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-delete-20.png"))); // NOI18N
         GV_Delete_btn.setText("Delete");
         GV_Delete_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -127,6 +136,8 @@ public class LecturerForm extends javax.swing.JFrame {
             }
         });
 
+        GV_MiddleName_txt.setBackground(new java.awt.Color(255, 255, 255));
+        GV_MiddleName_txt.setForeground(new java.awt.Color(0, 0, 0));
         GV_MiddleName_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GV_MiddleName_txtActionPerformed(evt);
@@ -134,8 +145,11 @@ public class LecturerForm extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Department");
 
+        GV_LastName_txt.setBackground(new java.awt.Color(255, 255, 255));
+        GV_LastName_txt.setForeground(new java.awt.Color(0, 0, 0));
         GV_LastName_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 GV_LastName_txtActionPerformed(evt);
@@ -143,8 +157,11 @@ public class LecturerForm extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Last name");
 
+        GV_Khoa_cmb.setBackground(new java.awt.Color(255, 255, 255));
+        GV_Khoa_cmb.setForeground(new java.awt.Color(0, 0, 0));
         GV_Khoa_cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "","Môn học", "Sự kiện", "Dự án"}));
         GV_Khoa_cmb.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -154,6 +171,7 @@ public class LecturerForm extends javax.swing.JFrame {
 
         GV_ImportExcel_btn.setBackground(new java.awt.Color(153, 153, 255));
         GV_ImportExcel_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        GV_ImportExcel_btn.setForeground(new java.awt.Color(0, 0, 0));
         GV_ImportExcel_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-import-20.png"))); // NOI18N
         GV_ImportExcel_btn.setText("Import Excel");
         GV_ImportExcel_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -229,7 +247,8 @@ public class LecturerForm extends javax.swing.JFrame {
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
-        Lecturer_tbl.setForeground(new java.awt.Color(255, 255, 255));
+        Lecturer_tbl.setBackground(new java.awt.Color(255, 255, 255));
+        Lecturer_tbl.setForeground(new java.awt.Color(0, 0, 0));
         Lecturer_tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -247,6 +266,11 @@ public class LecturerForm extends javax.swing.JFrame {
             }
         });
         Lecturer_tbl.setToolTipText("");
+        Lecturer_tbl.setGridColor(new java.awt.Color(204, 204, 204));
+        Lecturer_tbl.setSelectionBackground(new java.awt.Color(110, 89, 222));
+        Lecturer_tbl.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        Lecturer_tbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        Lecturer_tbl.setShowGrid(true);
         Lecturer_tbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 Lecturer_tblMouseClicked(evt);

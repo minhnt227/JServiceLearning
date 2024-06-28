@@ -148,7 +148,7 @@ public class ActivityForm extends javax.swing.JFrame {
         );
 
         HD_Tbl.setBackground(new java.awt.Color(255, 255, 255));
-        HD_Tbl.setForeground(new java.awt.Color(255, 255, 255));
+        HD_Tbl.setForeground(new java.awt.Color(0, 0, 0));
         HD_Tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -161,8 +161,11 @@ public class ActivityForm extends javax.swing.JFrame {
             }
         ));
         HD_Tbl.setCellSelectionEnabled(true);
+        HD_Tbl.setGridColor(new java.awt.Color(204, 204, 204));
         HD_Tbl.setSelectionBackground(new java.awt.Color(110, 89, 222));
         HD_Tbl.setSelectionForeground(new java.awt.Color(255, 255, 255));
+        HD_Tbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        HD_Tbl.setShowGrid(true);
         HD_Tbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 HD_TblMouseClicked(evt);

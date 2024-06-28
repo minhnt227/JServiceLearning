@@ -26,8 +26,6 @@ public class DepartmentForm extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        dateChooser1 = new com.raven.datechooser.DateChooser();
-        dateChooser2 = new com.raven.datechooser.DateChooser();
         FilterPnl = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -46,10 +44,7 @@ public class DepartmentForm extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         DateOfEs = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
-        HDTbl = new javax.swing.JTable();
-
-        dateChooser2.setRequestFocusEnabled(false);
-        dateChooser2.setTextRefernce(DateOfEs);
+        Department_tbl = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -233,9 +228,9 @@ public class DepartmentForm extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        HDTbl.setBackground(new java.awt.Color(255, 255, 255));
-        HDTbl.setForeground(new java.awt.Color(255, 255, 255));
-        HDTbl.setModel(new javax.swing.table.DefaultTableModel(
+        Department_tbl.setBackground(new java.awt.Color(255, 255, 255));
+        Department_tbl.setForeground(new java.awt.Color(0, 0, 0));
+        Department_tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -246,18 +241,23 @@ public class DepartmentForm extends javax.swing.JFrame {
                 "DepartmentID", "DepartmentName", "Phone", "Email", "Date of Establishment"
             }
         ));
-        HDTbl.setToolTipText("");
-        HDTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        Department_tbl.setToolTipText("");
+        Department_tbl.setGridColor(new java.awt.Color(204, 204, 204));
+        Department_tbl.setSelectionBackground(new java.awt.Color(110, 89, 222));
+        Department_tbl.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        Department_tbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        Department_tbl.setShowGrid(true);
+        Department_tbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                HDTblMouseClicked(evt);
+                Department_tblMouseClicked(evt);
             }
         });
-        HDTbl.addComponentListener(new java.awt.event.ComponentAdapter() {
+        Department_tbl.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                HDTblLoadHDs(evt);
+                Department_tblLoadHDs(evt);
             }
         });
-        jScrollPane1.setViewportView(HDTbl);
+        jScrollPane1.setViewportView(Department_tbl);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -294,13 +294,13 @@ public class DepartmentForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_Khoa_Phone_txtActionPerformed
 
-    private void HDTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HDTblMouseClicked
+    private void Department_tblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Department_tblMouseClicked
 
-    }//GEN-LAST:event_HDTblMouseClicked
+    }//GEN-LAST:event_Department_tblMouseClicked
 
-    private void HDTblLoadHDs(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_HDTblLoadHDs
+    private void Department_tblLoadHDs(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_Department_tblLoadHDs
 
-    }//GEN-LAST:event_HDTblLoadHDs
+    }//GEN-LAST:event_Department_tblLoadHDs
 
     private void Khoa_Add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Khoa_Add_btnActionPerformed
         // TODO add your handling code here:
@@ -347,8 +347,8 @@ public class DepartmentForm extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField DateOfEs;
+    private javax.swing.JTable Department_tbl;
     private javax.swing.JPanel FilterPnl;
-    private javax.swing.JTable HDTbl;
     private javax.swing.JButton Khoa_Add_btn;
     private javax.swing.JButton Khoa_Delete_btn;
     private javax.swing.JButton Khoa_Edit_btn;
@@ -359,8 +359,6 @@ public class DepartmentForm extends javax.swing.JFrame {
     private javax.swing.JTextField Khoa_Name_txt;
     private javax.swing.JTextField Khoa_Phone_txt;
     private javax.swing.JButton Search_Btn;
-    private com.raven.datechooser.DateChooser dateChooser1;
-    private com.raven.datechooser.DateChooser dateChooser2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

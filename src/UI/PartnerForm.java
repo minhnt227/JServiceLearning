@@ -56,7 +56,7 @@ public class PartnerForm extends javax.swing.JFrame {
         DoiTac_Email_txt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        HDTbl = new javax.swing.JTable();
+        Partner_tbl = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -218,9 +218,9 @@ public class PartnerForm extends javax.swing.JFrame {
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
-        HDTbl.setBackground(new java.awt.Color(255, 255, 255));
-        HDTbl.setForeground(new java.awt.Color(255, 255, 255));
-        HDTbl.setModel(new javax.swing.table.DefaultTableModel(
+        Partner_tbl.setBackground(new java.awt.Color(255, 255, 255));
+        Partner_tbl.setForeground(new java.awt.Color(51, 51, 51));
+        Partner_tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -231,18 +231,23 @@ public class PartnerForm extends javax.swing.JFrame {
                 "PartnerName", "Represent", "Email", "Phone"
             }
         ));
-        HDTbl.setToolTipText("");
-        HDTbl.addMouseListener(new java.awt.event.MouseAdapter() {
+        Partner_tbl.setToolTipText("");
+        Partner_tbl.setGridColor(new java.awt.Color(204, 204, 204));
+        Partner_tbl.setSelectionBackground(new java.awt.Color(110, 89, 222));
+        Partner_tbl.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        Partner_tbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
+        Partner_tbl.setShowGrid(true);
+        Partner_tbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                HDTblMouseClicked(evt);
+                Partner_tblMouseClicked(evt);
             }
         });
-        HDTbl.addComponentListener(new java.awt.event.ComponentAdapter() {
+        Partner_tbl.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
-                HDTblLoadHDs(evt);
+                Partner_tblLoadHDs(evt);
             }
         });
-        jScrollPane1.setViewportView(HDTbl);
+        jScrollPane1.setViewportView(Partner_tbl);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -272,13 +277,13 @@ public class PartnerForm extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_DoiTac_DaiDien_txtActionPerformed
 
-    private void HDTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HDTblMouseClicked
+    private void Partner_tblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Partner_tblMouseClicked
 
-    }//GEN-LAST:event_HDTblMouseClicked
+    }//GEN-LAST:event_Partner_tblMouseClicked
 
-    private void HDTblLoadHDs(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_HDTblLoadHDs
+    private void Partner_tblLoadHDs(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_Partner_tblLoadHDs
 
-    }//GEN-LAST:event_HDTblLoadHDs
+    }//GEN-LAST:event_Partner_tblLoadHDs
 
     private void DoiTac_Phone_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DoiTac_Phone_txtActionPerformed
         // TODO add your handling code here:
@@ -338,7 +343,7 @@ public class PartnerForm extends javax.swing.JFrame {
     private javax.swing.JTextField DoiTac_Name_txt;
     private javax.swing.JTextField DoiTac_Phone_txt;
     private javax.swing.JPanel FilterPnl;
-    private javax.swing.JTable HDTbl;
+    private javax.swing.JTable Partner_tbl;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -348,7 +353,7 @@ public class PartnerForm extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void LoadDoiTac() throws SQLException {
-        DefaultTableModel model = (DefaultTableModel)HDTbl.getModel();
+        DefaultTableModel model = (DefaultTableModel)Partner_tbl.getModel();
         RemoveTableData(model);
         DAO_DoiTac daoHD = new DAO_DoiTac();
         ArrayList<DoiTac> DTs = new ArrayList<>();
@@ -357,7 +362,7 @@ public class PartnerForm extends javax.swing.JFrame {
         for(DoiTac hd : DTs){
                 model.addRow(hd.getRowData());
         }
-        HDTbl.setAutoCreateRowSorter(true);
+        Partner_tbl.setAutoCreateRowSorter(true);
     }
 
     private void RemoveTableData(DefaultTableModel model) {
