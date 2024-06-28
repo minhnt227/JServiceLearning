@@ -7,6 +7,7 @@ package MODEL;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import javax.swing.JOptionPane;
@@ -26,6 +27,12 @@ public class ListTaiTro extends TaiTro{
         super();
         list = new ArrayList<>();
         model = new DefaultTableModel(colHeader,0);
+    }
+    
+    public ListTaiTro(int lim, String FullName, boolean Hide) throws SQLException {
+        ListTaiTro temp = (new DAO.DAO_TaiTro()).getListFromDB(lim, FullName, Hide);
+        list = temp.list;
+        colHeader = temp.getColHeader();
     }
 
     public DefaultTableModel getTableModel(){
