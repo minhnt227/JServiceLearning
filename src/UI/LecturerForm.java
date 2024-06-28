@@ -463,7 +463,7 @@ public class LecturerForm extends javax.swing.JFrame {
         fileExcel export = new fileExcel();
         try {
             ListGiangVien lst = new ListGiangVien(0,"","","","", false);
-            final String excelFilePath = "C:/Desktop/books.xlsx";
+            final String excelFilePath = "C:\\Users\\ASUS\\Documents\\Java\\Test.xlsx";
             try {
                 //JFileChooser fileChooser = new JFileChooser();
 //            fileChooser.setDialogTitle("Save Excel File");

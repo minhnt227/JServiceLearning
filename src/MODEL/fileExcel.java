@@ -159,7 +159,6 @@ public class fileExcel {
         headerRow.createCell(1).setCellValue("HỌ TÊN");
         headerRow.createCell(2).setCellValue("MÃ KHOA");
         headerRow.createCell(3).setCellValue("KHOA");
-
         int rowIndex = 1;
         for (SinhVien sinhVien : list) {
             XSSFRow dataRow = sheet.createRow(rowIndex++);
@@ -168,7 +167,6 @@ public class fileExcel {
             dataRow.createCell(2).setCellValue(sinhVien.getIdKhoa());
             dataRow.createCell(3).setCellValue(sinhVien.getNameKhoa());
         }
-
         FileOutputStream outputStream = new FileOutputStream(filePath);
         workbook.write(outputStream);
         workbook.close();
@@ -270,7 +268,7 @@ public class fileExcel {
         headerRow.createCell(0).setCellValue("Mã");
         headerRow.createCell(1).setCellValue("Họ");
         headerRow.createCell(2).setCellValue("Tên");
-        headerRow.createCell(4).setCellValue("Khoa");
+        headerRow.createCell(3).setCellValue("Khoa");
         
 
         int rowIndex = 1;
