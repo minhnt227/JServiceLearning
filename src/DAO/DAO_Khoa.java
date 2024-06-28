@@ -35,6 +35,7 @@ public class DAO_Khoa extends DBConnector {
                 list = null;
                 return;
             }
+            list = new ArrayList<>();
             while (rst.next()) {
                 Khoa next = new Khoa(rst.getString(1), rst.getNString(2), rst.getString(3), rst.getString(4), rst.getDate(5));
                 list.add(next);

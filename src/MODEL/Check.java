@@ -1,4 +1,7 @@
 package MODEL;
+
+import javax.swing.table.DefaultTableModel;
+
 public class Check{
 
     private static final String EMAIL_PATTERN = "^[\\w!#$%&'*+/=?^`{|}~-]+(?:\\.[\\w!#$%&'*+/=?^`{|}~-]+)*@(?:[\\w](?:[\\w-]*[\\w])?\\.)+[\\w](?:[\\w-]*[\\w])?$";
@@ -19,5 +22,11 @@ public class Check{
         return false;
     }
 
+    public static void RemoveTableData(DefaultTableModel model) {
+        int count = model.getRowCount();
+        for(int i = 0; i< count;i++){
+            model.removeRow(0);
+        }
+    }
    
 }

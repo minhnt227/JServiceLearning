@@ -5,6 +5,7 @@
 package UI;
 
 import DAO.DAO_GiangVien;
+import MODEL.Check;
 import MODEL.GiangVien;
 import MODEL.ListGiangVien;
 import java.sql.SQLException;
@@ -366,6 +367,7 @@ public class LecturerForm extends javax.swing.JFrame {
         GV_MiddleName_txt.setText("");
         GV_LastName_txt.setText("");
         GV_Khoa_cmb.setSelectedIndex(-1);
+        Check.RemoveTableData((DefaultTableModel) Lecturer_tbl.getModel());
     }
     private void Lecturer_tblLoadHDs(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_Lecturer_tblLoadHDs
         try {
@@ -412,6 +414,7 @@ public class LecturerForm extends javax.swing.JFrame {
                 GV.setFirtName(GV_MiddleName_txt.getText());
                 GV.setNameKhoa(GV_Khoa_cmb.getSelectedItem().toString());
                 EditGV.updateGV(GV);
+                loadDefaultTableFromDB();
             }
         }
         else 
@@ -428,6 +431,7 @@ public class LecturerForm extends javax.swing.JFrame {
             if (GV_ID_txt.getText() != null)
             {
                 DeleteGV.deleteGiangVien(GV_ID_txt.getText());
+                loadDefaultTableFromDB();
             }
         }
         else

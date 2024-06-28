@@ -5,6 +5,7 @@
 package UI;
 
 import DAO.DAO_DoiTac;
+import MODEL.Check;
 import MODEL.DoiTac;
 import MODEL.ListDoiTac;
 import java.sql.SQLException;
@@ -355,7 +356,7 @@ public class PartnerForm extends javax.swing.JFrame {
 
     private void LoadDoiTac() throws SQLException {
         DefaultTableModel model = (DefaultTableModel)Partner_tbl.getModel();
-        RemoveTableData(model);
+        Check.RemoveTableData(model);
         ListDoiTac DTss = new ListDoiTac(0, "", false);
         for(DoiTac hd : DTss.list){
                 model.addRow(hd.getRowData());
@@ -363,10 +364,5 @@ public class PartnerForm extends javax.swing.JFrame {
         Partner_tbl.setAutoCreateRowSorter(true);
     }
 
-    private void RemoveTableData(DefaultTableModel model) {
-        int count = model.getRowCount();
-        for(int i = 0; i< count;i++){
-            model.removeRow(0);
-        }
-    }
+    
 }

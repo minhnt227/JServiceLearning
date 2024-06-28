@@ -29,16 +29,14 @@ public class ListKhoa  extends Khoa{
     public ListKhoa(){
         DAO_Khoa dAO_Khoa = new DAO_Khoa(false);
         list = dAO_Khoa.list;
-        model = new DefaultTableModel(colHeader,0);
     }
     
-    public DefaultTableModel getTableModel(){
+    public void setTableModel(){
         Iterator<Khoa> it = list.iterator();
         while(it.hasNext()){
             Khoa temp = it.next();
-            model.addRow(new Object[]{temp.getId(), temp.getName(), temp.getPhone(), temp.getEmail()});
+            model.addRow(new Object[]{temp.getId(), temp.getName(), temp.getPhone(), temp.getEmail(),temp.getDateString()});
         }
-        return model;
     }
     
     public static ArrayList exportList(DefaultTableModel Model){

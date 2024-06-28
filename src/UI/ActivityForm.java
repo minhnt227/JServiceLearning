@@ -166,11 +166,6 @@ public class ActivityForm extends javax.swing.JFrame {
         HD_Tbl.setSelectionForeground(new java.awt.Color(255, 255, 255));
         HD_Tbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         HD_Tbl.setShowGrid(true);
-        HD_Tbl.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                HD_TblMouseClicked(evt);
-            }
-        });
         HD_Tbl.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentShown(java.awt.event.ComponentEvent evt) {
                 HD_TblLoadHDs(evt);
@@ -263,10 +258,6 @@ public class ActivityForm extends javax.swing.JFrame {
     private void HD_FilterbtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HD_FilterbtnActionPerformed
         
     }//GEN-LAST:event_HD_FilterbtnActionPerformed
-
-    private void HD_TblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_HD_TblMouseClicked
-
-    }//GEN-LAST:event_HD_TblMouseClicked
 
     private void HD_TblLoadHDs(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_HD_TblLoadHDs
 

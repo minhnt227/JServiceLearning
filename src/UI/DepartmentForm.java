@@ -4,6 +4,10 @@
  */
 package UI;
 
+import MODEL.Check;
+import MODEL.ListKhoa;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author A715-42G
@@ -15,6 +19,7 @@ public class DepartmentForm extends javax.swing.JFrame {
      */
     public DepartmentForm() {
         initComponents();
+        LoadKhoatoTable();
     }
 
     /**
@@ -366,4 +371,20 @@ public class DepartmentForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void LoadKhoatoTable() {
+        Clear();
+        ListKhoa lstKhoa = new ListKhoa();
+        lstKhoa.model = (DefaultTableModel) Department_tbl.getModel();
+        lstKhoa.setTableModel();
+    }
+
+    private void Clear() {
+        DateOfEs.setText("");
+        Khoa_Email_txt.setText("");
+        Khoa_ID_txt.setText("");
+        Khoa_Name_txt.setText("");
+        Khoa_Phone_txt.setText("");
+        Check.RemoveTableData((DefaultTableModel) Department_tbl.getModel());
+    }
 }
