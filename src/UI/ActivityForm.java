@@ -4,6 +4,11 @@
  */
 package UI;
 
+import MODEL.Check;
+import MODEL.HOAT_DONG;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author A715-42G
@@ -15,6 +20,7 @@ public class ActivityForm extends javax.swing.JFrame {
      */
     public ActivityForm() {
         initComponents();
+        LoadActivities();
     }
 
     /**
@@ -325,4 +331,20 @@ public class ActivityForm extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void LoadActivities() {
+        Clear();
+        DefaultTableModel model = (DefaultTableModel) HD_Tbl.getModel();
+        ArrayList<HOAT_DONG> ListAct = (new HOAT_DONG()).getListfromDB(0, "", "", "", "", false);
+        for (HOAT_DONG hd : ListAct){
+            model.addRow(hd.getRowData());
+        }
+    }
+
+    private void Clear() {
+        HD_nametxt.setText("");
+        EndDatetxt.setText("");
+        StartDatetxt.setText("");
+        Check.RemoveTableData((DefaultTableModel) HD_Tbl.getModel());
+    }
 }

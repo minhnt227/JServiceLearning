@@ -6,8 +6,11 @@ package MODEL;
 
 import DAO.*;
 import java.math.BigDecimal;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -154,6 +157,16 @@ public class HOAT_DONG {
     public static boolean exist(int maHD){
         DAO_HoatDong dAO_HoatDong = new DAO_HoatDong();
         return dAO_HoatDong.exist(maHD);
+    }
+    
+    public ArrayList<HOAT_DONG> getListfromDB(int number, String ten, String loai, String ngayBD, String ngayKT, boolean Hide){
+        try {
+            DAO_HoatDong dAO_HoatDong = new DAO_HoatDong();
+            return dAO_HoatDong.GetListHoatDong(number, ten, loai, ngayBD, ngayKT, Hide);
+        } catch (SQLException ex) {
+            Logger.getLogger(HOAT_DONG.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+        }
     }
     
     /**
