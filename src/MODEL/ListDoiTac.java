@@ -13,35 +13,34 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Kisa
  */
-public class ListDoiTac extends DoiTac{
-    public static ArrayList<DoiTac> list;
+public class ListDoiTac extends DoiTac {
+
+    public ArrayList<DoiTac> list;
     public Object[] colHeader;
     public DefaultTableModel model;
 
-    public ListDoiTac(){
+    public ListDoiTac() {
         list = new ArrayList<>();
-        model = new DefaultTableModel(colHeader,0);
+        model = new DefaultTableModel(colHeader, 0);
     }
 
-    
     public ListDoiTac(int lim, String FullName, boolean Hide) throws SQLException {
-        ListDoiTac temp = ( new DAO.DAO_DoiTac() ).getListFromDB(lim, FullName, true);
+        ListDoiTac temp = (new DAO.DAO_DoiTac()).getListFromDB(lim, FullName, true);
         list = temp.list;
         colHeader = temp.getColHeader();
     }
 
-    public DefaultTableModel getTableModel(){
+    public void getTableModel() {
         Iterator<DoiTac> it = list.iterator();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             DoiTac temp = it.next();
-            model.addRow(new Object[]{temp.getName(), temp.getNameHost(), temp.getPhone(), temp.getEmail()});
+            model.addRow(new Object[]{0, temp.getName(), temp.getNameHost(), temp.getPhone(), temp.getEmail(), ""});
         }
-        return model;
     }
-    
-    public static ArrayList exportList(DefaultTableModel Model){
+
+    public static ArrayList exportList(DefaultTableModel Model) {
         ArrayList<DoiTac> listDT = new ArrayList<>();
-        
+
         int rowCount = Model.getRowCount();
 
         for (int row = 0; row < rowCount; row++) {
@@ -52,35 +51,42 @@ public class ListDoiTac extends DoiTac{
             dt.setPhone((String) Model.getValueAt(row, 3));
             listDT.add(dt);
         }
-        
+
         return listDT;
     }
-    
-    
-    public static DoiTac find(String name){
+
+    public  DoiTac find(String name) {
         Iterator<DoiTac> it = list.iterator();
-        while(it.hasNext()){
+        while (it.hasNext()) {
             DoiTac temp = it.next();
-            if(temp.getName().contains(name))
+            if (temp.getName().contains(name)) {
                 return temp;
+            }
         }
         return null;
     }
 
-    public static int soLuong(){
+    public  int soLuong() {
         return list.size();
     }
 
-    public static void addList(DoiTac doiTac){
-        if (!doiTac.getName().isEmpty() && !doiTac.getNameHost().isEmpty() && !doiTac.getEmail().isEmpty()){
-            if (Check.isPhoneNumber(doiTac.getPhone())){
-                if (Check.isValidEmail(doiTac.getEmail())) list.add(doiTac);
-                else JOptionPane.showMessageDialog(null,"Check Email Number", "Try again",JOptionPane.ERROR_MESSAGE);
-            }else JOptionPane.showMessageDialog(null,"Check Phone Number", "Try again",JOptionPane.ERROR_MESSAGE);
-        } else JOptionPane.showMessageDialog(null,"Information is not valid\nPlease enter all fields", "Try again",JOptionPane.ERROR_MESSAGE);
+    public  void addList(DoiTac doiTac) {
+        if (!doiTac.getName().isEmpty() && !doiTac.getNameHost().isEmpty() && !doiTac.getEmail().isEmpty()) {
+            if (Check.isPhoneNumber(doiTac.getPhone())) {
+                if (Check.isValidEmail(doiTac.getEmail())) {
+                    list.add(doiTac);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Check Email Number", "Try again", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Check Phone Number", "Try again", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Information is not valid\nPlease enter all fields", "Try again", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
-    public static void importFile(BufferedReader file) throws IOException{
+    public  void importFile(BufferedReader file) throws IOException {
         String line;
         while ((line = file.readLine()) != null) {
             String[] value = line.split("\t");
@@ -88,14 +94,14 @@ public class ListDoiTac extends DoiTac{
         }
     }
 
-    public static void  exportFile(PrintWriter file){
+    public  void exportFile(PrintWriter file) {
         for (DoiTac doiTac : list) {
             file.write(doiTac.getName() + "\t" + doiTac.getNameHost() + "\t" + doiTac.getPhone() + "\t" + doiTac.getEmail());
         }
     }
 
-    public static ArrayList outList(){
+    public  ArrayList outList() {
         return list;
     }
-    
+
 }

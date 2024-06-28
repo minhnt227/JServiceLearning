@@ -132,19 +132,23 @@ public class DAO_DoiTac extends DBConnector {
      * @param Name
      * @return dt from Database
      */
-    public DoiTac getSingleByName(String Name) {
-        DoiTac dt = null;
+    public DoiTac getSingleByName(final String Name) {
+        final DoiTac dt = null;
         try {
-            Statement stm = con.createStatement();
+            Statement stm = con.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,
+                                     ResultSet.CONCUR_READ_ONLY);
             String sqlSelect;
             sqlSelect = "SELECT * FROM DOI_TAC WHERE TenDoiTac LIKE N'%" + Name + "%'";
-            ResultSet rst = stm.executeQuery(sqlSelect);
-            if (!rst.first()) {
-                stm.close();
-                return null;
+            final ResultSet result = stm.executeQuery(sqlSelect);
+            while (result.next()) {
+                int iD = result.getInt(1);
+                String name = result.getNString(2);
+                return new DoiTac(result.getInt(1), result.getNString(2), result.getNString(3), result.getString(4), result.getString(5));
+               
             }
-            dt = new DoiTac(rst.getInt(1), rst.getNString(2), rst.getNString(3), rst.getString(4), rst.getString(5));
+
             stm.close();
+            con.close();
             return dt;
         } catch (Exception e) {
             e.printStackTrace();
@@ -159,11 +163,8 @@ public class DAO_DoiTac extends DBConnector {
             Statement stm = con.createStatement();
             String sqlSelect;
             sqlSelect = "SELECT * FROM DOI_TAC WHERE ID_DoiTac = " + Id;
-            ResultSet rst = stm.executeQuery(sqlSelect);
-            if (!rst.first()) {
-                stm.close();
-                return null;
-            }
+            final ResultSet rst = stm.executeQuery(sqlSelect);
+            rst.absolute(1);
             dt = new DoiTac(rst.getInt(1), rst.getNString(2), rst.getNString(3), rst.getString(4), rst.getString(5));
             dt.setHide(rst.getBoolean(6));
             stm.close();
@@ -190,9 +191,10 @@ public class DAO_DoiTac extends DBConnector {
         Statement stm = con.createStatement();
         ResultSet result = stm.executeQuery(sqlQuery);
         while (result.next()) {
-            Objs.list.add(getSingleByName(result.getNString(2)));
+            Objs.list.add(new DoiTac(result.getInt(1), result.getNString(2), result.getNString(3), result.getString(4), result.getString(5)));
         }
         Objs.colHeader = getColunmHeader(result);
+        stm.close();
         return Objs;
     }
 

@@ -4,6 +4,15 @@
  */
 package UI;
 
+import DAO.DAO_DoiTac;
+import MODEL.DoiTac;
+import MODEL.ListDoiTac;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author A715-42G
@@ -15,6 +24,11 @@ public class PartnerForm extends javax.swing.JFrame {
      */
     public PartnerForm() {
         initComponents();
+        try {
+            LoadDoiTac();
+        } catch (SQLException ex) {
+            Logger.getLogger(PartnerForm.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -332,4 +346,24 @@ public class PartnerForm extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+
+    private void LoadDoiTac() throws SQLException {
+        DefaultTableModel model = (DefaultTableModel)HDTbl.getModel();
+        RemoveTableData(model);
+        DAO_DoiTac daoHD = new DAO_DoiTac();
+        ArrayList<DoiTac> DTs = new ArrayList<>();
+        DTs = daoHD.getListFromDB(0, "", false).list;
+        
+        for(DoiTac hd : DTs){
+                model.addRow(hd.getRowData());
+        }
+        HDTbl.setAutoCreateRowSorter(true);
+    }
+
+    private void RemoveTableData(DefaultTableModel model) {
+        int count = model.getRowCount();
+        for(int i = 0; i< count;i++){
+            model.removeRow(0);
+        }
+    }
 }

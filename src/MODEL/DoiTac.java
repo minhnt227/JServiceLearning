@@ -98,7 +98,7 @@ public class DoiTac extends HOAT_DONG{
     }
 
     public Object[] getRowData(){
-        return new Object[]{getName(), getNameHost(), getPhone(), getEmail()};
+        return new Object[]{getName(), getNameHost(), getEmail(), getPhone()};
     }
 
     public boolean insertDoiTac(){
