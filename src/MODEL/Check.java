@@ -1,5 +1,8 @@
 package MODEL;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 
 public class Check{
@@ -27,6 +30,14 @@ public class Check{
         for(int i = 0; i< count;i++){
             model.removeRow(0);
         }
+    }
+
+    public static String DateToString(Date date){
+        return String.valueOf(date);
+    }
+
+    public static Date StringToDate(String s) throws ParseException{
+        return new SimpleDateFormat("dd/MM/yyyy").parse(s);
     }
    
 }
