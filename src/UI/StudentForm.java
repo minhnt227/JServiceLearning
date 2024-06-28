@@ -49,67 +49,52 @@ public class StudentForm extends javax.swing.JFrame {
         FilterPnl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, new java.awt.Color(204, 255, 255), java.awt.Color.lightGray, null));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("StudentID:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Department:");
 
-        SV_ID_txt.setBackground(new java.awt.Color(255, 255, 255));
-        SV_ID_txt.setForeground(new java.awt.Color(0, 0, 0));
         SV_ID_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SV_ID_txtActionPerformed(evt);
             }
         });
 
-        SV_Khoa_cmb.setBackground(new java.awt.Color(255, 255, 255));
-        SV_Khoa_cmb.setForeground(new java.awt.Color(0, 0, 0));
         SV_Khoa_cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "","Môn học", "Sự kiện", "Dự án"}));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Name:");
 
         SV_Search_btn.setBackground(new java.awt.Color(153, 153, 255));
         SV_Search_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        SV_Search_btn.setForeground(new java.awt.Color(0, 0, 0));
         SV_Search_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-search-25.png"))); // NOI18N
         SV_Search_btn.setText("Search");
 
         SV_ExportExcel_btn.setBackground(new java.awt.Color(153, 153, 255));
         SV_ExportExcel_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        SV_ExportExcel_btn.setForeground(new java.awt.Color(0, 0, 0));
         SV_ExportExcel_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-export-20.png"))); // NOI18N
         SV_ExportExcel_btn.setText("Export Excel");
 
         SV_Add_btn.setBackground(new java.awt.Color(153, 153, 255));
         SV_Add_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        SV_Add_btn.setForeground(new java.awt.Color(0, 0, 0));
         SV_Add_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-add-20.png"))); // NOI18N
         SV_Add_btn.setText("Add");
 
         SV_ImportExcel_btn.setBackground(new java.awt.Color(153, 153, 255));
         SV_ImportExcel_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        SV_ImportExcel_btn.setForeground(new java.awt.Color(0, 0, 0));
         SV_ImportExcel_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-import-20.png"))); // NOI18N
         SV_ImportExcel_btn.setText("Import Excel");
 
         SV_Edit_btn.setBackground(new java.awt.Color(153, 153, 255));
         SV_Edit_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        SV_Edit_btn.setForeground(new java.awt.Color(0, 0, 0));
         SV_Edit_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-edit-20.png"))); // NOI18N
         SV_Edit_btn.setText("Edit");
 
         SV_Delete_btn.setBackground(new java.awt.Color(153, 153, 255));
         SV_Delete_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        SV_Delete_btn.setForeground(new java.awt.Color(0, 0, 0));
         SV_Delete_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-delete-20.png"))); // NOI18N
         SV_Delete_btn.setText("Delete");
 
-        SV_Name_txt.setBackground(new java.awt.Color(255, 255, 255));
-        SV_Name_txt.setForeground(new java.awt.Color(0, 0, 0));
         SV_Name_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SV_Name_txtActionPerformed(evt);
@@ -118,7 +103,6 @@ public class StudentForm extends javax.swing.JFrame {
 
         SV_Refrech_btn.setBackground(new java.awt.Color(153, 153, 255));
         SV_Refrech_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        SV_Refrech_btn.setForeground(new java.awt.Color(0, 0, 0));
         SV_Refrech_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-refresh-20.png"))); // NOI18N
         SV_Refrech_btn.setText("Refresh");
         SV_Refrech_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -140,12 +124,9 @@ public class StudentForm extends javax.swing.JFrame {
                             .addComponent(jLabel4))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(FilterPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(FilterPnlLayout.createSequentialGroup()
-                                .addComponent(SV_Name_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addGroup(FilterPnlLayout.createSequentialGroup()
-                                .addComponent(SV_Khoa_cmb, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(SV_Name_txt, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SV_Khoa_cmb, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(FilterPnlLayout.createSequentialGroup()
                         .addGroup(FilterPnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(FilterPnlLayout.createSequentialGroup()
@@ -195,7 +176,6 @@ public class StudentForm extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        HDTbl.setBackground(new java.awt.Color(255, 255, 255));
         HDTbl.setForeground(new java.awt.Color(255, 255, 255));
         HDTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -205,7 +185,7 @@ public class StudentForm extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "LecturerID", "Name", "DepartmentID", "DepartmentName"
+                "StudentID", "Name", "DepartmentID", "DepartmentName"
             }
         ));
         HDTbl.setToolTipText("");

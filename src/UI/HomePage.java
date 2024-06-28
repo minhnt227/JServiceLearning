@@ -25,12 +25,7 @@ public class HomePage extends javax.swing.JFrame {
     public static StudentForm student;
     public HomePage() {
         initComponents();
-        activity = new ActivityForm();
-        department = new DepartmentForm();
-        funding = new FundingForm();
-        lecture = new LecturerForm();
-        partner = new PartnerForm();
-        student = new StudentForm();
+        
     }
 
     /**
@@ -529,6 +524,7 @@ public class HomePage extends javax.swing.JFrame {
     private void btn_Event_MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Event_MouseReleased
         // TODO add your handling code here:
         resetColor(btn_Event_Forn);
+        FormMain_pnl.updateUI();
     }//GEN-LAST:event_btn_Event_MouseReleased
     private void showForm(JFrame frame){
         FormMain_pnl.removeAll();
@@ -541,6 +537,7 @@ public class HomePage extends javax.swing.JFrame {
     private void btn_Event_MousePressd(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Event_MousePressd
         // TODO add your handling code here:
         setColor(btn_Event_Forn);
+        activity = new ActivityForm();
         showForm(activity);
         
     }//GEN-LAST:event_btn_Event_MousePressd
@@ -548,13 +545,14 @@ public class HomePage extends javax.swing.JFrame {
     private void btn_Lecturer_MousePress(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Lecturer_MousePress
         // TODO add your handling code here:
         setColor(btn_Lecturer);
+        lecture = new LecturerForm();
         showForm(lecture);
     }//GEN-LAST:event_btn_Lecturer_MousePress
 
     private void btn_Student_MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Student_MousePressed
         // TODO add your handling code here:
         setColor(btn_Student);
-        FormMain_pnl.removeAll();
+        student = new StudentForm();
         showForm(student);
 
     }//GEN-LAST:event_btn_Student_MousePressed
@@ -567,6 +565,8 @@ public class HomePage extends javax.swing.JFrame {
     private void btn_Partner_MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Partner_MousePressed
         // TODO add your handling code here:
         setColor(btn_Partner_Form);
+        FormMain_pnl.removeAll();
+        partner = new PartnerForm();
         showForm(partner);
 
     }//GEN-LAST:event_btn_Partner_MousePressed
@@ -584,6 +584,7 @@ public class HomePage extends javax.swing.JFrame {
     private void btn_Funder_MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Funder_MousePressed
         // TODO add your handling code here:
         setColor(btn_Funding_Form);
+        funding = new FundingForm();
         showForm(funding);
 
 
@@ -598,6 +599,7 @@ public class HomePage extends javax.swing.JFrame {
         // TODO add your handling code here:
         setColor(btn_Department_Form);
         FormMain_pnl.removeAll();
+        department = new DepartmentForm();
         showForm(department);
     }//GEN-LAST:event_btn_Department_MousePressed
 
