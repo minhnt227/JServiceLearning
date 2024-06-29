@@ -289,6 +289,7 @@ public class ActivityForm extends javax.swing.JFrame {
 
     private void Khoa_Add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Khoa_Add_btnActionPerformed
         try {
+           
             HOAT_DONG hd = new HOAT_DONG();
             HOAT_DONG temp = new HOAT_DONG();
             temp = (new DAO.DAO_HoatDong()).getBasicHoatDong(HD_nametxt.getText());

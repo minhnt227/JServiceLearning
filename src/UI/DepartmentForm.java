@@ -14,7 +14,7 @@ import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
-
+import javax.swing.text.AbstractDocument;
 /**
  *
  * @author A715-42G
@@ -98,6 +98,11 @@ public class DepartmentForm extends javax.swing.JFrame {
         Khoa_ExportExcel_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         Khoa_ExportExcel_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-export-20.png"))); // NOI18N
         Khoa_ExportExcel_btn.setText("Export Excel");
+        Khoa_ExportExcel_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Khoa_ExportExcel_btnActionPerformed(evt);
+            }
+        });
 
         Khoa_Add_btn.setBackground(new java.awt.Color(153, 153, 255));
         Khoa_Add_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -152,6 +157,11 @@ public class DepartmentForm extends javax.swing.JFrame {
         Khoa_Phone_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Khoa_Phone_txtActionPerformed(evt);
+            }
+        });
+        Khoa_Phone_txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Khoa_Phone_txtKeyPressed(evt);
             }
         });
 
@@ -340,6 +350,12 @@ public class DepartmentForm extends javax.swing.JFrame {
     }
     private void Khoa_Add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Khoa_Add_btnActionPerformed
         KH = new Khoa();
+        if(!Check.isValidEmail(Khoa_Email_txt.getText()))
+        {
+            JOptionPane.showMessageDialog(null,"Wrong email format!","Warning",JOptionPane.INFORMATION_MESSAGE);
+            Clear();
+            return;
+        }
         if(CheckTextField() == true){
             KH.setId(Khoa_ID_txt.getText());
             KH.setName(Khoa_Name_txt.getText());
@@ -399,6 +415,14 @@ public class DepartmentForm extends javax.swing.JFrame {
              model.addRow(new Object[]{temp.getId(), temp.getName(), temp.getPhone(), temp.getEmail(),temp.getDateString()});
         }
     }//GEN-LAST:event_Search_BtnActionPerformed
+
+    private void Khoa_ExportExcel_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Khoa_ExportExcel_btnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_Khoa_ExportExcel_btnActionPerformed
+
+    private void Khoa_Phone_txtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Khoa_Phone_txtKeyPressed
+               ((AbstractDocument) Khoa_Phone_txt.getDocument()).setDocumentFilter(new NumericDocumentFilter(10));
+    }//GEN-LAST:event_Khoa_Phone_txtKeyPressed
 
     /**
      * @param args the command line arguments

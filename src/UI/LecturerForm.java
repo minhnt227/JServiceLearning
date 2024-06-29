@@ -455,7 +455,7 @@ public class LecturerForm extends javax.swing.JFrame {
     }//GEN-LAST:event_GV_Delete_btnActionPerformed
 
     private void GV_ImportExcel_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GV_ImportExcel_btnActionPerformed
-        final String excelFilePath = "C:\\Users\\ASUS\\Documents\\Java\\TestImport.xlsx";
+        final String excelFilePath = "../.xlsx";
         ArrayList<GiangVien> lst = new ArrayList<GiangVien>();
         try {
             lst = fileExcel.inpGiangVien(lst, excelFilePath);
@@ -493,7 +493,7 @@ public class LecturerForm extends javax.swing.JFrame {
         fileExcel export = new fileExcel();
         try {
             ListGiangVien lst = new ListGiangVien(0,"","","","", false);
-            final String excelFilePath = "C:\\Users\\ASUS\\Documents\\Java\\TestExport.xlsx";
+            final String excelFilePath = "../export.xlsx";
             try {
                 //JFileChooser fileChooser = new JFileChooser();
 //            fileChooser.setDialogTitle("Save Excel File");
