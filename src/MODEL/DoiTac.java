@@ -112,7 +112,7 @@ public class DoiTac extends HOAT_DONG{
     }
 
 
-    public boolean deleteSinhVien(){
+    public boolean deleteDT(){
         DAO_DoiTac dAO_DoiTac = new DAO_DoiTac();
         return dAO_DoiTac.deleteDoiTac(this.getName());
     }

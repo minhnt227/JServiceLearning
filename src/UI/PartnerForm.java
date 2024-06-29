@@ -12,8 +12,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.event.ListDataListener;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -111,6 +113,11 @@ public class PartnerForm extends javax.swing.JFrame {
         DoiTac_Delete_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         DoiTac_Delete_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-delete-20.png"))); // NOI18N
         DoiTac_Delete_btn.setText("Delete");
+        DoiTac_Delete_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DoiTac_Delete_btnActionPerformed(evt);
+            }
+        });
 
         DoiTac_DaiDien_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -255,9 +262,23 @@ public class PartnerForm extends javax.swing.JFrame {
     private void DoiTac_DaiDien_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DoiTac_DaiDien_txtActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_DoiTac_DaiDien_txtActionPerformed
-
+    public boolean CheckTextField()
+    {
+        if (DoiTac_Name_txt.getText() == null || DoiTac_Email_txt.getText() == null || DoiTac_Phone_txt.getText() == null || DoiTac_DaiDien_txt.getText() == null )
+          return false;
+        
+        return true;
+    }
     private void Partner_tblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Partner_tblMouseClicked
-
+        int index = Partner_tbl.getSelectedRow();
+       TableModel model = Partner_tbl.getModel();
+       if (index !=-1)
+       {
+        DoiTac_Name_txt.setText( model.getValueAt(index, 0).toString()); 
+        DoiTac_DaiDien_txt.setText(model.getValueAt(index, 1).toString());
+        DoiTac_Email_txt.setText(model.getValueAt(index, 2).toString());
+        DoiTac_Phone_txt.setText(model.getValueAt(index, 3).toString());
+       }
     }//GEN-LAST:event_Partner_tblMouseClicked
 
     private void Partner_tblLoadHDs(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_Partner_tblLoadHDs
@@ -273,8 +294,51 @@ public class PartnerForm extends javax.swing.JFrame {
     }//GEN-LAST:event_DoiTac_Email_txtActionPerformed
 
     private void DoiTac_Add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DoiTac_Add_btnActionPerformed
-        
+        DoiTac DT = new DoiTac();
+        if(CheckTextField() == true){
+            DT.setName(DoiTac_Name_txt.getText());
+            DT.setNameHost(DoiTac_DaiDien_txt.getText());
+            DT.setEmail(DoiTac_Email_txt.getText());
+            DT.setPhone(DoiTac_Phone_txt.getText());
+            if(!DT.existDT()){
+                DT.insertDoiTac();
+                JOptionPane.showMessageDialog(null,"Add successfull!","Success",JOptionPane.INFORMATION_MESSAGE);
+                try {
+                    LoadDoiTac();
+                } catch (SQLException ex) {
+                    Logger.getLogger(PartnerForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else{
+                DT.insertDoiTac();
+                JOptionPane.showMessageDialog(null,"Edit successfull!","Success",JOptionPane.INFORMATION_MESSAGE);
+                try {
+                    LoadDoiTac();
+                } catch (SQLException ex) {
+                    Logger.getLogger(PartnerForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        }
     }//GEN-LAST:event_DoiTac_Add_btnActionPerformed
+
+    private void DoiTac_Delete_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DoiTac_Delete_btnActionPerformed
+        DoiTac DT = new DoiTac();
+        int index = Partner_tbl.getSelectedRow();
+        if(index !=-1){
+            if(DoiTac_Name_txt.getText()!=null){
+                DT.setName(DoiTac_Name_txt.getText());
+                DT.deleteDT();
+                try {
+                    LoadDoiTac();
+                } catch (SQLException ex) {
+                    Logger.getLogger(PartnerForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+        }{
+            JOptionPane.showMessageDialog(null,"Pls, Click the row you want to delete!","Error",JOptionPane.ERROR);
+        }
+    }//GEN-LAST:event_DoiTac_Delete_btnActionPerformed
 
     /**
      * @param args the command line arguments
