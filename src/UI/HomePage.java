@@ -25,7 +25,8 @@ public class HomePage extends javax.swing.JFrame {
     public static StudentForm student;
     public HomePage() {
         initComponents();
-        
+        activity = new ActivityForm();
+        showForm(activity);
     }
 
     /**
@@ -450,7 +451,7 @@ public class HomePage extends javax.swing.JFrame {
                 .addComponent(btn_Funding_Form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
                 .addComponent(btn_Department_Form, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         FormMain_pnl.setBackground(new java.awt.Color(255, 255, 255));
@@ -463,7 +464,7 @@ public class HomePage extends javax.swing.JFrame {
         );
         FormMain_pnlLayout.setVerticalGroup(
             FormMain_pnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 526, Short.MAX_VALUE)
         );
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
@@ -487,7 +488,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 718, Short.MAX_VALUE)
+                .addGap(0, 783, Short.MAX_VALUE)
                 .addComponent(jLabel14)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel3))
@@ -540,7 +541,6 @@ public class HomePage extends javax.swing.JFrame {
     private void btn_Event_MousePressd(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_Event_MousePressd
         // TODO add your handling code here:
         setColor(btn_Event_Forn);
-        activity = new ActivityForm();
         showForm(activity);
         
     }//GEN-LAST:event_btn_Event_MousePressd
@@ -673,10 +673,10 @@ public class HomePage extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new HomePage().setVisible(true);
+                
             }
-            
+           
         });
-        
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
