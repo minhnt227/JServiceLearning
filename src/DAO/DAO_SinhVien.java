@@ -26,7 +26,7 @@ public class DAO_SinhVien extends DBConnector {
 
     public boolean existSV(String ID) {
         try {
-            Statement stm = con.createStatement();
+            Statement stm = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE,  ResultSet.CONCUR_READ_ONLY);
             String sqlSelect = "SELECT * FROM SINH_VIEN WHERE MSSV LIKE '" + ID + "'";
             ResultSet rst = stm.executeQuery(sqlSelect);
             if (!rst.first()) {

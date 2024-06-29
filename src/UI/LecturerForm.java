@@ -328,16 +328,16 @@ public class LecturerForm extends javax.swing.JFrame {
                 try {
                     AddGV.insertGiangVien(GV);
                     loadDefaultTableFromDB();
-                    JOptionPane.showMessageDialog(null,"Them thanh cong","Success",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Thêm thành công","Success",JOptionPane.INFORMATION_MESSAGE);
                 } catch (SQLException ex) {
                     Logger.getLogger(LecturerForm.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }  
             else {
-                JOptionPane.showMessageDialog(null,"Giang vien da ton tai","Error",JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null,"Giảng viên đã tồn tại","Error",JOptionPane.ERROR_MESSAGE);
             }
         }
-        else JOptionPane.showMessageDialog(null,"Hay nhap day du thong tin","Error",JOptionPane.ERROR_MESSAGE);
+        else JOptionPane.showMessageDialog(null,"Hãy nhập đầy đủ thông tin","Error",JOptionPane.ERROR_MESSAGE);
     }//GEN-LAST:event_GV_Add_btnActionPerformed
 
     private void GV_FirstName_txtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GV_FirstName_txtActionPerformed

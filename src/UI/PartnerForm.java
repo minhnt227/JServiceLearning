@@ -273,7 +273,7 @@ public class PartnerForm extends javax.swing.JFrame {
     }//GEN-LAST:event_DoiTac_Email_txtActionPerformed
 
     private void DoiTac_Add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DoiTac_Add_btnActionPerformed
-        // TODO add your handling code here:
+        
     }//GEN-LAST:event_DoiTac_Add_btnActionPerformed
 
     /**

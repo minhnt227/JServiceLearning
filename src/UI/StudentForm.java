@@ -4,13 +4,21 @@
  */
 package UI;
 
+import DAO.DAO_GiangVien;
+import DAO.DAO_Khoa;
+import DAO.DAO_SinhVien;
 import MODEL.Check;
+import MODEL.GiangVien;
 import MODEL.ListSinhVien;
+import MODEL.SinhVien;
 import java.sql.SQLException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JComponent;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -25,6 +33,7 @@ public class StudentForm extends javax.swing.JFrame {
         try {
             initComponents();
             LoadSVTableFromDB();
+            loadComboBoxKhoa();
         } catch (SQLException ex) {
             Logger.getLogger(StudentForm.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -62,67 +71,67 @@ public class StudentForm extends javax.swing.JFrame {
         FilterPnl.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED, null, new java.awt.Color(204, 255, 255), java.awt.Color.lightGray, null));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("StudentID:");
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Department:");
 
-        SV_ID_txt.setBackground(new java.awt.Color(255, 255, 255));
-        SV_ID_txt.setForeground(new java.awt.Color(0, 0, 0));
         SV_ID_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SV_ID_txtActionPerformed(evt);
             }
         });
 
-        SV_Khoa_cmb.setBackground(new java.awt.Color(255, 255, 255));
-        SV_Khoa_cmb.setForeground(new java.awt.Color(0, 0, 0));
         SV_Khoa_cmb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "","Môn học", "Sự kiện", "Dự án"}));
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Name:");
 
         SV_Search_btn.setBackground(new java.awt.Color(153, 153, 255));
         SV_Search_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        SV_Search_btn.setForeground(new java.awt.Color(0, 0, 0));
         SV_Search_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-search-25.png"))); // NOI18N
         SV_Search_btn.setText("Search");
 
         SV_ExportExcel_btn.setBackground(new java.awt.Color(153, 153, 255));
         SV_ExportExcel_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        SV_ExportExcel_btn.setForeground(new java.awt.Color(0, 0, 0));
         SV_ExportExcel_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-export-20.png"))); // NOI18N
         SV_ExportExcel_btn.setText("Export Excel");
 
         SV_Add_btn.setBackground(new java.awt.Color(153, 153, 255));
         SV_Add_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        SV_Add_btn.setForeground(new java.awt.Color(0, 0, 0));
         SV_Add_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-add-20.png"))); // NOI18N
         SV_Add_btn.setText("Add");
+        SV_Add_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SV_Add_btnActionPerformed(evt);
+            }
+        });
 
         SV_ImportExcel_btn.setBackground(new java.awt.Color(153, 153, 255));
         SV_ImportExcel_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        SV_ImportExcel_btn.setForeground(new java.awt.Color(0, 0, 0));
         SV_ImportExcel_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-import-20.png"))); // NOI18N
         SV_ImportExcel_btn.setText("Import Excel");
 
         SV_Edit_btn.setBackground(new java.awt.Color(153, 153, 255));
         SV_Edit_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        SV_Edit_btn.setForeground(new java.awt.Color(0, 0, 0));
         SV_Edit_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-edit-20.png"))); // NOI18N
         SV_Edit_btn.setText("Edit");
+        SV_Edit_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SV_Edit_btnActionPerformed(evt);
+            }
+        });
 
         SV_Delete_btn.setBackground(new java.awt.Color(153, 153, 255));
         SV_Delete_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        SV_Delete_btn.setForeground(new java.awt.Color(0, 0, 0));
         SV_Delete_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-delete-20.png"))); // NOI18N
         SV_Delete_btn.setText("Delete");
+        SV_Delete_btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SV_Delete_btnActionPerformed(evt);
+            }
+        });
 
-        SV_Name_txt.setBackground(new java.awt.Color(255, 255, 255));
-        SV_Name_txt.setForeground(new java.awt.Color(0, 0, 0));
         SV_Name_txt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 SV_Name_txtActionPerformed(evt);
@@ -131,7 +140,6 @@ public class StudentForm extends javax.swing.JFrame {
 
         SV_Refrech_btn.setBackground(new java.awt.Color(153, 153, 255));
         SV_Refrech_btn.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        SV_Refrech_btn.setForeground(new java.awt.Color(0, 0, 0));
         SV_Refrech_btn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/UI/Images/icons8-refresh-20.png"))); // NOI18N
         SV_Refrech_btn.setText("Refresh");
         SV_Refrech_btn.addActionListener(new java.awt.event.ActionListener() {
@@ -205,14 +213,9 @@ public class StudentForm extends javax.swing.JFrame {
                 .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        Student_tbl.setBackground(new java.awt.Color(255, 255, 255));
-        Student_tbl.setForeground(new java.awt.Color(0, 0, 0));
         Student_tbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "StudentID", "Name", "DepartmentName", "DepartmentID"
@@ -222,7 +225,6 @@ public class StudentForm extends javax.swing.JFrame {
         Student_tbl.setGridColor(new java.awt.Color(204, 204, 204));
         Student_tbl.setInheritsPopupMenu(true);
         Student_tbl.setSelectionBackground(new java.awt.Color(110, 89, 222));
-        Student_tbl.setSelectionForeground(new java.awt.Color(0, 0, 0));
         Student_tbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
         Student_tbl.setShowGrid(true);
         Student_tbl.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -262,7 +264,14 @@ public class StudentForm extends javax.swing.JFrame {
     }//GEN-LAST:event_SV_ID_txtActionPerformed
 
     private void Student_tblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_Student_tblMouseClicked
-
+        int index = Student_tbl.getSelectedRow();
+       TableModel model = Student_tbl.getModel();
+       if (index !=-1)
+       {
+        SV_ID_txt.setText( model.getValueAt(index, 0).toString()); 
+        SV_Name_txt.setText(model.getValueAt(index, 1).toString());
+        SV_Khoa_cmb.setSelectedItem( model.getValueAt(index, 2));
+       }
     }//GEN-LAST:event_Student_tblMouseClicked
 
     private void Student_tblLoadHDs(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_Student_tblLoadHDs
@@ -274,8 +283,102 @@ public class StudentForm extends javax.swing.JFrame {
     }//GEN-LAST:event_SV_Name_txtActionPerformed
 
     private void SV_Refrech_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SV_Refrech_btnActionPerformed
-        // TODO add your handling code here:
+        Clear();
     }//GEN-LAST:event_SV_Refrech_btnActionPerformed
+    public boolean CheckTextField()
+    {
+        if (SV_ID_txt.getText() == null || SV_Name_txt.getText() == null ||  SV_Khoa_cmb.getSelectedIndex() == -1)
+          return false;
+        
+        return true;
+    }
+    private void loadComboBoxKhoa()
+    {   SV_Khoa_cmb.removeAllItems();
+        
+        DAO_Khoa khoa = new DAO_Khoa();
+        List<String> listKhoa = khoa.getNameKhoaList();
+        for (String i: listKhoa )
+        {
+            SV_Khoa_cmb.addItem(i);
+        }
+        SV_Khoa_cmb.setSelectedIndex(-1);
+    }
+    private void SV_Add_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SV_Add_btnActionPerformed
+        SinhVien sv = new SinhVien();
+        if (CheckTextField())
+        {
+            sv.setId(SV_ID_txt.getText());
+            sv.setName(SV_Name_txt.getText());
+            sv.setNameKhoa(SV_Khoa_cmb.getSelectedItem().toString());
+            DAO_Khoa kh = new DAO_Khoa();
+            String ID= kh.getIDKhoaFromName(SV_Khoa_cmb.getSelectedItem().toString());
+            sv.setIdKhoa(ID);
+            if (!sv.existSV())
+            {
+                try {
+                    sv.insertSV();
+                    LoadSVTableFromDB();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StudentForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }else {
+                JOptionPane.showMessageDialog(null,"Sinh viên đã tồn tại","Error",JOptionPane.ERROR_MESSAGE);
+            }
+        }
+                else JOptionPane.showMessageDialog(null,"Hãy nhập đầy đủ thông tin","Error",JOptionPane.ERROR_MESSAGE);
+
+    }//GEN-LAST:event_SV_Add_btnActionPerformed
+
+    private void SV_Edit_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SV_Edit_btnActionPerformed
+        SinhVien SV = new SinhVien();
+        int index = Student_tbl.getSelectedRow();
+        if (index !=-1)
+        {
+            if (CheckTextField())
+            {
+                SV.setId( SV_ID_txt.getText());
+                SV.setName(SV_Name_txt.getText());
+                SV.setNameKhoa(SV_Khoa_cmb.getSelectedItem().toString());
+                DAO_Khoa kh = new DAO_Khoa();
+                String ID= kh.getIDKhoaFromName(SV_Khoa_cmb.getSelectedItem().toString());
+                SV.setIdKhoa(ID);
+                DAO_SinhVien daoSV = new DAO_SinhVien();
+                daoSV.updateSV(SV);
+                try {
+                    LoadSVTableFromDB();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StudentForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        else 
+        {
+            JOptionPane.showMessageDialog(null,"Hay chon dong de chinh sua","Error",JOptionPane.ERROR);
+        }
+    }//GEN-LAST:event_SV_Edit_btnActionPerformed
+
+    private void SV_Delete_btnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SV_Delete_btnActionPerformed
+        
+        int index = Student_tbl.getSelectedRow();
+        if (index != -1)
+        {
+            if (SV_ID_txt.getText() != null)
+            {
+                
+                DAO_SinhVien DeleteGV = new DAO_SinhVien();
+                DeleteGV.deleteSinhVien(SV_ID_txt.getText());
+                try {
+                    LoadSVTableFromDB();
+                } catch (SQLException ex) {
+                    Logger.getLogger(StudentForm.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+        else
+        {
+            JOptionPane.showMessageDialog(null,"Hay chon dong de xoa","Error",JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_SV_Delete_btnActionPerformed
 
     /**
      * @param args the command line arguments

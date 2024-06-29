@@ -82,10 +82,6 @@ public class SinhVien extends HOAT_DONG{
         this.nameKhoa = nameKhoa;
         this.idKhoa = idKhoa;
     }
-   
-    
-    
-    
 
     public SinhVien(SinhVien sv){
         setId(sv.id);
